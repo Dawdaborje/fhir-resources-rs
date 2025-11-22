@@ -1,31 +1,29 @@
-pub mod human_name;
-pub mod identifier;
-pub mod patient;
-pub mod patient_contact;
-pub mod patient_communication;
-pub mod patient_link;
-pub mod data_types;
-pub mod period;
-pub mod account;
-pub mod account_coverage;
-pub mod account_guarantor;
-pub mod account_diagnosis;
-pub mod account_procedure;
-pub mod account_related_account;
-pub mod account_balance;    
-pub mod money;
+mod account;
+mod patient;
 
-pub fn add(left: u64, right: u64) -> u64 {
-    left + right
+use patient::Patient;
+use serde_json::Value;
+use std::io::Error;
+// in-crate result type
+pub type Result<T> = std::result::Result<T, Error>;
+
+#[derive(Debug)]
+pub enum FhirVersion {
+    R4,
+    R4B,
+    R5,
+    R6,
 }
 
-#[cfg(test)]
-mod tests {
-    use super::*;
+#[derive(Debug)]
+pub enum FhirResource {
+    PatientResource,
+}
 
-    #[test]
-    fn it_works() {
-        let result = add(2, 2);
-        assert_eq!(result, 4);
+struct Resource {}
+
+pub fn create_resource(resource: FhirResource, version: FhirVersion, data: Value) {
+    match resource {
+        FhirResource::PatientResource => Patient::new(data),
     }
 }
