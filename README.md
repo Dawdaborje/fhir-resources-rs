@@ -4,31 +4,31 @@
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Status](https://img.shields.io/badge/Status-Personal%20Project-red.svg)]()
 
-> **⚠️ IMPORTANT DISCLAIMER**  
+> **IMPORTANT DISCLAIMER**  
 > This is a **personal project** and is **NOT ready for production use**. This library is being developed for educational purposes and personal healthcare applications. Do not use this in production healthcare systems without thorough testing and validation.
 
 ## Overview
 
 A Rust library for working with FHIR (Fast Healthcare Interoperability Resources) data structures. This library provides type-safe implementations of common FHIR resources and data types used in healthcare applications.
 
-## 🚨 Project Status
+## Project Status
 
 - **Status**: Personal Development Project
 - **Production Ready**: ❌ No - Not suitable for production use
-- **Testing**: ✅ Comprehensive test suite included
-- **Documentation**: ✅ Basic documentation available
-- **FHIR Compliance**: 🔄 Partial - Not fully FHIR compliant
+- **Testing**: Comprehensive test suite included
+- **Documentation**: Basic documentation available
+- **FHIR Compliance**: Partial - Not fully FHIR compliant
 
 ## Features
 
-### ✅ Implemented Resources
+### Implemented Resources
 
 - **Patient**: Complete FHIR Patient resource with all fields
 - **HumanName**: Structured human names with international support
 - **Identifier**: Healthcare identifiers (MRN, SSN, etc.)
 - **Period**: Time periods for healthcare events
 
-### ✅ Implemented Data Types
+### Implemented Data Types
 
 - **Uri**: FHIR-compliant URI implementation
 - **Code**: FHIR code values with validation
@@ -41,14 +41,14 @@ A Rust library for working with FHIR (Fast Healthcare Interoperability Resources
 - **PatientCommunication**: Language communication preferences
 - **PatientLink**: Patient resource links
 
-### 🌍 International Support
+### International Support
 
 - Multiple name formats (Chinese, Japanese, Korean, Spanish, Arabic)
 - Professional titles and credentials
 - International identifier formats (NHS, Medicare, etc.)
 - Various date/time formats
 
-### 🔧 Technical Features
+### Technical Features
 
 - **Type Safety**: Strongly typed Rust implementations
 - **Serialization**: JSON serialization/deserialization support with FHIR camelCase
@@ -131,62 +131,6 @@ cargo test --test identifier_tests -- --nocapture
 cargo test --test complete_patient_tests -- --nocapture
 ```
 
-## Project Structure
-
-```
-fhir-resources-rs/
-├── src/
-│   ├── lib.rs                    # Main library entry point
-│   ├── patient.rs                # Complete FHIR Patient resource
-│   ├── human_name.rs             # HumanName implementation
-│   ├── identifier.rs             # Identifier implementation
-│   ├── period.rs                 # Period implementation
-│   ├── patient_contact.rs        # Patient contact information
-│   ├── patient_communication.rs  # Patient communication preferences
-│   ├── patient_link.rs           # Patient resource links
-│   └── data_types/
-│       ├── mod.rs                # Data types module
-│       ├── uri.rs                # URI implementation
-│       ├── code.rs               # Code implementation
-│       ├── contact_point.rs      # ContactPoint implementation
-│       ├── address.rs            # Address implementation
-│       ├── codeable_concept.rs   # CodeableConcept and Coding
-│       └── reference.rs          # Reference implementation
-├── tests/                        # Integration tests
-│   ├── patient_tests.rs          # Basic Patient tests
-│   ├── human_name_tests.rs       # HumanName tests
-│   ├── period_tests.rs           # Period tests
-│   ├── identifier_tests.rs       # Identifier tests
-│   └── complete_patient_tests.rs # Complete Patient tests
-└── docs/                         # Documentation
-    ├── getting_started.md        # Getting started guide
-    ├── api_reference.md          # API reference
-    └── examples.md               # Usage examples
-```
-
-## Limitations
-
-### ❌ Current Limitations
-
-- **Partial FHIR Compliance**: Complete Patient resource implemented, but not all FHIR resources
-- **Limited Resources**: Only Patient resource fully implemented
-- **Basic Validation**: Limited FHIR validation rules
-- **No Extensions**: FHIR extensions not supported
-- **Limited References**: Basic Reference type implemented
-- **No Search**: No search or query capabilities
-- **No Server**: No FHIR server implementation
-
-### 🔄 Planned Features
-
-- [x] Complete FHIR Patient resource
-- [x] ContactPoint, Address, CodeableConcept data types
-- [x] Patient contact, communication, and link types
-- [ ] More resource types (Observation, Medication, etc.)
-- [ ] Complete FHIR R4 compliance
-- [ ] FHIR validation rules
-- [ ] FHIR extensions support
-- [ ] Search and query capabilities
-- [ ] FHIR server implementation
 
 ## Contributing
 
@@ -199,10 +143,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## Disclaimer
 
 This library is provided "as is" without warranty of any kind. It is not intended for use in production healthcare systems. Always validate healthcare data according to your organization's requirements and applicable regulations.
-
-## Author
-
-This is a personal project developed for educational purposes and personal healthcare applications.
 
 ---
 
