@@ -24,7 +24,11 @@ pub struct SpecimenCollection {
     pub collector: Option<Box<Reference>>,
 
     /// Collection time
-    pub collected: Option<serde_json::Value>,
+    #[serde(rename = "collectedDateTime")]
+    pub collected_date_time: Option<String>,
+
+    #[serde(rename = "collectedPeriod")]
+    pub collected_period: Option<Period>,
 
     /// How long it took to collect specimen
     pub duration: Option<Duration>,
@@ -40,8 +44,11 @@ pub struct SpecimenCollection {
     pub body_site: Option<CodeableConcept>,
 
     /// Whether or how long patient abstained from food and/or drink
-    #[serde(rename = "fastingStatus")]
-    pub fasting_status: Option<serde_json::Value>,
+    #[serde(rename = "fastingStatusCodeableConcept")]
+    pub fasting_status_codeable_concept: Option<CodeableConcept>,
+
+    #[serde(rename = "fastingStatusDuration")]
+    pub fasting_status_duration: Option<Duration>,
 }
 
 /// Processing and processing step details
@@ -68,7 +75,11 @@ pub struct SpecimenProcessing {
     pub additive: Option<Vec<Box<Reference>>>,
 
     /// Date and time of specimen processing
-    pub time: Option<serde_json::Value>,
+    #[serde(rename = "timeDateTime")]
+    pub time_date_time: Option<String>,
+
+    #[serde(rename = "timePeriod")]
+    pub time_period: Option<Period>,
 }
 
 /// Direct container of specimen (tube/slide, etc.)
@@ -103,7 +114,11 @@ pub struct SpecimenContainer {
     pub specimen_quantity: Option<Quantity>,
 
     /// Additive associated with container
-    pub additive: Option<serde_json::Value>,
+    #[serde(rename = "additiveCodeableConcept")]
+    pub additive_codeable_concept: Option<CodeableConcept>,
+
+    #[serde(rename = "additiveReference")]
+    pub additive_reference: Option<Box<Reference>>,
 }
 
 /// A sample to be used for analysis.

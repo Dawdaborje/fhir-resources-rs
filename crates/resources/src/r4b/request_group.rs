@@ -50,7 +50,23 @@ pub struct RequestGroupAction {
     pub related_action: Option<Vec<RequestGroupActionRelatedAction>>,
 
     /// When the action should take place
-    pub timing: Option<serde_json::Value>,
+    #[serde(rename = "timingDateTime")]
+    pub timing_date_time: Option<String>,
+
+    #[serde(rename = "timingAge")]
+    pub timing_age: Option<Age>,
+
+    #[serde(rename = "timingPeriod")]
+    pub timing_period: Option<Period>,
+
+    #[serde(rename = "timingDuration")]
+    pub timing_duration: Option<Duration>,
+
+    #[serde(rename = "timingRange")]
+    pub timing_range: Option<Range>,
+
+    #[serde(rename = "timingTiming")]
+    pub timing_timing: Option<Timing>,
 
     /// Who should perform the action
     pub participant: Option<Vec<Box<Reference>>>,
@@ -129,7 +145,11 @@ pub struct RequestGroupActionRelatedAction {
     pub relationship: String,
 
     /// Time offset for the relationship
-    pub offset: Option<serde_json::Value>,
+    #[serde(rename = "offsetDuration")]
+    pub offset_duration: Option<Duration>,
+
+    #[serde(rename = "offsetRange")]
+    pub offset_range: Option<Range>,
 }
 
 /// A group of related requests that can be used to capture intended activities that have inter-dependencies such as "give this medication after that one".

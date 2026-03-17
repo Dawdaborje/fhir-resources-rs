@@ -71,7 +71,11 @@ pub struct ClaimEvent {
     pub r#type: CodeableConcept,
 
     /// Occurance date or period
-    pub when: serde_json::Value,
+    #[serde(rename = "whenDateTime")]
+    pub when_date_time: String,
+
+    #[serde(rename = "whenPeriod")]
+    pub when_period: Period,
 }
 
 /// Members of the care team
@@ -128,10 +132,30 @@ pub struct ClaimSupportingInfo {
     pub code: Option<CodeableConcept>,
 
     /// When it occurred
-    pub timing: Option<serde_json::Value>,
+    #[serde(rename = "timingDate")]
+    pub timing_date: Option<String>,
+
+    #[serde(rename = "timingPeriod")]
+    pub timing_period: Option<Period>,
 
     /// Data to be provided
-    pub value: Option<serde_json::Value>,
+    #[serde(rename = "valueBoolean")]
+    pub value_boolean: Option<bool>,
+
+    #[serde(rename = "valueString")]
+    pub value_string: Option<String>,
+
+    #[serde(rename = "valueQuantity")]
+    pub value_quantity: Option<Quantity>,
+
+    #[serde(rename = "valueAttachment")]
+    pub value_attachment: Option<Attachment>,
+
+    #[serde(rename = "valueReference")]
+    pub value_reference: Option<Box<Reference>>,
+
+    #[serde(rename = "valueIdentifier")]
+    pub value_identifier: Option<Box<Identifier>>,
 
     /// Explanation for the information
     pub reason: Option<CodeableConcept>,
@@ -155,7 +179,11 @@ pub struct ClaimDiagnosis {
     pub sequence: i32,
 
     /// Nature of illness or problem
-    pub diagnosis: serde_json::Value,
+    #[serde(rename = "diagnosisCodeableConcept")]
+    pub diagnosis_codeable_concept: CodeableConcept,
+
+    #[serde(rename = "diagnosisReference")]
+    pub diagnosis_reference: Box<Reference>,
 
     /// Timing or nature of the diagnosis
     #[serde(rename = "type")]
@@ -191,7 +219,11 @@ pub struct ClaimProcedure {
     pub date: Option<String>,
 
     /// Specific clinical procedure
-    pub procedure: serde_json::Value,
+    #[serde(rename = "procedureCodeableConcept")]
+    pub procedure_codeable_concept: CodeableConcept,
+
+    #[serde(rename = "procedureReference")]
+    pub procedure_reference: Box<Reference>,
 
     /// Unique device identifier
     pub udi: Option<Vec<Box<Reference>>>,
@@ -258,7 +290,11 @@ pub struct ClaimAccident {
     pub r#type: Option<CodeableConcept>,
 
     /// Where the event occurred
-    pub location: Option<serde_json::Value>,
+    #[serde(rename = "locationAddress")]
+    pub location_address: Option<Address>,
+
+    #[serde(rename = "locationReference")]
+    pub location_reference: Option<Box<Reference>>,
 }
 
 /// Product or service provided
@@ -323,10 +359,21 @@ pub struct ClaimItem {
     pub program_code: Option<Vec<CodeableConcept>>,
 
     /// Date or dates of service or product delivery
-    pub serviced: Option<serde_json::Value>,
+    #[serde(rename = "servicedDate")]
+    pub serviced_date: Option<String>,
+
+    #[serde(rename = "servicedPeriod")]
+    pub serviced_period: Option<Period>,
 
     /// Place of service or where product was supplied
-    pub location: Option<serde_json::Value>,
+    #[serde(rename = "locationCodeableConcept")]
+    pub location_codeable_concept: Option<CodeableConcept>,
+
+    #[serde(rename = "locationAddress")]
+    pub location_address: Option<Address>,
+
+    #[serde(rename = "locationReference")]
+    pub location_reference: Option<Box<Reference>>,
 
     /// Paid by the patient
     #[serde(rename = "patientPaid")]

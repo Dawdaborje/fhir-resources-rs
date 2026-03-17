@@ -49,7 +49,155 @@ pub struct TaskInput {
     pub r#type: CodeableConcept,
 
     /// Content to use in performing the task
-    pub value: serde_json::Value,
+    #[serde(rename = "valueBase64Binary")]
+    pub value_base64binary: String,
+
+    #[serde(rename = "valueBoolean")]
+    pub value_boolean: bool,
+
+    #[serde(rename = "valueCanonical")]
+    pub value_canonical: String,
+
+    #[serde(rename = "valueCode")]
+    pub value_code: String,
+
+    #[serde(rename = "valueDate")]
+    pub value_date: String,
+
+    #[serde(rename = "valueDateTime")]
+    pub value_date_time: String,
+
+    #[serde(rename = "valueDecimal")]
+    pub value_decimal: f64,
+
+    #[serde(rename = "valueId")]
+    pub value_id: String,
+
+    #[serde(rename = "valueInstant")]
+    pub value_instant: String,
+
+    #[serde(rename = "valueInteger")]
+    pub value_integer: i32,
+
+    #[serde(rename = "valueMarkdown")]
+    pub value_markdown: String,
+
+    #[serde(rename = "valueOid")]
+    pub value_oid: String,
+
+    #[serde(rename = "valuePositiveInt")]
+    pub value_positive_int: i32,
+
+    #[serde(rename = "valueString")]
+    pub value_string: String,
+
+    #[serde(rename = "valueTime")]
+    pub value_time: String,
+
+    #[serde(rename = "valueUnsignedInt")]
+    pub value_unsigned_int: u32,
+
+    #[serde(rename = "valueUri")]
+    pub value_uri: String,
+
+    #[serde(rename = "valueUrl")]
+    pub value_url: String,
+
+    #[serde(rename = "valueUuid")]
+    pub value_uuid: String,
+
+    #[serde(rename = "valueAddress")]
+    pub value_address: Address,
+
+    #[serde(rename = "valueAge")]
+    pub value_age: Age,
+
+    #[serde(rename = "valueAnnotation")]
+    pub value_annotation: Annotation,
+
+    #[serde(rename = "valueAttachment")]
+    pub value_attachment: Attachment,
+
+    #[serde(rename = "valueCodeableConcept")]
+    pub value_codeable_concept: CodeableConcept,
+
+    #[serde(rename = "valueCoding")]
+    pub value_coding: Coding,
+
+    #[serde(rename = "valueContactPoint")]
+    pub value_contact_point: ContactPoint,
+
+    #[serde(rename = "valueCount")]
+    pub value_count: Count,
+
+    #[serde(rename = "valueDistance")]
+    pub value_distance: Distance,
+
+    #[serde(rename = "valueDuration")]
+    pub value_duration: Duration,
+
+    #[serde(rename = "valueHumanName")]
+    pub value_human_name: HumanName,
+
+    #[serde(rename = "valueIdentifier")]
+    pub value_identifier: Box<Identifier>,
+
+    #[serde(rename = "valueMoney")]
+    pub value_money: Money,
+
+    #[serde(rename = "valuePeriod")]
+    pub value_period: Period,
+
+    #[serde(rename = "valueQuantity")]
+    pub value_quantity: Quantity,
+
+    #[serde(rename = "valueRange")]
+    pub value_range: Range,
+
+    #[serde(rename = "valueRatio")]
+    pub value_ratio: Ratio,
+
+    #[serde(rename = "valueReference")]
+    pub value_reference: Box<Reference>,
+
+    #[serde(rename = "valueSampledData")]
+    pub value_sampled_data: SampledData,
+
+    #[serde(rename = "valueSignature")]
+    pub value_signature: Signature,
+
+    #[serde(rename = "valueTiming")]
+    pub value_timing: Timing,
+
+    #[serde(rename = "valueContactDetail")]
+    pub value_contact_detail: ContactDetail,
+
+    #[serde(rename = "valueContributor")]
+    pub value_contributor: Contributor,
+
+    #[serde(rename = "valueDataRequirement")]
+    pub value_data_requirement: DataRequirement,
+
+    #[serde(rename = "valueExpression")]
+    pub value_expression: Expression,
+
+    #[serde(rename = "valueParameterDefinition")]
+    pub value_parameter_definition: ParameterDefinition,
+
+    #[serde(rename = "valueRelatedArtifact")]
+    pub value_related_artifact: RelatedArtifact,
+
+    #[serde(rename = "valueTriggerDefinition")]
+    pub value_trigger_definition: TriggerDefinition,
+
+    #[serde(rename = "valueUsageContext")]
+    pub value_usage_context: UsageContext,
+
+    #[serde(rename = "valueDosage")]
+    pub value_dosage: Dosage,
+
+    #[serde(rename = "valueMeta")]
+    pub value_meta: Meta,
 }
 
 /// Information produced as part of task
@@ -71,7 +219,155 @@ pub struct TaskOutput {
     pub r#type: CodeableConcept,
 
     /// Result of output
-    pub value: serde_json::Value,
+    #[serde(rename = "valueBase64Binary")]
+    pub value_base64binary: String,
+
+    #[serde(rename = "valueBoolean")]
+    pub value_boolean: bool,
+
+    #[serde(rename = "valueCanonical")]
+    pub value_canonical: String,
+
+    #[serde(rename = "valueCode")]
+    pub value_code: String,
+
+    #[serde(rename = "valueDate")]
+    pub value_date: String,
+
+    #[serde(rename = "valueDateTime")]
+    pub value_date_time: String,
+
+    #[serde(rename = "valueDecimal")]
+    pub value_decimal: f64,
+
+    #[serde(rename = "valueId")]
+    pub value_id: String,
+
+    #[serde(rename = "valueInstant")]
+    pub value_instant: String,
+
+    #[serde(rename = "valueInteger")]
+    pub value_integer: i32,
+
+    #[serde(rename = "valueMarkdown")]
+    pub value_markdown: String,
+
+    #[serde(rename = "valueOid")]
+    pub value_oid: String,
+
+    #[serde(rename = "valuePositiveInt")]
+    pub value_positive_int: i32,
+
+    #[serde(rename = "valueString")]
+    pub value_string: String,
+
+    #[serde(rename = "valueTime")]
+    pub value_time: String,
+
+    #[serde(rename = "valueUnsignedInt")]
+    pub value_unsigned_int: u32,
+
+    #[serde(rename = "valueUri")]
+    pub value_uri: String,
+
+    #[serde(rename = "valueUrl")]
+    pub value_url: String,
+
+    #[serde(rename = "valueUuid")]
+    pub value_uuid: String,
+
+    #[serde(rename = "valueAddress")]
+    pub value_address: Address,
+
+    #[serde(rename = "valueAge")]
+    pub value_age: Age,
+
+    #[serde(rename = "valueAnnotation")]
+    pub value_annotation: Annotation,
+
+    #[serde(rename = "valueAttachment")]
+    pub value_attachment: Attachment,
+
+    #[serde(rename = "valueCodeableConcept")]
+    pub value_codeable_concept: CodeableConcept,
+
+    #[serde(rename = "valueCoding")]
+    pub value_coding: Coding,
+
+    #[serde(rename = "valueContactPoint")]
+    pub value_contact_point: ContactPoint,
+
+    #[serde(rename = "valueCount")]
+    pub value_count: Count,
+
+    #[serde(rename = "valueDistance")]
+    pub value_distance: Distance,
+
+    #[serde(rename = "valueDuration")]
+    pub value_duration: Duration,
+
+    #[serde(rename = "valueHumanName")]
+    pub value_human_name: HumanName,
+
+    #[serde(rename = "valueIdentifier")]
+    pub value_identifier: Box<Identifier>,
+
+    #[serde(rename = "valueMoney")]
+    pub value_money: Money,
+
+    #[serde(rename = "valuePeriod")]
+    pub value_period: Period,
+
+    #[serde(rename = "valueQuantity")]
+    pub value_quantity: Quantity,
+
+    #[serde(rename = "valueRange")]
+    pub value_range: Range,
+
+    #[serde(rename = "valueRatio")]
+    pub value_ratio: Ratio,
+
+    #[serde(rename = "valueReference")]
+    pub value_reference: Box<Reference>,
+
+    #[serde(rename = "valueSampledData")]
+    pub value_sampled_data: SampledData,
+
+    #[serde(rename = "valueSignature")]
+    pub value_signature: Signature,
+
+    #[serde(rename = "valueTiming")]
+    pub value_timing: Timing,
+
+    #[serde(rename = "valueContactDetail")]
+    pub value_contact_detail: ContactDetail,
+
+    #[serde(rename = "valueContributor")]
+    pub value_contributor: Contributor,
+
+    #[serde(rename = "valueDataRequirement")]
+    pub value_data_requirement: DataRequirement,
+
+    #[serde(rename = "valueExpression")]
+    pub value_expression: Expression,
+
+    #[serde(rename = "valueParameterDefinition")]
+    pub value_parameter_definition: ParameterDefinition,
+
+    #[serde(rename = "valueRelatedArtifact")]
+    pub value_related_artifact: RelatedArtifact,
+
+    #[serde(rename = "valueTriggerDefinition")]
+    pub value_trigger_definition: TriggerDefinition,
+
+    #[serde(rename = "valueUsageContext")]
+    pub value_usage_context: UsageContext,
+
+    #[serde(rename = "valueDosage")]
+    pub value_dosage: Dosage,
+
+    #[serde(rename = "valueMeta")]
+    pub value_meta: Meta,
 }
 
 /// A task to be performed.

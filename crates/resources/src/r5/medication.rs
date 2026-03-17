@@ -28,7 +28,14 @@ pub struct MedicationIngredient {
     pub is_active: Option<bool>,
 
     /// Quantity of ingredient present
-    pub strength: Option<serde_json::Value>,
+    #[serde(rename = "strengthRatio")]
+    pub strength_ratio: Option<Ratio>,
+
+    #[serde(rename = "strengthCodeableConcept")]
+    pub strength_codeable_concept: Option<CodeableConcept>,
+
+    #[serde(rename = "strengthQuantity")]
+    pub strength_quantity: Option<Quantity>,
 }
 
 /// Details about packaged medications

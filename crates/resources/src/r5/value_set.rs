@@ -205,7 +205,26 @@ pub struct ValueSetExpansionParameter {
     pub name: String,
 
     /// Value of the named parameter
-    pub value: Option<serde_json::Value>,
+    #[serde(rename = "valueString")]
+    pub value_string: Option<String>,
+
+    #[serde(rename = "valueBoolean")]
+    pub value_boolean: Option<bool>,
+
+    #[serde(rename = "valueInteger")]
+    pub value_integer: Option<i32>,
+
+    #[serde(rename = "valueDecimal")]
+    pub value_decimal: Option<f64>,
+
+    #[serde(rename = "valueUri")]
+    pub value_uri: Option<String>,
+
+    #[serde(rename = "valueCode")]
+    pub value_code: Option<String>,
+
+    #[serde(rename = "valueDateTime")]
+    pub value_date_time: Option<String>,
 }
 
 /// Additional information supplied about each concept
@@ -290,7 +309,26 @@ pub struct ValueSetExpansionContainsProperty {
     pub code: String,
 
     /// Value of the property for this concept
-    pub value: serde_json::Value,
+    #[serde(rename = "valueCode")]
+    pub value_code: String,
+
+    #[serde(rename = "valueCoding")]
+    pub value_coding: Coding,
+
+    #[serde(rename = "valueString")]
+    pub value_string: String,
+
+    #[serde(rename = "valueInteger")]
+    pub value_integer: i32,
+
+    #[serde(rename = "valueBoolean")]
+    pub value_boolean: bool,
+
+    #[serde(rename = "valueDateTime")]
+    pub value_date_time: String,
+
+    #[serde(rename = "valueDecimal")]
+    pub value_decimal: f64,
 
     /// SubProperty value for the concept
     #[serde(rename = "subProperty")]
@@ -315,7 +353,26 @@ pub struct ValueSetExpansionContainsPropertySubProperty {
     pub code: String,
 
     /// Value of the subproperty for this concept
-    pub value: serde_json::Value,
+    #[serde(rename = "valueCode")]
+    pub value_code: String,
+
+    #[serde(rename = "valueCoding")]
+    pub value_coding: Coding,
+
+    #[serde(rename = "valueString")]
+    pub value_string: String,
+
+    #[serde(rename = "valueInteger")]
+    pub value_integer: i32,
+
+    #[serde(rename = "valueBoolean")]
+    pub value_boolean: bool,
+
+    #[serde(rename = "valueDateTime")]
+    pub value_date_time: String,
+
+    #[serde(rename = "valueDecimal")]
+    pub value_decimal: f64,
 }
 
 /// Description of the semantic space the Value Set Expansion is intended to cover and should further clarify the text in ValueSet.description
@@ -385,8 +442,11 @@ pub struct ValueSet {
     pub version: Option<String>,
 
     /// How to compare versions
-    #[serde(rename = "versionAlgorithm")]
-    pub version_algorithm: Option<serde_json::Value>,
+    #[serde(rename = "versionAlgorithmString")]
+    pub version_algorithm_string: Option<String>,
+
+    #[serde(rename = "versionAlgorithmCoding")]
+    pub version_algorithm_coding: Option<Coding>,
 
     /// Name for this value set (computer friendly)
     pub name: Option<String>,

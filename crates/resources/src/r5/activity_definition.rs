@@ -104,8 +104,11 @@ pub struct ActivityDefinition {
     pub version: Option<String>,
 
     /// How to compare versions
-    #[serde(rename = "versionAlgorithm")]
-    pub version_algorithm: Option<serde_json::Value>,
+    #[serde(rename = "versionAlgorithmString")]
+    pub version_algorithm_string: Option<String>,
+
+    #[serde(rename = "versionAlgorithmCoding")]
+    pub version_algorithm_coding: Option<Coding>,
 
     /// Name for this activity definition (computer friendly)
     pub name: Option<String>,
@@ -123,7 +126,14 @@ pub struct ActivityDefinition {
     pub experimental: Option<bool>,
 
     /// Type of individual the activity definition is intended for
-    pub subject: Option<serde_json::Value>,
+    #[serde(rename = "subjectCodeableConcept")]
+    pub subject_codeable_concept: Option<CodeableConcept>,
+
+    #[serde(rename = "subjectReference")]
+    pub subject_reference: Option<Box<Reference>>,
+
+    #[serde(rename = "subjectCanonical")]
+    pub subject_canonical: Option<String>,
 
     /// Date last changed
     pub date: Option<String>,
@@ -211,11 +221,24 @@ pub struct ActivityDefinition {
     pub do_not_perform: Option<bool>,
 
     /// When activity is to occur
-    pub timing: Option<serde_json::Value>,
+    #[serde(rename = "timingTiming")]
+    pub timing_timing: Option<Timing>,
+
+    #[serde(rename = "timingAge")]
+    pub timing_age: Option<Age>,
+
+    #[serde(rename = "timingRange")]
+    pub timing_range: Option<Range>,
+
+    #[serde(rename = "timingDuration")]
+    pub timing_duration: Option<Duration>,
 
     /// Preconditions for service
-    #[serde(rename = "asNeeded")]
-    pub as_needed: Option<serde_json::Value>,
+    #[serde(rename = "asNeededBoolean")]
+    pub as_needed_boolean: Option<bool>,
+
+    #[serde(rename = "asNeededCodeableConcept")]
+    pub as_needed_codeable_concept: Option<CodeableConcept>,
 
     /// Where it should happen
     pub location: Option<CodeableReference>,
@@ -224,7 +247,11 @@ pub struct ActivityDefinition {
     pub participant: Option<Vec<ActivityDefinitionParticipant>>,
 
     /// What's administered/supplied
-    pub product: Option<serde_json::Value>,
+    #[serde(rename = "productReference")]
+    pub product_reference: Option<Box<Reference>>,
+
+    #[serde(rename = "productCodeableConcept")]
+    pub product_codeable_concept: Option<CodeableConcept>,
 
     /// How much is administered/consumed/supplied
     pub quantity: Option<Quantity>,

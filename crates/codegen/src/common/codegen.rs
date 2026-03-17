@@ -20,8 +20,7 @@ pub struct ElementDefinition {
     #[serde(default = "default_max")]
     pub max: String,
 
-    #[serde(rename = "type")]
-    #[serde(default)]
+    #[serde(rename = "type", default)]
     pub element_type: Vec<TypeRef>,
 
     #[serde(default)]
@@ -33,8 +32,7 @@ pub struct ElementDefinition {
     #[serde(default)]
     pub binding: Option<Binding>,
 
-    #[serde(rename = "contentReference")]
-    #[serde(default)]
+    #[serde(rename = "contentReference", default)]
     pub content_reference: Option<String>,
 }
 
@@ -47,8 +45,7 @@ fn default_max() -> String {
 pub struct TypeRef {
     pub code: String,
 
-    #[serde(rename = "targetProfile")]
-    #[serde(default)]
+    #[serde(rename = "targetProfile", default)]
     pub target_profile: Vec<String>,
 }
 
@@ -57,8 +54,7 @@ pub struct TypeRef {
 pub struct Binding {
     pub strength: String,
 
-    #[serde(rename = "valueSet")]
-    #[serde(default)]
+    #[serde(rename = "valueSet", default)]
     pub value_set: Option<String>,
 }
 
@@ -121,6 +117,7 @@ pub fn generate_types(definitions: &[StructureDefinition], version: &str) -> Res
     output.push_str("//!\n");
     output.push_str("//! Auto-generated from FHIR schema definitions.\n");
     output.push_str("//! Do not modify directly.\n\n");
+    output.push_str("#![allow(non_camel_case_types)]\n\n");
     output.push_str("use serde::{Deserialize, Serialize};\n\n");
 
     // Generate each type
@@ -145,7 +142,7 @@ pub fn generate_types(definitions: &[StructureDefinition], version: &str) -> Res
 /// Detect BackboneElements in a resource
 fn find_backbone_elements(elements: &[ElementDefinition], base_path: &str) -> Vec<String> {
     let mut backbones = Vec::new();
-    
+
     for element in elements {
         // Check if this is a BackboneElement type
         if element.element_type.len() == 1 && element.element_type[0].code == "BackboneElement" {
@@ -155,7 +152,7 @@ fn find_backbone_elements(elements: &[ElementDefinition], base_path: &str) -> Ve
             }
         }
     }
-    
+
     backbones
 }
 
@@ -167,16 +164,18 @@ fn generate_backbone_struct(
 ) -> String {
     // Create struct name from path: Bundle.entry -> BundleEntry
     let parts: Vec<&str> = backbone_path.split('.').collect();
-    let struct_name = parts.iter()
+    let struct_name = parts
+        .iter()
         .map(|p| to_pascal_case(p))
         .collect::<Vec<_>>()
         .join("");
-    
+
     // Get description from the BackboneElement itself
-    let doc = elements.iter()
+    let doc = elements
+        .iter()
         .find(|e| e.path == backbone_path)
         .and_then(|e| e.short.as_ref());
-    
+
     generate_struct(&struct_name, &doc, elements, backbone_path)
 }
 
@@ -192,7 +191,7 @@ pub fn generate_resources(
             if let Some(snapshot) = &def.snapshot {
                 // Find all BackboneElements in this resource
                 let backbone_paths = find_backbone_elements(&snapshot.element, &def.name);
-                
+
                 // Generate main resource file
                 let mut file_content = String::new();
 
@@ -210,11 +209,8 @@ pub fn generate_resources(
 
                 // Generate BackboneElement structs inline in the same file
                 for backbone_path in &backbone_paths {
-                    let backbone_code = generate_backbone_struct(
-                        backbone_path,
-                        &snapshot.element,
-                        &def.name,
-                    );
+                    let backbone_code =
+                        generate_backbone_struct(backbone_path, &snapshot.element, &def.name);
                     file_content.push_str(&backbone_code);
                     file_content.push_str("\n\n");
                 }
@@ -227,7 +223,7 @@ pub fn generate_resources(
                         .or(snapshot.element.get(0).and_then(|e| e.short.as_ref())),
                     &snapshot.element,
                     &def.name,
-                    &def.name,  // Pass resource name as resourceType
+                    &def.name, // Pass resource name as resourceType
                 );
                 file_content.push_str(&struct_code);
 
@@ -286,7 +282,7 @@ fn generate_struct_internal(
     output.push_str(&format!("pub struct {} {{\n", name));
 
     // Add resourceType field for resources
-    if let Some(rt) = resource_type {
+    if let Some(_rt) = resource_type {
         output.push_str("    /// The type of resource\n");
         output.push_str("    #[serde(rename = \"resourceType\")]\n");
         output.push_str(&format!("    pub resource_type: String,\n\n"));
@@ -359,8 +355,9 @@ fn generate_field(element: &ElementDefinition, _base_path: &str) -> String {
         }
     }
 
-    // Serde rename if needed
-    if field_name != field_name_orig || field_name_escaped.starts_with("r#") {
+    // Serde rename if needed (but NOT for choice types, as they get specific renames)
+    let is_choice_type = element.element_type.len() > 1;
+    if !is_choice_type && (field_name != field_name_orig || field_name_escaped.starts_with("r#")) {
         output.push_str(&format!("    #[serde(rename = \"{}\")]\n", field_name_orig));
     }
 
@@ -369,11 +366,12 @@ fn generate_field(element: &ElementDefinition, _base_path: &str) -> String {
         // Content reference (e.g., "#Bundle.link") - extract referenced type name
         let ref_path = content_ref.trim_start_matches('#');
         let parts: Vec<&str> = ref_path.split('.').collect();
-        let type_name = parts.iter()
+        let type_name = parts
+            .iter()
             .map(|p| to_pascal_case(p))
             .collect::<Vec<_>>()
             .join("");
-        
+
         apply_cardinality(&type_name, element.min, &element.max)
     } else if element.element_type.is_empty() {
         // No type and no content reference - use fallback
@@ -381,12 +379,13 @@ fn generate_field(element: &ElementDefinition, _base_path: &str) -> String {
     } else if element.element_type.len() == 1 {
         // Single type
         let fhir_type = &element.element_type[0].code;
-        
+
         // Handle BackboneElement
         let mut rust_base = if fhir_type == "BackboneElement" {
             // Generate struct name from path
             let parts: Vec<&str> = element.path.split('.').collect();
-            parts.iter()
+            parts
+                .iter()
                 .map(|p| to_pascal_case(p))
                 .collect::<Vec<_>>()
                 .join("")
@@ -401,9 +400,37 @@ fn generate_field(element: &ElementDefinition, _base_path: &str) -> String {
 
         apply_cardinality(&rust_base, element.min, &element.max)
     } else {
-        // Choice type - for now, use serde_json::Value as placeholder
-        // TODO: Generate proper enum
-        apply_cardinality("serde_json::Value", element.min, &element.max)
+        // Choice type - generate multiple fields, one for each type
+        // For example, Observation.instantiates[x] with types [canonical, Reference]
+        // generates: instantiates_canonical and instantiates_reference
+
+        for type_ref in &element.element_type {
+            let fhir_type = &type_ref.code;
+            let mut rust_base = map_primitive_type(fhir_type);
+
+            // Wrap recursive types in Box
+            if rust_base == "Reference" || rust_base == "Identifier" {
+                rust_base = format!("Box<{}>", rust_base);
+            }
+
+            let rust_type_for_choice = apply_cardinality(&rust_base, element.min, &element.max);
+
+            // Create field name by appending the type: instantiates_canonical, instantiates_reference
+            let type_suffix = to_pascal_case(fhir_type);
+            let choice_field_name = format!("{}_{}", field_name, to_snake_case(&type_suffix));
+            let choice_field_name_escaped = escape_keyword(&choice_field_name);
+
+            // Serde rename for choice fields (e.g., instantiatesCanonical)
+            let json_field_name = format!("{}{}", field_name_orig, type_suffix);
+            output.push_str(&format!("    #[serde(rename = \"{}\")]\n", json_field_name));
+            output.push_str(&format!(
+                "    pub {}: {},\n",
+                choice_field_name_escaped, rust_type_for_choice
+            ));
+            output.push('\n');
+        }
+
+        return output;
     };
 
     output.push_str(&format!("    pub {}: {},\n", field_name_escaped, rust_type));

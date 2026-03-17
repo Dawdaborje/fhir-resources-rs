@@ -45,8 +45,11 @@ pub struct InvoiceLineItem {
     pub sequence: Option<i32>,
 
     /// Reference to ChargeItem containing details of this line item or an inline billing code
-    #[serde(rename = "chargeItem")]
-    pub charge_item: serde_json::Value,
+    #[serde(rename = "chargeItemReference")]
+    pub charge_item_reference: Box<Reference>,
+
+    #[serde(rename = "chargeItemCodeableConcept")]
+    pub charge_item_codeable_concept: CodeableConcept,
 
     /// Components of total line item price
     #[serde(rename = "priceComponent")]

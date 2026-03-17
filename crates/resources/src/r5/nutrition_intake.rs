@@ -158,13 +158,21 @@ pub struct NutritionIntake {
     pub encounter: Option<Box<Reference>>,
 
     /// The date/time or interval when the food or fluid is/was consumed
-    pub occurrence: Option<serde_json::Value>,
+    #[serde(rename = "occurrenceDateTime")]
+    pub occurrence_date_time: Option<String>,
+
+    #[serde(rename = "occurrencePeriod")]
+    pub occurrence_period: Option<Period>,
 
     /// When the intake was recorded
     pub recorded: Option<String>,
 
     /// Person or organization that provided the information about the consumption of this food or fluid
-    pub reported: Option<serde_json::Value>,
+    #[serde(rename = "reportedBoolean")]
+    pub reported_boolean: Option<bool>,
+
+    #[serde(rename = "reportedReference")]
+    pub reported_reference: Option<Box<Reference>>,
 
     /// What food or fluid product or item was consumed
     #[serde(rename = "consumedItem")]

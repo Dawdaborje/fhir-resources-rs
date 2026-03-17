@@ -106,7 +106,11 @@ pub struct DiagnosticReport {
     pub encounter: Option<Box<Reference>>,
 
     /// Clinically relevant time/time-period for report
-    pub effective: Option<serde_json::Value>,
+    #[serde(rename = "effectiveDateTime")]
+    pub effective_date_time: Option<String>,
+
+    #[serde(rename = "effectivePeriod")]
+    pub effective_period: Option<Period>,
 
     /// DateTime this version was made
     pub issued: Option<String>,

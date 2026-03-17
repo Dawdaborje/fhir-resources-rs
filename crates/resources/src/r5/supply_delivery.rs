@@ -24,7 +24,11 @@ pub struct SupplyDeliverySuppliedItem {
     pub quantity: Option<Quantity>,
 
     /// Medication, Substance, Device or Biologically Derived Product supplied
-    pub item: Option<serde_json::Value>,
+    #[serde(rename = "itemCodeableConcept")]
+    pub item_codeable_concept: Option<CodeableConcept>,
+
+    #[serde(rename = "itemReference")]
+    pub item_reference: Option<Box<Reference>>,
 }
 
 /// Record of delivery of what is supplied.
@@ -87,7 +91,14 @@ pub struct SupplyDelivery {
     pub supplied_item: Option<Vec<SupplyDeliverySuppliedItem>>,
 
     /// When event occurred
-    pub occurrence: Option<serde_json::Value>,
+    #[serde(rename = "occurrenceDateTime")]
+    pub occurrence_date_time: Option<String>,
+
+    #[serde(rename = "occurrencePeriod")]
+    pub occurrence_period: Option<Period>,
+
+    #[serde(rename = "occurrenceTiming")]
+    pub occurrence_timing: Option<Timing>,
 
     /// The item supplier
     pub supplier: Option<Box<Reference>>,

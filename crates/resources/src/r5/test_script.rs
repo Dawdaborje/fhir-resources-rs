@@ -476,7 +476,11 @@ pub struct TestScriptSetupActionAssertRequirement {
     pub modifier_extension: Option<Vec<Extension>>,
 
     /// Link or reference to the testing requirement
-    pub link: Option<serde_json::Value>,
+    #[serde(rename = "linkUri")]
+    pub link_uri: Option<String>,
+
+    #[serde(rename = "linkCanonical")]
+    pub link_canonical: Option<String>,
 }
 
 /// A test in this script
@@ -604,8 +608,11 @@ pub struct TestScript {
     pub version: Option<String>,
 
     /// How to compare versions
-    #[serde(rename = "versionAlgorithm")]
-    pub version_algorithm: Option<serde_json::Value>,
+    #[serde(rename = "versionAlgorithmString")]
+    pub version_algorithm_string: Option<String>,
+
+    #[serde(rename = "versionAlgorithmCoding")]
+    pub version_algorithm_coding: Option<Coding>,
 
     /// Name for this test script (computer friendly)
     pub name: String,

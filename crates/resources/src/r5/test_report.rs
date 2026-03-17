@@ -136,7 +136,11 @@ pub struct TestReportSetupActionAssertRequirement {
     pub modifier_extension: Option<Vec<Extension>>,
 
     /// Link or reference to the testing requirement
-    pub link: Option<serde_json::Value>,
+    #[serde(rename = "linkUri")]
+    pub link_uri: Option<String>,
+
+    #[serde(rename = "linkCanonical")]
+    pub link_canonical: Option<String>,
 }
 
 /// A test executed from the test script

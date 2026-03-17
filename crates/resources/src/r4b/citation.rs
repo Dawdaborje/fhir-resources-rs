@@ -96,7 +96,17 @@ pub struct CitationRelatesTo {
     pub target_classifier: Option<Vec<CodeableConcept>>,
 
     /// The article or artifact that the Citation Resource is related to
-    pub target: serde_json::Value,
+    #[serde(rename = "targetUri")]
+    pub target_uri: String,
+
+    #[serde(rename = "targetIdentifier")]
+    pub target_identifier: Box<Identifier>,
+
+    #[serde(rename = "targetReference")]
+    pub target_reference: Box<Reference>,
+
+    #[serde(rename = "targetAttachment")]
+    pub target_attachment: Attachment,
 }
 
 /// The article or artifact being described
@@ -315,7 +325,17 @@ pub struct CitationCitedArtifactRelatesTo {
     pub target_classifier: Option<Vec<CodeableConcept>>,
 
     /// The article or artifact that the cited artifact is related to
-    pub target: serde_json::Value,
+    #[serde(rename = "targetUri")]
+    pub target_uri: String,
+
+    #[serde(rename = "targetIdentifier")]
+    pub target_identifier: Box<Identifier>,
+
+    #[serde(rename = "targetReference")]
+    pub target_reference: Box<Reference>,
+
+    #[serde(rename = "targetAttachment")]
+    pub target_attachment: Attachment,
 }
 
 /// If multiple, used to represent alternative forms of the article that are not separate citations

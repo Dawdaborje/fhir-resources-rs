@@ -24,7 +24,17 @@ pub struct SupplyRequestParameter {
     pub code: Option<CodeableConcept>,
 
     /// Value of detail
-    pub value: Option<serde_json::Value>,
+    #[serde(rename = "valueCodeableConcept")]
+    pub value_codeable_concept: Option<CodeableConcept>,
+
+    #[serde(rename = "valueQuantity")]
+    pub value_quantity: Option<Quantity>,
+
+    #[serde(rename = "valueRange")]
+    pub value_range: Option<Range>,
+
+    #[serde(rename = "valueBoolean")]
+    pub value_boolean: Option<bool>,
 }
 
 /// A record of a request for a medication, substance or device used in the healthcare setting.
@@ -74,7 +84,11 @@ pub struct SupplyRequest {
     pub priority: Option<String>,
 
     /// Medication, Substance, or Device requested to be supplied
-    pub item: serde_json::Value,
+    #[serde(rename = "itemCodeableConcept")]
+    pub item_codeable_concept: CodeableConcept,
+
+    #[serde(rename = "itemReference")]
+    pub item_reference: Box<Reference>,
 
     /// The requested amount of the item indicated
     pub quantity: Quantity,
@@ -83,7 +97,14 @@ pub struct SupplyRequest {
     pub parameter: Option<Vec<SupplyRequestParameter>>,
 
     /// When the request should be fulfilled
-    pub occurrence: Option<serde_json::Value>,
+    #[serde(rename = "occurrenceDateTime")]
+    pub occurrence_date_time: Option<String>,
+
+    #[serde(rename = "occurrencePeriod")]
+    pub occurrence_period: Option<Period>,
+
+    #[serde(rename = "occurrenceTiming")]
+    pub occurrence_timing: Option<Timing>,
 
     /// When the request was made
     #[serde(rename = "authoredOn")]

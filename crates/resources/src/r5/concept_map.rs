@@ -183,7 +183,26 @@ pub struct ConceptMapGroupElementTargetProperty {
     pub code: String,
 
     /// Value of the property for this concept
-    pub value: serde_json::Value,
+    #[serde(rename = "valueCoding")]
+    pub value_coding: Coding,
+
+    #[serde(rename = "valueString")]
+    pub value_string: String,
+
+    #[serde(rename = "valueInteger")]
+    pub value_integer: i32,
+
+    #[serde(rename = "valueBoolean")]
+    pub value_boolean: bool,
+
+    #[serde(rename = "valueDateTime")]
+    pub value_date_time: String,
+
+    #[serde(rename = "valueDecimal")]
+    pub value_decimal: f64,
+
+    #[serde(rename = "valueCode")]
+    pub value_code: String,
 }
 
 /// Other properties required for this mapping
@@ -204,7 +223,20 @@ pub struct ConceptMapGroupElementTargetDependsOn {
     pub attribute: String,
 
     /// Value of the referenced data element
-    pub value: Option<serde_json::Value>,
+    #[serde(rename = "valueCode")]
+    pub value_code: Option<String>,
+
+    #[serde(rename = "valueCoding")]
+    pub value_coding: Option<Coding>,
+
+    #[serde(rename = "valueString")]
+    pub value_string: Option<String>,
+
+    #[serde(rename = "valueBoolean")]
+    pub value_boolean: Option<bool>,
+
+    #[serde(rename = "valueQuantity")]
+    pub value_quantity: Option<Quantity>,
 
     /// The mapping depends on a data element with a value from this value set
     #[serde(rename = "valueSet")]
@@ -290,8 +322,11 @@ pub struct ConceptMap {
     pub version: Option<String>,
 
     /// How to compare versions
-    #[serde(rename = "versionAlgorithm")]
-    pub version_algorithm: Option<serde_json::Value>,
+    #[serde(rename = "versionAlgorithmString")]
+    pub version_algorithm_string: Option<String>,
+
+    #[serde(rename = "versionAlgorithmCoding")]
+    pub version_algorithm_coding: Option<Coding>,
 
     /// Name for this concept map (computer friendly)
     pub name: Option<String>,
@@ -373,12 +408,18 @@ pub struct ConceptMap {
     pub additional_attribute: Option<Vec<ConceptMapAdditionalAttribute>>,
 
     /// The source value set that contains the concepts that are being mapped
-    #[serde(rename = "sourceScope")]
-    pub source_scope: Option<serde_json::Value>,
+    #[serde(rename = "sourceScopeUri")]
+    pub source_scope_uri: Option<String>,
+
+    #[serde(rename = "sourceScopeCanonical")]
+    pub source_scope_canonical: Option<String>,
 
     /// The target value set which provides context for the mappings
-    #[serde(rename = "targetScope")]
-    pub target_scope: Option<serde_json::Value>,
+    #[serde(rename = "targetScopeUri")]
+    pub target_scope_uri: Option<String>,
+
+    #[serde(rename = "targetScopeCanonical")]
+    pub target_scope_canonical: Option<String>,
 
     /// Same source and target systems
     pub group: Option<Vec<ConceptMapGroup>>,

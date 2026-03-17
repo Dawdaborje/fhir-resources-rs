@@ -65,7 +65,11 @@ pub struct MedicationKnowledgeIngredient {
     pub modifier_extension: Option<Vec<Extension>>,
 
     /// Medication(s) or substance(s) contained in the medication
-    pub item: serde_json::Value,
+    #[serde(rename = "itemCodeableConcept")]
+    pub item_codeable_concept: CodeableConcept,
+
+    #[serde(rename = "itemReference")]
+    pub item_reference: Box<Reference>,
 
     /// Active ingredient indicator
     #[serde(rename = "isActive")]
@@ -140,7 +144,11 @@ pub struct MedicationKnowledgeAdministrationGuidelines {
     pub dosage: Option<Vec<MedicationKnowledgeAdministrationGuidelinesDosage>>,
 
     /// Indication for use that apply to the specific administration guidelines
-    pub indication: Option<serde_json::Value>,
+    #[serde(rename = "indicationCodeableConcept")]
+    pub indication_codeable_concept: Option<CodeableConcept>,
+
+    #[serde(rename = "indicationReference")]
+    pub indication_reference: Option<Box<Reference>>,
 
     /// Characteristics of the patient that are relevant to the administration guidelines
     #[serde(rename = "patientCharacteristics")]
@@ -185,7 +193,11 @@ pub struct MedicationKnowledgeAdministrationGuidelinesPatientCharacteristics {
     pub modifier_extension: Option<Vec<Extension>>,
 
     /// Specific characteristic that is relevant to the administration guideline
-    pub characteristic: serde_json::Value,
+    #[serde(rename = "characteristicCodeableConcept")]
+    pub characteristic_codeable_concept: CodeableConcept,
+
+    #[serde(rename = "characteristicQuantity")]
+    pub characteristic_quantity: Quantity,
 
     /// The specific characteristic
     pub value: Option<Vec<String>>,
@@ -254,7 +266,17 @@ pub struct MedicationKnowledgeDrugCharacteristic {
     pub r#type: Option<CodeableConcept>,
 
     /// Description of the characteristic
-    pub value: Option<serde_json::Value>,
+    #[serde(rename = "valueCodeableConcept")]
+    pub value_codeable_concept: Option<CodeableConcept>,
+
+    #[serde(rename = "valueString")]
+    pub value_string: Option<String>,
+
+    #[serde(rename = "valueQuantity")]
+    pub value_quantity: Option<Quantity>,
+
+    #[serde(rename = "valueBase64Binary")]
+    pub value_base64binary: Option<String>,
 }
 
 /// Regulatory information about a medication

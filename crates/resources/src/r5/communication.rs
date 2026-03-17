@@ -21,7 +21,14 @@ pub struct CommunicationPayload {
     pub modifier_extension: Option<Vec<Extension>>,
 
     /// Message part content
-    pub content: serde_json::Value,
+    #[serde(rename = "contentAttachment")]
+    pub content_attachment: Attachment,
+
+    #[serde(rename = "contentReference")]
+    pub content_reference: Box<Reference>,
+
+    #[serde(rename = "contentCodeableConcept")]
+    pub content_codeable_concept: CodeableConcept,
 }
 
 /// A clinical or business level record of information being transmitted or shared; e.g. an alert that was sent to a responsible provider, a public health agency communication to a provider/reporter in...

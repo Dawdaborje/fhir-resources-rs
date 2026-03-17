@@ -24,7 +24,17 @@ pub struct EvidenceVariableCharacteristic {
     pub description: Option<String>,
 
     /// What code or expression defines members?
-    pub definition: serde_json::Value,
+    #[serde(rename = "definitionReference")]
+    pub definition_reference: Box<Reference>,
+
+    #[serde(rename = "definitionCanonical")]
+    pub definition_canonical: String,
+
+    #[serde(rename = "definitionCodeableConcept")]
+    pub definition_codeable_concept: CodeableConcept,
+
+    #[serde(rename = "definitionExpression")]
+    pub definition_expression: Expression,
 
     /// Method used for describing characteristic
     pub method: Option<CodeableConcept>,
@@ -89,7 +99,14 @@ pub struct EvidenceVariableCategory {
     pub name: Option<String>,
 
     /// Definition of the grouping
-    pub value: Option<serde_json::Value>,
+    #[serde(rename = "valueCodeableConcept")]
+    pub value_codeable_concept: Option<CodeableConcept>,
+
+    #[serde(rename = "valueQuantity")]
+    pub value_quantity: Option<Quantity>,
+
+    #[serde(rename = "valueRange")]
+    pub value_range: Option<Range>,
 }
 
 /// The EvidenceVariable resource describes an element that knowledge (Evidence) is about.

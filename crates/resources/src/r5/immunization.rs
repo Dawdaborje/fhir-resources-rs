@@ -184,7 +184,11 @@ pub struct Immunization {
     pub supporting_information: Option<Vec<Box<Reference>>>,
 
     /// Vaccine administration date
-    pub occurrence: serde_json::Value,
+    #[serde(rename = "occurrenceDateTime")]
+    pub occurrence_date_time: String,
+
+    #[serde(rename = "occurrenceString")]
+    pub occurrence_string: String,
 
     /// Indicates context the data was captured in
     #[serde(rename = "primarySource")]

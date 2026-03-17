@@ -234,10 +234,18 @@ pub struct ConceptMap {
     pub copyright: Option<String>,
 
     /// The source value set that contains the concepts that are being mapped
-    pub source: Option<serde_json::Value>,
+    #[serde(rename = "sourceUri")]
+    pub source_uri: Option<String>,
+
+    #[serde(rename = "sourceCanonical")]
+    pub source_canonical: Option<String>,
 
     /// The target value set which provides context for the mappings
-    pub target: Option<serde_json::Value>,
+    #[serde(rename = "targetUri")]
+    pub target_uri: Option<String>,
+
+    #[serde(rename = "targetCanonical")]
+    pub target_canonical: Option<String>,
 
     /// Same source and target systems
     pub group: Option<Vec<ConceptMapGroup>>,

@@ -189,7 +189,26 @@ pub struct ValueSetExpansionParameter {
     pub name: String,
 
     /// Value of the named parameter
-    pub value: Option<serde_json::Value>,
+    #[serde(rename = "valueString")]
+    pub value_string: Option<String>,
+
+    #[serde(rename = "valueBoolean")]
+    pub value_boolean: Option<bool>,
+
+    #[serde(rename = "valueInteger")]
+    pub value_integer: Option<i32>,
+
+    #[serde(rename = "valueDecimal")]
+    pub value_decimal: Option<f64>,
+
+    #[serde(rename = "valueUri")]
+    pub value_uri: Option<String>,
+
+    #[serde(rename = "valueCode")]
+    pub value_code: Option<String>,
+
+    #[serde(rename = "valueDateTime")]
+    pub value_date_time: Option<String>,
 }
 
 /// Codes in the value set

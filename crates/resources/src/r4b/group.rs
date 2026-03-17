@@ -24,7 +24,20 @@ pub struct GroupCharacteristic {
     pub code: CodeableConcept,
 
     /// Value held by characteristic
-    pub value: serde_json::Value,
+    #[serde(rename = "valueCodeableConcept")]
+    pub value_codeable_concept: CodeableConcept,
+
+    #[serde(rename = "valueBoolean")]
+    pub value_boolean: bool,
+
+    #[serde(rename = "valueQuantity")]
+    pub value_quantity: Quantity,
+
+    #[serde(rename = "valueRange")]
+    pub value_range: Range,
+
+    #[serde(rename = "valueReference")]
+    pub value_reference: Box<Reference>,
 
     /// Group includes or excludes
     pub exclude: bool,

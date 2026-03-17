@@ -48,7 +48,14 @@ pub struct GuidanceResponse {
     pub identifier: Option<Vec<Box<Identifier>>>,
 
     /// What guidance was requested
-    pub module: serde_json::Value,
+    #[serde(rename = "moduleUri")]
+    pub module_uri: String,
+
+    #[serde(rename = "moduleCanonical")]
+    pub module_canonical: String,
+
+    #[serde(rename = "moduleCodeableConcept")]
+    pub module_codeable_concept: CodeableConcept,
 
     /// success | data-requested | data-required | in-progress | failure | entered-in-error
     pub status: String,

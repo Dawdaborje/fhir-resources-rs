@@ -21,7 +21,17 @@ pub struct ResearchElementDefinitionCharacteristic {
     pub modifier_extension: Option<Vec<Extension>>,
 
     /// What code or expression defines members?
-    pub definition: serde_json::Value,
+    #[serde(rename = "definitionCodeableConcept")]
+    pub definition_codeable_concept: CodeableConcept,
+
+    #[serde(rename = "definitionCanonical")]
+    pub definition_canonical: String,
+
+    #[serde(rename = "definitionExpression")]
+    pub definition_expression: Expression,
+
+    #[serde(rename = "definitionDataRequirement")]
+    pub definition_data_requirement: DataRequirement,
 
     /// What code/value pairs define members?
     #[serde(rename = "usageContext")]
@@ -39,8 +49,17 @@ pub struct ResearchElementDefinitionCharacteristic {
     pub study_effective_description: Option<String>,
 
     /// What time period does the study cover
-    #[serde(rename = "studyEffective")]
-    pub study_effective: Option<serde_json::Value>,
+    #[serde(rename = "studyEffectiveDateTime")]
+    pub study_effective_date_time: Option<String>,
+
+    #[serde(rename = "studyEffectivePeriod")]
+    pub study_effective_period: Option<Period>,
+
+    #[serde(rename = "studyEffectiveDuration")]
+    pub study_effective_duration: Option<Duration>,
+
+    #[serde(rename = "studyEffectiveTiming")]
+    pub study_effective_timing: Option<Timing>,
 
     /// Observation time from study start
     #[serde(rename = "studyEffectiveTimeFromStart")]
@@ -55,8 +74,17 @@ pub struct ResearchElementDefinitionCharacteristic {
     pub participant_effective_description: Option<String>,
 
     /// What time period do participants cover
-    #[serde(rename = "participantEffective")]
-    pub participant_effective: Option<serde_json::Value>,
+    #[serde(rename = "participantEffectiveDateTime")]
+    pub participant_effective_date_time: Option<String>,
+
+    #[serde(rename = "participantEffectivePeriod")]
+    pub participant_effective_period: Option<Period>,
+
+    #[serde(rename = "participantEffectiveDuration")]
+    pub participant_effective_duration: Option<Duration>,
+
+    #[serde(rename = "participantEffectiveTiming")]
+    pub participant_effective_timing: Option<Timing>,
 
     /// Observation time from study start
     #[serde(rename = "participantEffectiveTimeFromStart")]
@@ -130,7 +158,11 @@ pub struct ResearchElementDefinition {
     pub experimental: Option<bool>,
 
     /// E.g. Patient, Practitioner, RelatedPerson, Organization, Location, Device
-    pub subject: Option<serde_json::Value>,
+    #[serde(rename = "subjectCodeableConcept")]
+    pub subject_codeable_concept: Option<CodeableConcept>,
+
+    #[serde(rename = "subjectReference")]
+    pub subject_reference: Option<Box<Reference>>,
 
     /// Date last changed
     pub date: Option<String>,

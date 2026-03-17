@@ -57,7 +57,11 @@ pub struct MedicationAdministrationDosage {
     pub dose: Option<Quantity>,
 
     /// Dose quantity per unit of time
-    pub rate: Option<serde_json::Value>,
+    #[serde(rename = "rateRatio")]
+    pub rate_ratio: Option<Ratio>,
+
+    #[serde(rename = "rateQuantity")]
+    pub rate_quantity: Option<Quantity>,
 }
 
 /// Describes the event of a patient consuming or otherwise being administered a medication. This may be as simple as swallowing a tablet or it may be a long running infusion. Related resources tie thi...
@@ -115,7 +119,11 @@ pub struct MedicationAdministration {
     pub category: Option<CodeableConcept>,
 
     /// What was administered
-    pub medication: serde_json::Value,
+    #[serde(rename = "medicationCodeableConcept")]
+    pub medication_codeable_concept: CodeableConcept,
+
+    #[serde(rename = "medicationReference")]
+    pub medication_reference: Box<Reference>,
 
     /// Who received medication
     pub subject: Box<Reference>,
@@ -128,7 +136,11 @@ pub struct MedicationAdministration {
     pub supporting_information: Option<Vec<Box<Reference>>>,
 
     /// Start and end time of administration
-    pub effective: serde_json::Value,
+    #[serde(rename = "effectiveDateTime")]
+    pub effective_date_time: String,
+
+    #[serde(rename = "effectivePeriod")]
+    pub effective_period: Period,
 
     /// Who performed the medication administration and what they did
     pub performer: Option<Vec<MedicationAdministrationPerformer>>,

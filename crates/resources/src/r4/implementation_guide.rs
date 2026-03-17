@@ -132,7 +132,11 @@ pub struct ImplementationGuideDefinitionResource {
     pub description: Option<String>,
 
     /// Is an example/What is this an example of?
-    pub example: Option<serde_json::Value>,
+    #[serde(rename = "exampleBoolean")]
+    pub example_boolean: Option<bool>,
+
+    #[serde(rename = "exampleCanonical")]
+    pub example_canonical: Option<String>,
 
     /// Grouping this is part of
     #[serde(rename = "groupingId")]
@@ -154,7 +158,11 @@ pub struct ImplementationGuideDefinitionPage {
     pub modifier_extension: Option<Vec<Extension>>,
 
     /// Where to find that page
-    pub name: serde_json::Value,
+    #[serde(rename = "nameUrl")]
+    pub name_url: String,
+
+    #[serde(rename = "nameReference")]
+    pub name_reference: Box<Reference>,
 
     /// Short title shown for navigational assistance
     pub title: String,
@@ -259,7 +267,11 @@ pub struct ImplementationGuideManifestResource {
     pub reference: Box<Reference>,
 
     /// Is an example/What is this an example of?
-    pub example: Option<serde_json::Value>,
+    #[serde(rename = "exampleBoolean")]
+    pub example_boolean: Option<bool>,
+
+    #[serde(rename = "exampleCanonical")]
+    pub example_canonical: Option<String>,
 
     /// Relative path for page in IG
     #[serde(rename = "relativePath")]

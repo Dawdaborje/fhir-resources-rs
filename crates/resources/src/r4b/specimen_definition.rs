@@ -80,8 +80,11 @@ pub struct SpecimenDefinitionTypeTestedContainer {
     pub capacity: Option<Quantity>,
 
     /// Minimum volume
-    #[serde(rename = "minimumVolume")]
-    pub minimum_volume: Option<serde_json::Value>,
+    #[serde(rename = "minimumVolumeQuantity")]
+    pub minimum_volume_quantity: Option<Quantity>,
+
+    #[serde(rename = "minimumVolumeString")]
+    pub minimum_volume_string: Option<String>,
 
     /// Additive associated with container
     pub additive: Option<Vec<SpecimenDefinitionTypeTestedContainerAdditive>>,
@@ -105,7 +108,11 @@ pub struct SpecimenDefinitionTypeTestedContainerAdditive {
     pub modifier_extension: Option<Vec<Extension>>,
 
     /// Additive associated with container
-    pub additive: serde_json::Value,
+    #[serde(rename = "additiveCodeableConcept")]
+    pub additive_codeable_concept: CodeableConcept,
+
+    #[serde(rename = "additiveReference")]
+    pub additive_reference: Box<Reference>,
 }
 
 /// Specimen handling before testing

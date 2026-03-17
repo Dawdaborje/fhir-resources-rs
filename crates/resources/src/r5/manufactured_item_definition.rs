@@ -25,7 +25,26 @@ pub struct ManufacturedItemDefinitionProperty {
     pub r#type: CodeableConcept,
 
     /// A value for the characteristic
-    pub value: Option<serde_json::Value>,
+    #[serde(rename = "valueCodeableConcept")]
+    pub value_codeable_concept: Option<CodeableConcept>,
+
+    #[serde(rename = "valueQuantity")]
+    pub value_quantity: Option<Quantity>,
+
+    #[serde(rename = "valueDate")]
+    pub value_date: Option<String>,
+
+    #[serde(rename = "valueBoolean")]
+    pub value_boolean: Option<bool>,
+
+    #[serde(rename = "valueMarkdown")]
+    pub value_markdown: Option<String>,
+
+    #[serde(rename = "valueAttachment")]
+    pub value_attachment: Option<Attachment>,
+
+    #[serde(rename = "valueReference")]
+    pub value_reference: Option<Box<Reference>>,
 }
 
 /// Physical parts of the manufactured item, that it is intrisically made from. This is distinct from the ingredients that are part of its chemical makeup

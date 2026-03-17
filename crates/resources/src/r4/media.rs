@@ -71,7 +71,11 @@ pub struct Media {
     pub encounter: Option<Box<Reference>>,
 
     /// When Media was collected
-    pub created: Option<serde_json::Value>,
+    #[serde(rename = "createdDateTime")]
+    pub created_date_time: Option<String>,
+
+    #[serde(rename = "createdPeriod")]
+    pub created_period: Option<Period>,
 
     /// Date/Time this version was made available
     pub issued: Option<String>,

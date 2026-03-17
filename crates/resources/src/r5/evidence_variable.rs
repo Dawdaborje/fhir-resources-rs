@@ -63,10 +63,18 @@ pub struct EvidenceVariableCharacteristic {
     pub definition_by_combination: Option<EvidenceVariableCharacteristicDefinitionByCombination>,
 
     /// Number of occurrences meeting the characteristic
-    pub instances: Option<serde_json::Value>,
+    #[serde(rename = "instancesQuantity")]
+    pub instances_quantity: Option<Quantity>,
+
+    #[serde(rename = "instancesRange")]
+    pub instances_range: Option<Range>,
 
     /// Length of time in which the characteristic is met
-    pub duration: Option<serde_json::Value>,
+    #[serde(rename = "durationQuantity")]
+    pub duration_quantity: Option<Quantity>,
+
+    #[serde(rename = "durationRange")]
+    pub duration_range: Option<Range>,
 
     /// Timing in which the characteristic is determined
     #[serde(rename = "timeFromEvent")]
@@ -98,7 +106,23 @@ pub struct EvidenceVariableCharacteristicDefinitionByTypeAndValue {
     pub device: Option<Box<Reference>>,
 
     /// Defines the characteristic when coupled with characteristic.type
-    pub value: serde_json::Value,
+    #[serde(rename = "valueCodeableConcept")]
+    pub value_codeable_concept: CodeableConcept,
+
+    #[serde(rename = "valueBoolean")]
+    pub value_boolean: bool,
+
+    #[serde(rename = "valueQuantity")]
+    pub value_quantity: Quantity,
+
+    #[serde(rename = "valueRange")]
+    pub value_range: Range,
+
+    #[serde(rename = "valueReference")]
+    pub value_reference: Box<Reference>,
+
+    #[serde(rename = "valueId")]
+    pub value_id: String,
 
     /// Reference point for valueQuantity or valueRange
     pub offset: Option<CodeableConcept>,
@@ -149,7 +173,17 @@ pub struct EvidenceVariableCharacteristicTimeFromEvent {
     pub note: Option<Vec<Annotation>>,
 
     /// The event used as a base point (reference point) in time
-    pub event: Option<serde_json::Value>,
+    #[serde(rename = "eventCodeableConcept")]
+    pub event_codeable_concept: Option<CodeableConcept>,
+
+    #[serde(rename = "eventReference")]
+    pub event_reference: Option<Box<Reference>>,
+
+    #[serde(rename = "eventDateTime")]
+    pub event_date_time: Option<String>,
+
+    #[serde(rename = "eventId")]
+    pub event_id: Option<String>,
 
     /// Used to express the observation at a defined amount of time before or after the event
     pub quantity: Option<Quantity>,
@@ -176,7 +210,14 @@ pub struct EvidenceVariableCategory {
     pub name: Option<String>,
 
     /// Definition of the grouping
-    pub value: Option<serde_json::Value>,
+    #[serde(rename = "valueCodeableConcept")]
+    pub value_codeable_concept: Option<CodeableConcept>,
+
+    #[serde(rename = "valueQuantity")]
+    pub value_quantity: Option<Quantity>,
+
+    #[serde(rename = "valueRange")]
+    pub value_range: Option<Range>,
 }
 
 /// The EvidenceVariable resource describes an element that knowledge (Evidence) is about.
@@ -223,8 +264,11 @@ pub struct EvidenceVariable {
     pub version: Option<String>,
 
     /// How to compare versions
-    #[serde(rename = "versionAlgorithm")]
-    pub version_algorithm: Option<serde_json::Value>,
+    #[serde(rename = "versionAlgorithmString")]
+    pub version_algorithm_string: Option<String>,
+
+    #[serde(rename = "versionAlgorithmCoding")]
+    pub version_algorithm_coding: Option<Coding>,
 
     /// Name for this evidence variable (computer friendly)
     pub name: Option<String>,

@@ -144,7 +144,11 @@ pub struct MessageDefinition {
     pub parent: Option<Vec<String>>,
 
     /// Event code or link to the EventDefinition
-    pub event: serde_json::Value,
+    #[serde(rename = "eventCoding")]
+    pub event_coding: Coding,
+
+    #[serde(rename = "eventUri")]
+    pub event_uri: String,
 
     /// consequence | currency | notification
     pub category: Option<String>,

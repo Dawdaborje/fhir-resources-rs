@@ -27,7 +27,11 @@ pub struct BiologicallyDerivedProductCollection {
     pub source: Option<Box<Reference>>,
 
     /// Time of product collection
-    pub collected: Option<serde_json::Value>,
+    #[serde(rename = "collectedDateTime")]
+    pub collected_date_time: Option<String>,
+
+    #[serde(rename = "collectedPeriod")]
+    pub collected_period: Option<Period>,
 }
 
 /// Any processing of the product during collection
@@ -54,7 +58,11 @@ pub struct BiologicallyDerivedProductProcessing {
     pub additive: Option<Box<Reference>>,
 
     /// Time of processing
-    pub time: Option<serde_json::Value>,
+    #[serde(rename = "timeDateTime")]
+    pub time_date_time: Option<String>,
+
+    #[serde(rename = "timePeriod")]
+    pub time_period: Option<Period>,
 }
 
 /// Any manipulation of product post-collection
@@ -75,7 +83,11 @@ pub struct BiologicallyDerivedProductManipulation {
     pub description: Option<String>,
 
     /// Time of manipulation
-    pub time: Option<serde_json::Value>,
+    #[serde(rename = "timeDateTime")]
+    pub time_date_time: Option<String>,
+
+    #[serde(rename = "timePeriod")]
+    pub time_period: Option<Period>,
 }
 
 /// Product storage

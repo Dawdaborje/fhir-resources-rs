@@ -139,7 +139,11 @@ pub struct Patient {
     pub birth_date: Option<String>,
 
     /// Indicates if the individual is deceased or not
-    pub deceased: Option<serde_json::Value>,
+    #[serde(rename = "deceasedBoolean")]
+    pub deceased_boolean: Option<bool>,
+
+    #[serde(rename = "deceasedDateTime")]
+    pub deceased_date_time: Option<String>,
 
     /// An address for the individual
     pub address: Option<Vec<Address>>,
@@ -149,8 +153,11 @@ pub struct Patient {
     pub marital_status: Option<CodeableConcept>,
 
     /// Whether patient is part of a multiple birth
-    #[serde(rename = "multipleBirth")]
-    pub multiple_birth: Option<serde_json::Value>,
+    #[serde(rename = "multipleBirthBoolean")]
+    pub multiple_birth_boolean: Option<bool>,
+
+    #[serde(rename = "multipleBirthInteger")]
+    pub multiple_birth_integer: Option<i32>,
 
     /// Image of the patient
     pub photo: Option<Vec<Attachment>>,

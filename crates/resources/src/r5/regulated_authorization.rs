@@ -31,7 +31,11 @@ pub struct RegulatedAuthorizationCase {
     pub status: Option<CodeableConcept>,
 
     /// Relevant date for this case
-    pub date: Option<serde_json::Value>,
+    #[serde(rename = "datePeriod")]
+    pub date_period: Option<Period>,
+
+    #[serde(rename = "dateDateTime")]
+    pub date_date_time: Option<String>,
 
     /// Applications submitted to obtain a regulated authorization. Steps within the longer running case or procedure
     pub application: Option<Vec<RegulatedAuthorizationCase>>,

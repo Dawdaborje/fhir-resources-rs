@@ -25,7 +25,20 @@ pub struct AdministrableProductDefinitionProperty {
     pub r#type: CodeableConcept,
 
     /// A value for the characteristic
-    pub value: Option<serde_json::Value>,
+    #[serde(rename = "valueCodeableConcept")]
+    pub value_codeable_concept: Option<CodeableConcept>,
+
+    #[serde(rename = "valueQuantity")]
+    pub value_quantity: Option<Quantity>,
+
+    #[serde(rename = "valueDate")]
+    pub value_date: Option<String>,
+
+    #[serde(rename = "valueBoolean")]
+    pub value_boolean: Option<bool>,
+
+    #[serde(rename = "valueAttachment")]
+    pub value_attachment: Option<Attachment>,
 
     /// The status of characteristic e.g. assigned or pending
     pub status: Option<CodeableConcept>,

@@ -67,7 +67,23 @@ pub struct NutritionProductCharacteristic {
     pub r#type: CodeableConcept,
 
     /// The value of the characteristic
-    pub value: serde_json::Value,
+    #[serde(rename = "valueCodeableConcept")]
+    pub value_codeable_concept: CodeableConcept,
+
+    #[serde(rename = "valueString")]
+    pub value_string: String,
+
+    #[serde(rename = "valueQuantity")]
+    pub value_quantity: Quantity,
+
+    #[serde(rename = "valueBase64Binary")]
+    pub value_base64binary: String,
+
+    #[serde(rename = "valueAttachment")]
+    pub value_attachment: Attachment,
+
+    #[serde(rename = "valueBoolean")]
+    pub value_boolean: bool,
 }
 
 /// One or several physical instances or occurrences of the nutrition product

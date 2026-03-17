@@ -21,7 +21,14 @@ pub struct CommunicationRequestPayload {
     pub modifier_extension: Option<Vec<Extension>>,
 
     /// Message part content
-    pub content: serde_json::Value,
+    #[serde(rename = "contentString")]
+    pub content_string: String,
+
+    #[serde(rename = "contentAttachment")]
+    pub content_attachment: Attachment,
+
+    #[serde(rename = "contentReference")]
+    pub content_reference: Box<Reference>,
 }
 
 /// A request to convey information; e.g. the CDS system proposes that an alert be sent to a responsible provider, the CDS system proposes that the public health agency be notified about a reportable c...
@@ -105,7 +112,11 @@ pub struct CommunicationRequest {
     pub payload: Option<Vec<CommunicationRequestPayload>>,
 
     /// When scheduled
-    pub occurrence: Option<serde_json::Value>,
+    #[serde(rename = "occurrenceDateTime")]
+    pub occurrence_date_time: Option<String>,
+
+    #[serde(rename = "occurrencePeriod")]
+    pub occurrence_period: Option<Period>,
 
     /// When request transitioned to being actionable
     #[serde(rename = "authoredOn")]

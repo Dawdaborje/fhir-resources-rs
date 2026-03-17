@@ -89,7 +89,14 @@ pub struct CarePlanActivityDetail {
     pub do_not_perform: Option<bool>,
 
     /// When activity is to occur
-    pub scheduled: Option<serde_json::Value>,
+    #[serde(rename = "scheduledTiming")]
+    pub scheduled_timing: Option<Timing>,
+
+    #[serde(rename = "scheduledPeriod")]
+    pub scheduled_period: Option<Period>,
+
+    #[serde(rename = "scheduledString")]
+    pub scheduled_string: Option<String>,
 
     /// Where it should happen
     pub location: Option<Box<Reference>>,
@@ -98,7 +105,11 @@ pub struct CarePlanActivityDetail {
     pub performer: Option<Vec<Box<Reference>>>,
 
     /// What is to be administered/supplied
-    pub product: Option<serde_json::Value>,
+    #[serde(rename = "productCodeableConcept")]
+    pub product_codeable_concept: Option<CodeableConcept>,
+
+    #[serde(rename = "productReference")]
+    pub product_reference: Option<Box<Reference>>,
 
     /// How to consume/day?
     #[serde(rename = "dailyAmount")]

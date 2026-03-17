@@ -131,7 +131,23 @@ pub struct Procedure {
     pub encounter: Option<Box<Reference>>,
 
     /// When the procedure occurred or is occurring
-    pub occurrence: Option<serde_json::Value>,
+    #[serde(rename = "occurrenceDateTime")]
+    pub occurrence_date_time: Option<String>,
+
+    #[serde(rename = "occurrencePeriod")]
+    pub occurrence_period: Option<Period>,
+
+    #[serde(rename = "occurrenceString")]
+    pub occurrence_string: Option<String>,
+
+    #[serde(rename = "occurrenceAge")]
+    pub occurrence_age: Option<Age>,
+
+    #[serde(rename = "occurrenceRange")]
+    pub occurrence_range: Option<Range>,
+
+    #[serde(rename = "occurrenceTiming")]
+    pub occurrence_timing: Option<Timing>,
 
     /// When the procedure was first captured in the subject's record
     pub recorded: Option<String>,
@@ -140,7 +156,11 @@ pub struct Procedure {
     pub recorder: Option<Box<Reference>>,
 
     /// Reported rather than primary record
-    pub reported: Option<serde_json::Value>,
+    #[serde(rename = "reportedBoolean")]
+    pub reported_boolean: Option<bool>,
+
+    #[serde(rename = "reportedReference")]
+    pub reported_reference: Option<Box<Reference>>,
 
     /// Who performed the procedure and what they did
     pub performer: Option<Vec<ProcedurePerformer>>,

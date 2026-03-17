@@ -91,7 +91,11 @@ pub struct MedicationRequestSubstitution {
     pub modifier_extension: Option<Vec<Extension>>,
 
     /// Whether substitution is allowed or not
-    pub allowed: serde_json::Value,
+    #[serde(rename = "allowedBoolean")]
+    pub allowed_boolean: bool,
+
+    #[serde(rename = "allowedCodeableConcept")]
+    pub allowed_codeable_concept: CodeableConcept,
 
     /// Why should (not) substitution be made
     pub reason: Option<CodeableConcept>,

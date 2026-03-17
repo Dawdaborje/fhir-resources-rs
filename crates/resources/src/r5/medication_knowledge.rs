@@ -76,7 +76,11 @@ pub struct MedicationKnowledgeCost {
     pub source: Option<String>,
 
     /// The price or category of the cost of the medication
-    pub cost: serde_json::Value,
+    #[serde(rename = "costMoney")]
+    pub cost_money: Money,
+
+    #[serde(rename = "costCodeableConcept")]
+    pub cost_codeable_concept: CodeableConcept,
 }
 
 /// Program under which a medication is reviewed
@@ -195,7 +199,14 @@ pub struct MedicationKnowledgeIndicationGuidelineDosingGuidelinePatientCharacter
     pub r#type: CodeableConcept,
 
     /// The specific characteristic
-    pub value: Option<serde_json::Value>,
+    #[serde(rename = "valueCodeableConcept")]
+    pub value_codeable_concept: Option<CodeableConcept>,
+
+    #[serde(rename = "valueQuantity")]
+    pub value_quantity: Option<Quantity>,
+
+    #[serde(rename = "valueRange")]
+    pub value_range: Option<Range>,
 }
 
 /// Categorization of the medication within a formulary or classification system
@@ -217,7 +228,11 @@ pub struct MedicationKnowledgeMedicineClassification {
     pub r#type: CodeableConcept,
 
     /// The source of the classification
-    pub source: Option<serde_json::Value>,
+    #[serde(rename = "sourceString")]
+    pub source_string: Option<String>,
+
+    #[serde(rename = "sourceUri")]
+    pub source_uri: Option<String>,
 
     /// Specific category assigned to the medication
     pub classification: Option<Vec<CodeableConcept>>,
@@ -293,7 +308,14 @@ pub struct MedicationKnowledgeStorageGuidelineEnvironmentalSetting {
     pub r#type: CodeableConcept,
 
     /// Value of the setting
-    pub value: serde_json::Value,
+    #[serde(rename = "valueQuantity")]
+    pub value_quantity: Quantity,
+
+    #[serde(rename = "valueRange")]
+    pub value_range: Range,
+
+    #[serde(rename = "valueCodeableConcept")]
+    pub value_codeable_concept: CodeableConcept,
 }
 
 /// Regulatory information about a medication
@@ -423,7 +445,14 @@ pub struct MedicationKnowledgeDefinitionalIngredient {
     pub r#type: Option<CodeableConcept>,
 
     /// Quantity of ingredient present
-    pub strength: Option<serde_json::Value>,
+    #[serde(rename = "strengthRatio")]
+    pub strength_ratio: Option<Ratio>,
+
+    #[serde(rename = "strengthCodeableConcept")]
+    pub strength_codeable_concept: Option<CodeableConcept>,
+
+    #[serde(rename = "strengthQuantity")]
+    pub strength_quantity: Option<Quantity>,
 }
 
 /// Specifies descriptive properties of the medicine
@@ -445,7 +474,20 @@ pub struct MedicationKnowledgeDefinitionalDrugCharacteristic {
     pub r#type: Option<CodeableConcept>,
 
     /// Description of the characteristic
-    pub value: Option<serde_json::Value>,
+    #[serde(rename = "valueCodeableConcept")]
+    pub value_codeable_concept: Option<CodeableConcept>,
+
+    #[serde(rename = "valueString")]
+    pub value_string: Option<String>,
+
+    #[serde(rename = "valueQuantity")]
+    pub value_quantity: Option<Quantity>,
+
+    #[serde(rename = "valueBase64Binary")]
+    pub value_base64binary: Option<String>,
+
+    #[serde(rename = "valueAttachment")]
+    pub value_attachment: Option<Attachment>,
 }
 
 /// Information about a medication that is used to support knowledge.

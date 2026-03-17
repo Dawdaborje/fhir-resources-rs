@@ -98,7 +98,35 @@ pub struct QuestionnaireItemEnableWhen {
     pub operator: String,
 
     /// Value for question comparison based on operator
-    pub answer: serde_json::Value,
+    #[serde(rename = "answerBoolean")]
+    pub answer_boolean: bool,
+
+    #[serde(rename = "answerDecimal")]
+    pub answer_decimal: f64,
+
+    #[serde(rename = "answerInteger")]
+    pub answer_integer: i32,
+
+    #[serde(rename = "answerDate")]
+    pub answer_date: String,
+
+    #[serde(rename = "answerDateTime")]
+    pub answer_date_time: String,
+
+    #[serde(rename = "answerTime")]
+    pub answer_time: String,
+
+    #[serde(rename = "answerString")]
+    pub answer_string: String,
+
+    #[serde(rename = "answerCoding")]
+    pub answer_coding: Coding,
+
+    #[serde(rename = "answerQuantity")]
+    pub answer_quantity: Quantity,
+
+    #[serde(rename = "answerReference")]
+    pub answer_reference: Box<Reference>,
 }
 
 /// Permitted answer
@@ -116,7 +144,23 @@ pub struct QuestionnaireItemAnswerOption {
     pub modifier_extension: Option<Vec<Extension>>,
 
     /// Answer value
-    pub value: serde_json::Value,
+    #[serde(rename = "valueInteger")]
+    pub value_integer: i32,
+
+    #[serde(rename = "valueDate")]
+    pub value_date: String,
+
+    #[serde(rename = "valueTime")]
+    pub value_time: String,
+
+    #[serde(rename = "valueString")]
+    pub value_string: String,
+
+    #[serde(rename = "valueCoding")]
+    pub value_coding: Coding,
+
+    #[serde(rename = "valueReference")]
+    pub value_reference: Box<Reference>,
 
     /// Whether option is selected by default
     #[serde(rename = "initialSelected")]
@@ -138,7 +182,41 @@ pub struct QuestionnaireItemInitial {
     pub modifier_extension: Option<Vec<Extension>>,
 
     /// Actual value for initializing the question
-    pub value: serde_json::Value,
+    #[serde(rename = "valueBoolean")]
+    pub value_boolean: bool,
+
+    #[serde(rename = "valueDecimal")]
+    pub value_decimal: f64,
+
+    #[serde(rename = "valueInteger")]
+    pub value_integer: i32,
+
+    #[serde(rename = "valueDate")]
+    pub value_date: String,
+
+    #[serde(rename = "valueDateTime")]
+    pub value_date_time: String,
+
+    #[serde(rename = "valueTime")]
+    pub value_time: String,
+
+    #[serde(rename = "valueString")]
+    pub value_string: String,
+
+    #[serde(rename = "valueUri")]
+    pub value_uri: String,
+
+    #[serde(rename = "valueAttachment")]
+    pub value_attachment: Attachment,
+
+    #[serde(rename = "valueCoding")]
+    pub value_coding: Coding,
+
+    #[serde(rename = "valueQuantity")]
+    pub value_quantity: Quantity,
+
+    #[serde(rename = "valueReference")]
+    pub value_reference: Box<Reference>,
 }
 
 /// A structured set of questions intended to guide the collection of answers from end-users. Questionnaires provide detailed control over order, presentation, phraseology and grouping to allow coheren...

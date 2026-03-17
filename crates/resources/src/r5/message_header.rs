@@ -21,7 +21,11 @@ pub struct MessageHeaderDestination {
     pub modifier_extension: Option<Vec<Extension>>,
 
     /// Actual destination address or Endpoint resource
-    pub endpoint: Option<serde_json::Value>,
+    #[serde(rename = "endpointUrl")]
+    pub endpoint_url: Option<String>,
+
+    #[serde(rename = "endpointReference")]
+    pub endpoint_reference: Option<Box<Reference>>,
 
     /// Name of system
     pub name: Option<String>,
@@ -48,7 +52,11 @@ pub struct MessageHeaderSource {
     pub modifier_extension: Option<Vec<Extension>>,
 
     /// Actual source address or Endpoint resource
-    pub endpoint: Option<serde_json::Value>,
+    #[serde(rename = "endpointUrl")]
+    pub endpoint_url: Option<String>,
+
+    #[serde(rename = "endpointReference")]
+    pub endpoint_reference: Option<Box<Reference>>,
 
     /// Name of system
     pub name: Option<String>,
@@ -122,7 +130,11 @@ pub struct MessageHeader {
     pub modifier_extension: Option<Vec<Extension>>,
 
     /// Event code or link to EventDefinition
-    pub event: serde_json::Value,
+    #[serde(rename = "eventCoding")]
+    pub event_coding: Coding,
+
+    #[serde(rename = "eventCanonical")]
+    pub event_canonical: String,
 
     /// Message destination application(s)
     pub destination: Option<Vec<MessageHeaderDestination>>,

@@ -62,7 +62,11 @@ pub struct MedicationStatement {
     pub category: Option<CodeableConcept>,
 
     /// What medication was taken
-    pub medication: serde_json::Value,
+    #[serde(rename = "medicationCodeableConcept")]
+    pub medication_codeable_concept: CodeableConcept,
+
+    #[serde(rename = "medicationReference")]
+    pub medication_reference: Box<Reference>,
 
     /// Who is/was taking the medication
     pub subject: Box<Reference>,
@@ -71,7 +75,11 @@ pub struct MedicationStatement {
     pub context: Option<Box<Reference>>,
 
     /// The date/time or interval when the medication is/was/will be taken
-    pub effective: Option<serde_json::Value>,
+    #[serde(rename = "effectiveDateTime")]
+    pub effective_date_time: Option<String>,
+
+    #[serde(rename = "effectivePeriod")]
+    pub effective_period: Option<Period>,
 
     /// When the statement was asserted?
     #[serde(rename = "dateAsserted")]

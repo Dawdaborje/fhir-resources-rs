@@ -27,7 +27,11 @@ pub struct BiologicallyDerivedProductCollection {
     pub source: Option<Box<Reference>>,
 
     /// Time of product collection
-    pub collected: Option<serde_json::Value>,
+    #[serde(rename = "collectedDateTime")]
+    pub collected_date_time: Option<String>,
+
+    #[serde(rename = "collectedPeriod")]
+    pub collected_period: Option<Period>,
 }
 
 /// A property that is specific to this BiologicallyDerviedProduct instance
@@ -49,7 +53,32 @@ pub struct BiologicallyDerivedProductProperty {
     pub r#type: CodeableConcept,
 
     /// Property values
-    pub value: serde_json::Value,
+    #[serde(rename = "valueBoolean")]
+    pub value_boolean: bool,
+
+    #[serde(rename = "valueInteger")]
+    pub value_integer: i32,
+
+    #[serde(rename = "valueCodeableConcept")]
+    pub value_codeable_concept: CodeableConcept,
+
+    #[serde(rename = "valuePeriod")]
+    pub value_period: Period,
+
+    #[serde(rename = "valueQuantity")]
+    pub value_quantity: Quantity,
+
+    #[serde(rename = "valueRange")]
+    pub value_range: Range,
+
+    #[serde(rename = "valueRatio")]
+    pub value_ratio: Ratio,
+
+    #[serde(rename = "valueString")]
+    pub value_string: String,
+
+    #[serde(rename = "valueAttachment")]
+    pub value_attachment: Attachment,
 }
 
 /// A biological material originating from a biological entity intended to be transplanted or infused into another (possibly the same) biological entity.

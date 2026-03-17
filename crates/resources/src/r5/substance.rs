@@ -24,7 +24,11 @@ pub struct SubstanceIngredient {
     pub quantity: Option<Ratio>,
 
     /// A component of the substance
-    pub substance: serde_json::Value,
+    #[serde(rename = "substanceCodeableConcept")]
+    pub substance_codeable_concept: CodeableConcept,
+
+    #[serde(rename = "substanceReference")]
+    pub substance_reference: Box<Reference>,
 }
 
 /// A homogeneous material with a definite composition.

@@ -52,7 +52,17 @@ pub struct FamilyMemberHistoryCondition {
     pub contributed_to_death: Option<bool>,
 
     /// When condition first manifested
-    pub onset: Option<serde_json::Value>,
+    #[serde(rename = "onsetAge")]
+    pub onset_age: Option<Age>,
+
+    #[serde(rename = "onsetRange")]
+    pub onset_range: Option<Range>,
+
+    #[serde(rename = "onsetPeriod")]
+    pub onset_period: Option<Period>,
+
+    #[serde(rename = "onsetString")]
+    pub onset_string: Option<String>,
 
     /// Extra information about condition
     pub note: Option<Vec<Annotation>>,
@@ -83,7 +93,20 @@ pub struct FamilyMemberHistoryProcedure {
     pub contributed_to_death: Option<bool>,
 
     /// When the procedure was performed
-    pub performed: Option<serde_json::Value>,
+    #[serde(rename = "performedAge")]
+    pub performed_age: Option<Age>,
+
+    #[serde(rename = "performedRange")]
+    pub performed_range: Option<Range>,
+
+    #[serde(rename = "performedPeriod")]
+    pub performed_period: Option<Period>,
+
+    #[serde(rename = "performedString")]
+    pub performed_string: Option<String>,
+
+    #[serde(rename = "performedDateTime")]
+    pub performed_date_time: Option<String>,
 
     /// Extra information about the procedure
     pub note: Option<Vec<Annotation>>,
@@ -160,17 +183,44 @@ pub struct FamilyMemberHistory {
     pub sex: Option<CodeableConcept>,
 
     /// (approximate) date of birth
-    pub born: Option<serde_json::Value>,
+    #[serde(rename = "bornPeriod")]
+    pub born_period: Option<Period>,
+
+    #[serde(rename = "bornDate")]
+    pub born_date: Option<String>,
+
+    #[serde(rename = "bornString")]
+    pub born_string: Option<String>,
 
     /// (approximate) age
-    pub age: Option<serde_json::Value>,
+    #[serde(rename = "ageAge")]
+    pub age_age: Option<Age>,
+
+    #[serde(rename = "ageRange")]
+    pub age_range: Option<Range>,
+
+    #[serde(rename = "ageString")]
+    pub age_string: Option<String>,
 
     /// Age is estimated?
     #[serde(rename = "estimatedAge")]
     pub estimated_age: Option<bool>,
 
     /// Dead? How old/when?
-    pub deceased: Option<serde_json::Value>,
+    #[serde(rename = "deceasedBoolean")]
+    pub deceased_boolean: Option<bool>,
+
+    #[serde(rename = "deceasedAge")]
+    pub deceased_age: Option<Age>,
+
+    #[serde(rename = "deceasedRange")]
+    pub deceased_range: Option<Range>,
+
+    #[serde(rename = "deceasedDate")]
+    pub deceased_date: Option<String>,
+
+    #[serde(rename = "deceasedString")]
+    pub deceased_string: Option<String>,
 
     /// Why was family member history performed?
     pub reason: Option<Vec<CodeableReference>>,

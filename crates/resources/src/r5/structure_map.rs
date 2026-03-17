@@ -254,7 +254,29 @@ pub struct StructureMapGroupRuleTargetParameter {
     pub modifier_extension: Option<Vec<Extension>>,
 
     /// Parameter value - variable or literal
-    pub value: serde_json::Value,
+    #[serde(rename = "valueId")]
+    pub value_id: String,
+
+    #[serde(rename = "valueString")]
+    pub value_string: String,
+
+    #[serde(rename = "valueBoolean")]
+    pub value_boolean: bool,
+
+    #[serde(rename = "valueInteger")]
+    pub value_integer: i32,
+
+    #[serde(rename = "valueDecimal")]
+    pub value_decimal: f64,
+
+    #[serde(rename = "valueDate")]
+    pub value_date: String,
+
+    #[serde(rename = "valueTime")]
+    pub value_time: String,
+
+    #[serde(rename = "valueDateTime")]
+    pub value_date_time: String,
 }
 
 /// Which other rules to apply in the context of this rule
@@ -322,8 +344,11 @@ pub struct StructureMap {
     pub version: Option<String>,
 
     /// How to compare versions
-    #[serde(rename = "versionAlgorithm")]
-    pub version_algorithm: Option<serde_json::Value>,
+    #[serde(rename = "versionAlgorithmString")]
+    pub version_algorithm_string: Option<String>,
+
+    #[serde(rename = "versionAlgorithmCoding")]
+    pub version_algorithm_coding: Option<Coding>,
 
     /// Name for this structure map (computer friendly)
     pub name: String,

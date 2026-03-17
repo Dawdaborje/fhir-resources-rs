@@ -25,7 +25,11 @@ pub struct MedicinalProductContraindicationOtherTherapy {
     pub therapy_relationship_type: CodeableConcept,
 
     /// Reference to a specific medication (active substance, medicinal product or class of products) as part of an indication or contraindication
-    pub medication: serde_json::Value,
+    #[serde(rename = "medicationCodeableConcept")]
+    pub medication_codeable_concept: CodeableConcept,
+
+    #[serde(rename = "medicationReference")]
+    pub medication_reference: Box<Reference>,
 }
 
 /// The clinical particulars - indications, contraindications etc. of a medicinal product, including for regulatory purposes.

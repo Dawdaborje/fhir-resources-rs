@@ -89,7 +89,14 @@ pub struct ChargeItem {
     pub encounter: Option<Box<Reference>>,
 
     /// When the charged service was applied
-    pub occurrence: Option<serde_json::Value>,
+    #[serde(rename = "occurrenceDateTime")]
+    pub occurrence_date_time: Option<String>,
+
+    #[serde(rename = "occurrencePeriod")]
+    pub occurrence_period: Option<Period>,
+
+    #[serde(rename = "occurrenceTiming")]
+    pub occurrence_timing: Option<Timing>,
 
     /// Who performed charged service
     pub performer: Option<Vec<ChargeItemPerformer>>,

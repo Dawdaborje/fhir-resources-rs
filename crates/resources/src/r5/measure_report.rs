@@ -34,8 +34,23 @@ pub struct MeasureReportGroup {
     pub population: Option<Vec<MeasureReportGroupPopulation>>,
 
     /// What score this group achieved
-    #[serde(rename = "measureScore")]
-    pub measure_score: Option<serde_json::Value>,
+    #[serde(rename = "measureScoreQuantity")]
+    pub measure_score_quantity: Option<Quantity>,
+
+    #[serde(rename = "measureScoreDateTime")]
+    pub measure_score_date_time: Option<String>,
+
+    #[serde(rename = "measureScoreCodeableConcept")]
+    pub measure_score_codeable_concept: Option<CodeableConcept>,
+
+    #[serde(rename = "measureScorePeriod")]
+    pub measure_score_period: Option<Period>,
+
+    #[serde(rename = "measureScoreRange")]
+    pub measure_score_range: Option<Range>,
+
+    #[serde(rename = "measureScoreDuration")]
+    pub measure_score_duration: Option<Duration>,
 
     /// Stratification results
     pub stratifier: Option<Vec<MeasureReportGroupStratifier>>,
@@ -117,7 +132,20 @@ pub struct MeasureReportGroupStratifierStratum {
     pub modifier_extension: Option<Vec<Extension>>,
 
     /// The stratum value, e.g. male
-    pub value: Option<serde_json::Value>,
+    #[serde(rename = "valueCodeableConcept")]
+    pub value_codeable_concept: Option<CodeableConcept>,
+
+    #[serde(rename = "valueBoolean")]
+    pub value_boolean: Option<bool>,
+
+    #[serde(rename = "valueQuantity")]
+    pub value_quantity: Option<Quantity>,
+
+    #[serde(rename = "valueRange")]
+    pub value_range: Option<Range>,
+
+    #[serde(rename = "valueReference")]
+    pub value_reference: Option<Box<Reference>>,
 
     /// Stratifier component values
     pub component: Option<Vec<MeasureReportGroupStratifierStratumComponent>>,
@@ -126,8 +154,23 @@ pub struct MeasureReportGroupStratifierStratum {
     pub population: Option<Vec<MeasureReportGroupStratifierStratumPopulation>>,
 
     /// What score this stratum achieved
-    #[serde(rename = "measureScore")]
-    pub measure_score: Option<serde_json::Value>,
+    #[serde(rename = "measureScoreQuantity")]
+    pub measure_score_quantity: Option<Quantity>,
+
+    #[serde(rename = "measureScoreDateTime")]
+    pub measure_score_date_time: Option<String>,
+
+    #[serde(rename = "measureScoreCodeableConcept")]
+    pub measure_score_codeable_concept: Option<CodeableConcept>,
+
+    #[serde(rename = "measureScorePeriod")]
+    pub measure_score_period: Option<Period>,
+
+    #[serde(rename = "measureScoreRange")]
+    pub measure_score_range: Option<Range>,
+
+    #[serde(rename = "measureScoreDuration")]
+    pub measure_score_duration: Option<Duration>,
 }
 
 /// Stratifier component values
@@ -152,7 +195,20 @@ pub struct MeasureReportGroupStratifierStratumComponent {
     pub code: CodeableConcept,
 
     /// The stratum component value, e.g. male
-    pub value: serde_json::Value,
+    #[serde(rename = "valueCodeableConcept")]
+    pub value_codeable_concept: CodeableConcept,
+
+    #[serde(rename = "valueBoolean")]
+    pub value_boolean: bool,
+
+    #[serde(rename = "valueQuantity")]
+    pub value_quantity: Quantity,
+
+    #[serde(rename = "valueRange")]
+    pub value_range: Range,
+
+    #[serde(rename = "valueReference")]
+    pub value_reference: Box<Reference>,
 }
 
 /// Population results in this stratum

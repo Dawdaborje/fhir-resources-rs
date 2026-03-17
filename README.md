@@ -14,48 +14,61 @@ A Rust library for working with FHIR (Fast Healthcare Interoperability Resources
 ## Project Status
 
 - **Status**: Personal Development Project
-- **Production Ready**: ❌ No - Not suitable for production use
+- **Production Ready**:  No - Not suitable for production use
 - **Testing**: Comprehensive test suite included
 - **Documentation**: Basic documentation available
 - **FHIR Compliance**: Partial - Not fully FHIR compliant
 
 ## Features
 
+### Supported FHIR Versions
+
+- **R4**: FHIR version 4.0.1 (full support)
+- **R4B**: FHIR version 4.3.0 (full support)
+- **R5**: FHIR version 5.0.0 (full support)
+
 ### Implemented Resources
 
-- **Patient**: Complete FHIR Patient resource with all fields
+#### Common Resources (R4, R4B, R5)
+- **Patient**: Complete patient demographics and identifiers
+- **Practitioner**: Healthcare provider information
+- **Organization**: Healthcare organizations
+- **Bundle**: Resource bundles for data exchange
+- **Observation**: Clinical observations and measurements
+- **Condition**: Health conditions and diagnoses
+- **Procedure**: Medical procedures performed
+- **MedicationRequest**: Medication orders and prescriptions
+- **Encounter**: Healthcare encounters and visits
+- **DiagnosticReport**: Diagnostic test results
+
+#### R5-Specific Resources
+- **Device**: Medical devices and equipment
+- **Specimen**: Biological specimens
+- **ImagingStudy**: Medical imaging studies
+- **InventoryItem**: Healthcare inventory management
+- **Transport**: Resource transport logistics
+- **GenomicStudy**: Genomic research and analysis
+
+### Data Types
+
 - **HumanName**: Structured human names with international support
-- **Identifier**: Healthcare identifiers (MRN, SSN, etc.)
+- **Identifier**: Healthcare identifiers (must be boxed in vectors)
 - **Period**: Time periods for healthcare events
-
-### Implemented Data Types
-
-- **Uri**: FHIR-compliant URI implementation
-- **Code**: FHIR code values with validation
 - **ContactPoint**: Contact information (phone, email, etc.)
 - **Address**: Complete address structure with international support
 - **CodeableConcept**: Coded concepts with coding arrays
 - **Coding**: Individual coding entries
-- **Reference**: Resource references
-- **PatientContact**: Patient contact information
-- **PatientCommunication**: Language communication preferences
-- **PatientLink**: Patient resource links
-
-### International Support
-
-- Multiple name formats (Chinese, Japanese, Korean, Spanish, Arabic)
-- Professional titles and credentials
-- International identifier formats (NHS, Medicare, etc.)
-- Various date/time formats
+- **Reference**: Resource references between FHIR resources
 
 ### Technical Features
 
-- **Type Safety**: Strongly typed Rust implementations
+- **Type Safety**: Strongly typed Rust implementations with proper memory management
 - **Serialization**: JSON serialization/deserialization support with FHIR camelCase
-- **Validation**: Basic FHIR validation rules
-- **Testing**: Comprehensive test suite with demo data
-- **Documentation**: Detailed usage examples
-- **FHIR Compliance**: Proper field naming (resourceType in JSON)
+- **Multi-Version**: Support for multiple FHIR versions in a single library
+- **Testing**: Comprehensive test suite covering all versions
+- **Documentation**: Detailed usage examples and architecture documentation
+- **Memory Optimization**: Box wrapping for large optional collections
+- **FHIR Compliance**: Proper field naming and structure adherence
 
 ## Installation
 
@@ -68,67 +81,165 @@ fhir-resources-rs = "0.1.0"
 
 ## Quick Start
 
+### Creating a FHIR R4 Patient
+
 ```rust
-use fhir_resources_rs::patient::Patient;
-use fhir_resources_rs::human_name::HumanName;
-use fhir_resources_rs::identifier::Identifier;
-use fhir_resources_rs::data_types::uri::Uri;
-use fhir_resources_rs::data_types::contact_point::ContactPoint;
-use fhir_resources_rs::data_types::address::Address;
+use fhir_resources::r4::patient::Patient;
+use fhir_resources::r4::types::{HumanName, Identifier, ContactPoint, Address};
 
-// Create a complete patient
-let mut patient = Patient::new();
+// Create a patient with identifiers
+let patient = Patient {
+    resource_type: "Patient".to_string(),
+    id: Some("patient-123".to_string()),
+    meta: None,
+    implicit_rules: None,
+    language: Some("en-US".to_string()),
+    text: None,
+    contained: None,
+    extension: None,
+    modifier_extension: None,
+    // Important: Identifiers must be Box-wrapped in vectors
+    identifier: Some(vec![Box::new(Identifier {
+        id: None,
+        extension: None,
+        r#use: Some("official".to_string()),
+        r#type: None,
+        system: Some("http://example.org/mrn".to_string()),
+        value: Some("MRN-12345".to_string()),
+        period: None,
+        assigner: None,
+    })]),
+    active: Some(true),
+    name: Some(vec![HumanName {
+        id: None,
+        extension: None,
+        r#use: Some("official".to_string()),
+        text: Some("John Doe".to_string()),
+        family: Some("Doe".to_string()),
+        given: Some(vec!["John".to_string()]),
+        prefix: None,
+        suffix: None,
+        period: None,
+    }]),
+    telecom: Some(vec![ContactPoint {
+        id: None,
+        extension: None,
+        system: Some("phone".to_string()),
+        value: Some("+1-555-555-5555".to_string()),
+        r#use: Some("home".to_string()),
+        rank: Some(1),
+        period: None,
+    }]),
+    gender: Some("male".to_string()),
+    birth_date: Some("1980-01-01".to_string()),
+    deceased: None,
+    address: Some(vec![Address {
+        id: None,
+        extension: None,
+        r#use: Some("home".to_string()),
+        r#type: Some("physical".to_string()),
+        text: Some("123 Main St, Anytown, USA".to_string()),
+        line: Some(vec!["123 Main St".to_string()]),
+        city: Some("Anytown".to_string()),
+        district: None,
+        state: Some("CA".to_string()),
+        postal_code: Some("12345".to_string()),
+        country: Some("USA".to_string()),
+        period: None,
+    }]),
+    marital_status: None,
+    multiple_birth: None,
+    photo: None,
+    contact: None,
+    communication: None,
+    general_practitioner: None,
+    managing_organization: None,
+    link: None,
+};
 
-// Add identifiers
-let system_uri = Uri::new_unchecked("https://hospital.example.com/patients".to_string());
-let use_uri = Uri::new_unchecked("official".to_string());
-let identifier = Identifier::new(use_uri, system_uri, "MRN12345".to_string());
-patient.add_identifier(identifier);
-
-// Set patient details
-patient.set_active(Some(true));
-patient.set_gender(Some("male".to_string()));
-patient.set_birth_date(Some("1980-05-15".to_string()));
-
-// Add names
-let mut name = HumanName::new(
-    "official".to_string(),
-    "Dr. John Smith".to_string(),
-    "Smith".to_string()
-);
-name.set_given(vec!["John".to_string()]);
-name.set_prefix(vec!["Dr.".to_string()]);
-patient.add_name(name);
-
-// Add contact information
-let phone = ContactPoint::new("phone".to_string(), "+1-555-123-4567".to_string());
-patient.add_telecom(phone);
-
-// Add address
-let mut address = Address::new();
-address.set_use(Some("home".to_string()));
-address.add_line("123 Main Street".to_string());
-address.set_city(Some("Anytown".to_string()));
-address.set_state(Some("CA".to_string()));
-patient.add_address(address);
-
-// Serialize to JSON (uses camelCase field names)
+// Serialize to JSON
 let json = serde_json::to_string_pretty(&patient).unwrap();
 println!("{}", json);
+
+// Deserialize from JSON
+let patient_from_json: Patient = serde_json::from_str(&json).unwrap();
+```
+
+### Using FHIR R5
+
+```rust
+use fhir_resources::r5::patient::Patient;
+
+// The structure is similar across versions
+let r5_patient_json = r#"{
+    "resourceType": "Patient",
+    "id": "r5-patient",
+    "active": true,
+    "gender": "female"
+}"#;
+
+let patient: Patient = serde_json::from_str(r5_patient_json).unwrap();
+assert_eq!(patient.resource_type, "Patient");
+```
+
+### Important: Identifier Field Boxing
+
+**Note**: The `identifier` field uses `Option<Vec<Box<Identifier>>>` for memory optimization. When creating identifiers, each `Identifier` must be wrapped in `Box::new()`:
+
+```rust
+// Correct ✅
+identifier: Some(vec![Box::new(Identifier { /* ... */ })])
+
+// Incorrect ❌
+identifier: Some(vec![Identifier { /* ... */ }])
 ```
 
 ## Running Tests
 
 ```bash
-# Run all tests
+# Run all tests in the workspace
 cargo test
 
-# Run specific test files
-cargo test --test patient_tests -- --nocapture
-cargo test --test human_name_tests -- --nocapture
-cargo test --test period_tests -- --nocapture
-cargo test --test identifier_tests -- --nocapture
-cargo test --test complete_patient_tests -- --nocapture
+# Run tests for specific version
+cargo test --test r4_resources
+cargo test --test r4b_resources
+cargo test --test r5_resources
+
+# Run cross-version integration tests
+cargo test --test integration_tests
+
+# Run with output
+cargo test -- --nocapture
+
+# Run a specific test
+cargo test test_r4_patient_creation -- --nocapture
+```
+
+## Project Structure
+
+```
+fhir-resources-rs/
+├── crates/
+│   ├── codegen/          # Code generation from FHIR schemas
+│   │   └── src/
+│   │       ├── r4_generator/
+│   │       ├── r4b_generator/
+│   │       └── r5_generator/
+│   ├── resources/        # Generated FHIR resource types
+│   │   ├── src/
+│   │   │   ├── r4/      # FHIR R4 resources
+│   │   │   ├── r4b/     # FHIR R4B resources
+│   │   │   ├── r5/      # FHIR R5 resources
+│   │   │   └── r6/      # FHIR R6 (upcoming)
+│   │   └── tests/       # Comprehensive test suite
+│   └── types/           # Common types and utilities
+├── docs/                # Documentation
+│   └── implementation/  # Version-specific docs
+├── examples/            # Usage examples
+└── schemas/            # FHIR JSON schemas
+    ├── r4/
+    ├── r4b/
+    └── r5/
 ```
 
 

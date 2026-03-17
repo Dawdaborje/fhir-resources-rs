@@ -106,12 +106,18 @@ pub struct ImmunizationProtocolApplied {
     pub target_disease: Option<Vec<CodeableConcept>>,
 
     /// Dose number within series
-    #[serde(rename = "doseNumber")]
-    pub dose_number: serde_json::Value,
+    #[serde(rename = "doseNumberPositiveInt")]
+    pub dose_number_positive_int: i32,
+
+    #[serde(rename = "doseNumberString")]
+    pub dose_number_string: String,
 
     /// Recommended number of doses for immunity
-    #[serde(rename = "seriesDoses")]
-    pub series_doses: Option<serde_json::Value>,
+    #[serde(rename = "seriesDosesPositiveInt")]
+    pub series_doses_positive_int: Option<i32>,
+
+    #[serde(rename = "seriesDosesString")]
+    pub series_doses_string: Option<String>,
 }
 
 /// Describes the event of a patient being administered a vaccine or a record of an immunization as reported by a patient, a clinician or another party.
@@ -169,7 +175,11 @@ pub struct Immunization {
     pub encounter: Option<Box<Reference>>,
 
     /// Vaccine administration date
-    pub occurrence: serde_json::Value,
+    #[serde(rename = "occurrenceDateTime")]
+    pub occurrence_date_time: String,
+
+    #[serde(rename = "occurrenceString")]
+    pub occurrence_string: String,
 
     /// When the immunization was first captured in the subject's record
     pub recorded: Option<String>,

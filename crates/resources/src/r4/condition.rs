@@ -117,10 +117,36 @@ pub struct Condition {
     pub encounter: Option<Box<Reference>>,
 
     /// Estimated or actual date, date-time, or age
-    pub onset: Option<serde_json::Value>,
+    #[serde(rename = "onsetDateTime")]
+    pub onset_date_time: Option<String>,
+
+    #[serde(rename = "onsetAge")]
+    pub onset_age: Option<Age>,
+
+    #[serde(rename = "onsetPeriod")]
+    pub onset_period: Option<Period>,
+
+    #[serde(rename = "onsetRange")]
+    pub onset_range: Option<Range>,
+
+    #[serde(rename = "onsetString")]
+    pub onset_string: Option<String>,
 
     /// When in resolution/remission
-    pub abatement: Option<serde_json::Value>,
+    #[serde(rename = "abatementDateTime")]
+    pub abatement_date_time: Option<String>,
+
+    #[serde(rename = "abatementAge")]
+    pub abatement_age: Option<Age>,
+
+    #[serde(rename = "abatementPeriod")]
+    pub abatement_period: Option<Period>,
+
+    #[serde(rename = "abatementRange")]
+    pub abatement_range: Option<Range>,
+
+    #[serde(rename = "abatementString")]
+    pub abatement_string: Option<String>,
 
     /// Date record was first recorded
     #[serde(rename = "recordedDate")]

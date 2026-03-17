@@ -42,7 +42,11 @@ pub struct AdverseEventSuspectEntity {
     pub modifier_extension: Option<Vec<Extension>>,
 
     /// Refers to the specific entity that caused the adverse event
-    pub instance: serde_json::Value,
+    #[serde(rename = "instanceCodeableConcept")]
+    pub instance_codeable_concept: CodeableConcept,
+
+    #[serde(rename = "instanceReference")]
+    pub instance_reference: Box<Reference>,
 
     /// Information on the possible cause of the event
     pub causality: Option<AdverseEventSuspectEntityCausality>,
@@ -89,7 +93,11 @@ pub struct AdverseEventContributingFactor {
     pub modifier_extension: Option<Vec<Extension>>,
 
     /// Item suspected to have increased the probability or severity of the adverse event
-    pub item: serde_json::Value,
+    #[serde(rename = "itemReference")]
+    pub item_reference: Box<Reference>,
+
+    #[serde(rename = "itemCodeableConcept")]
+    pub item_codeable_concept: CodeableConcept,
 }
 
 /// Preventive actions that contributed to avoiding the adverse event
@@ -107,7 +115,11 @@ pub struct AdverseEventPreventiveAction {
     pub modifier_extension: Option<Vec<Extension>>,
 
     /// Action that contributed to avoiding the adverse event
-    pub item: serde_json::Value,
+    #[serde(rename = "itemReference")]
+    pub item_reference: Box<Reference>,
+
+    #[serde(rename = "itemCodeableConcept")]
+    pub item_codeable_concept: CodeableConcept,
 }
 
 /// Ameliorating actions taken after the adverse event occured in order to reduce the extent of harm
@@ -125,7 +137,11 @@ pub struct AdverseEventMitigatingAction {
     pub modifier_extension: Option<Vec<Extension>>,
 
     /// Ameliorating action taken after the adverse event occured in order to reduce the extent of harm
-    pub item: serde_json::Value,
+    #[serde(rename = "itemReference")]
+    pub item_reference: Box<Reference>,
+
+    #[serde(rename = "itemCodeableConcept")]
+    pub item_codeable_concept: CodeableConcept,
 }
 
 /// Supporting information relevant to the event
@@ -143,7 +159,11 @@ pub struct AdverseEventSupportingInfo {
     pub modifier_extension: Option<Vec<Extension>>,
 
     /// Subject medical history or document relevant to this adverse event
-    pub item: serde_json::Value,
+    #[serde(rename = "itemReference")]
+    pub item_reference: Box<Reference>,
+
+    #[serde(rename = "itemCodeableConcept")]
+    pub item_codeable_concept: CodeableConcept,
 }
 
 /// An event (i.e. any change to current patient status) that may be related to unintended effects on a patient or research participant. The unintended effects may require additional monitoring, treatm...
@@ -202,7 +222,14 @@ pub struct AdverseEvent {
     pub encounter: Option<Box<Reference>>,
 
     /// When the event occurred
-    pub occurrence: Option<serde_json::Value>,
+    #[serde(rename = "occurrenceDateTime")]
+    pub occurrence_date_time: Option<String>,
+
+    #[serde(rename = "occurrencePeriod")]
+    pub occurrence_period: Option<Period>,
+
+    #[serde(rename = "occurrenceTiming")]
+    pub occurrence_timing: Option<Timing>,
 
     /// When the event was detected
     pub detected: Option<String>,

@@ -50,7 +50,11 @@ pub struct CoverageCostToBeneficiary {
     pub r#type: Option<CodeableConcept>,
 
     /// The amount or percentage due from the beneficiary
-    pub value: serde_json::Value,
+    #[serde(rename = "valueQuantity")]
+    pub value_quantity: Quantity,
+
+    #[serde(rename = "valueMoney")]
+    pub value_money: Money,
 
     /// Exceptions for patient payments
     pub exception: Option<Vec<CoverageCostToBeneficiaryException>>,

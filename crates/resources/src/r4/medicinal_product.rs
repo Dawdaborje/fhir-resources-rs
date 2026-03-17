@@ -142,7 +142,11 @@ pub struct MedicinalProductSpecialDesignation {
     pub intended_use: Option<CodeableConcept>,
 
     /// Condition for which the medicinal use applies
-    pub indication: Option<serde_json::Value>,
+    #[serde(rename = "indicationCodeableConcept")]
+    pub indication_codeable_concept: Option<CodeableConcept>,
+
+    #[serde(rename = "indicationReference")]
+    pub indication_reference: Option<Box<Reference>>,
 
     /// For example granted, pending, expired or withdrawn
     pub status: Option<CodeableConcept>,

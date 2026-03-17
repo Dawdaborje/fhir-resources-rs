@@ -78,10 +78,16 @@ pub struct ImmunizationEvaluation {
     pub series: Option<String>,
 
     /// Dose number within series
-    #[serde(rename = "doseNumber")]
-    pub dose_number: Option<serde_json::Value>,
+    #[serde(rename = "doseNumberPositiveInt")]
+    pub dose_number_positive_int: Option<i32>,
+
+    #[serde(rename = "doseNumberString")]
+    pub dose_number_string: Option<String>,
 
     /// Recommended number of doses for immunity
-    #[serde(rename = "seriesDoses")]
-    pub series_doses: Option<serde_json::Value>,
+    #[serde(rename = "seriesDosesPositiveInt")]
+    pub series_doses_positive_int: Option<i32>,
+
+    #[serde(rename = "seriesDosesString")]
+    pub series_doses_string: Option<String>,
 }

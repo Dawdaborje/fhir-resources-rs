@@ -25,7 +25,11 @@ pub struct CoverageEligibilityResponseEvent {
     pub r#type: CodeableConcept,
 
     /// Occurance date or period
-    pub when: serde_json::Value,
+    #[serde(rename = "whenDateTime")]
+    pub when_date_time: String,
+
+    #[serde(rename = "whenPeriod")]
+    pub when_period: Period,
 }
 
 /// Patient insurance information
@@ -136,10 +140,24 @@ pub struct CoverageEligibilityResponseInsuranceItemBenefit {
     pub r#type: CodeableConcept,
 
     /// Benefits allowed
-    pub allowed: Option<serde_json::Value>,
+    #[serde(rename = "allowedUnsignedInt")]
+    pub allowed_unsigned_int: Option<u32>,
+
+    #[serde(rename = "allowedString")]
+    pub allowed_string: Option<String>,
+
+    #[serde(rename = "allowedMoney")]
+    pub allowed_money: Option<Money>,
 
     /// Benefits used
-    pub used: Option<serde_json::Value>,
+    #[serde(rename = "usedUnsignedInt")]
+    pub used_unsigned_int: Option<u32>,
+
+    #[serde(rename = "usedString")]
+    pub used_string: Option<String>,
+
+    #[serde(rename = "usedMoney")]
+    pub used_money: Option<Money>,
 }
 
 /// Processing errors
@@ -213,7 +231,11 @@ pub struct CoverageEligibilityResponse {
     pub event: Option<Vec<CoverageEligibilityResponseEvent>>,
 
     /// Estimated date or dates of service
-    pub serviced: Option<serde_json::Value>,
+    #[serde(rename = "servicedDate")]
+    pub serviced_date: Option<String>,
+
+    #[serde(rename = "servicedPeriod")]
+    pub serviced_period: Option<Period>,
 
     /// Response creation date
     pub created: String,

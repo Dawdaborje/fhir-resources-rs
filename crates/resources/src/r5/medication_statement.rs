@@ -84,7 +84,14 @@ pub struct MedicationStatement {
     pub encounter: Option<Box<Reference>>,
 
     /// The date/time or interval when the medication is/was/will be taken
-    pub effective: Option<serde_json::Value>,
+    #[serde(rename = "effectiveDateTime")]
+    pub effective_date_time: Option<String>,
+
+    #[serde(rename = "effectivePeriod")]
+    pub effective_period: Option<Period>,
+
+    #[serde(rename = "effectiveTiming")]
+    pub effective_timing: Option<Timing>,
 
     /// When the usage was asserted?
     #[serde(rename = "dateAsserted")]

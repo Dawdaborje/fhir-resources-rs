@@ -118,7 +118,44 @@ pub struct InventoryItemCharacteristic {
     pub characteristic_type: CodeableConcept,
 
     /// The value of the attribute
-    pub value: serde_json::Value,
+    #[serde(rename = "valueString")]
+    pub value_string: String,
+
+    #[serde(rename = "valueInteger")]
+    pub value_integer: i32,
+
+    #[serde(rename = "valueDecimal")]
+    pub value_decimal: f64,
+
+    #[serde(rename = "valueBoolean")]
+    pub value_boolean: bool,
+
+    #[serde(rename = "valueUrl")]
+    pub value_url: String,
+
+    #[serde(rename = "valueDateTime")]
+    pub value_date_time: String,
+
+    #[serde(rename = "valueQuantity")]
+    pub value_quantity: Quantity,
+
+    #[serde(rename = "valueRange")]
+    pub value_range: Range,
+
+    #[serde(rename = "valueRatio")]
+    pub value_ratio: Ratio,
+
+    #[serde(rename = "valueAnnotation")]
+    pub value_annotation: Annotation,
+
+    #[serde(rename = "valueAddress")]
+    pub value_address: Address,
+
+    #[serde(rename = "valueDuration")]
+    pub value_duration: Duration,
+
+    #[serde(rename = "valueCodeableConcept")]
+    pub value_codeable_concept: CodeableConcept,
 }
 
 /// Instances or occurrences of the product

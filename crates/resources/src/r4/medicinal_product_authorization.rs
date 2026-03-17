@@ -60,7 +60,11 @@ pub struct MedicinalProductAuthorizationProcedure {
     pub r#type: CodeableConcept,
 
     /// Date of procedure
-    pub date: Option<serde_json::Value>,
+    #[serde(rename = "datePeriod")]
+    pub date_period: Option<Period>,
+
+    #[serde(rename = "dateDateTime")]
+    pub date_date_time: Option<String>,
 
     /// Applcations submitted to obtain a marketing authorization
     pub application: Option<Vec<MedicinalProductAuthorizationProcedure>>,

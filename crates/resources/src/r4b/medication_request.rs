@@ -83,7 +83,11 @@ pub struct MedicationRequestSubstitution {
     pub modifier_extension: Option<Vec<Extension>>,
 
     /// Whether substitution is allowed or not
-    pub allowed: serde_json::Value,
+    #[serde(rename = "allowedBoolean")]
+    pub allowed_boolean: bool,
+
+    #[serde(rename = "allowedCodeableConcept")]
+    pub allowed_codeable_concept: CodeableConcept,
 
     /// Why should (not) substitution be made
     pub reason: Option<CodeableConcept>,
@@ -147,10 +151,18 @@ pub struct MedicationRequest {
     pub do_not_perform: Option<bool>,
 
     /// Reported rather than primary record
-    pub reported: Option<serde_json::Value>,
+    #[serde(rename = "reportedBoolean")]
+    pub reported_boolean: Option<bool>,
+
+    #[serde(rename = "reportedReference")]
+    pub reported_reference: Option<Box<Reference>>,
 
     /// Medication to be taken
-    pub medication: serde_json::Value,
+    #[serde(rename = "medicationCodeableConcept")]
+    pub medication_codeable_concept: CodeableConcept,
+
+    #[serde(rename = "medicationReference")]
+    pub medication_reference: Box<Reference>,
 
     /// Who or group medication request is for
     pub subject: Box<Reference>,

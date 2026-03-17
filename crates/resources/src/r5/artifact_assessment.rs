@@ -96,8 +96,11 @@ pub struct ArtifactAssessment {
     pub title: Option<String>,
 
     /// How to cite the comment or rating
-    #[serde(rename = "citeAs")]
-    pub cite_as: Option<serde_json::Value>,
+    #[serde(rename = "citeAsReference")]
+    pub cite_as_reference: Option<Box<Reference>>,
+
+    #[serde(rename = "citeAsMarkdown")]
+    pub cite_as_markdown: Option<String>,
 
     /// Date last changed
     pub date: Option<String>,
@@ -114,7 +117,14 @@ pub struct ArtifactAssessment {
     pub last_review_date: Option<String>,
 
     /// The artifact assessed, commented upon or rated
-    pub artifact: serde_json::Value,
+    #[serde(rename = "artifactReference")]
+    pub artifact_reference: Box<Reference>,
+
+    #[serde(rename = "artifactCanonical")]
+    pub artifact_canonical: String,
+
+    #[serde(rename = "artifactUri")]
+    pub artifact_uri: String,
 
     /// Comment, classifier, or rating content
     pub content: Option<Vec<ArtifactAssessmentContent>>,

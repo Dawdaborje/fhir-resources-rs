@@ -280,7 +280,26 @@ pub struct DeviceDefinitionProperty {
     pub r#type: CodeableConcept,
 
     /// Value of the property
-    pub value: serde_json::Value,
+    #[serde(rename = "valueQuantity")]
+    pub value_quantity: Quantity,
+
+    #[serde(rename = "valueCodeableConcept")]
+    pub value_codeable_concept: CodeableConcept,
+
+    #[serde(rename = "valueString")]
+    pub value_string: String,
+
+    #[serde(rename = "valueBoolean")]
+    pub value_boolean: bool,
+
+    #[serde(rename = "valueInteger")]
+    pub value_integer: i32,
+
+    #[serde(rename = "valueRange")]
+    pub value_range: Range,
+
+    #[serde(rename = "valueAttachment")]
+    pub value_attachment: Attachment,
 }
 
 /// An associated device, attached to, used with, communicating with or linking a previous or new device model to the focal device

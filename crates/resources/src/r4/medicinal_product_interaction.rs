@@ -21,7 +21,11 @@ pub struct MedicinalProductInteractionInteractant {
     pub modifier_extension: Option<Vec<Extension>>,
 
     /// The specific medication, food or laboratory test that interacts
-    pub item: serde_json::Value,
+    #[serde(rename = "itemReference")]
+    pub item_reference: Box<Reference>,
+
+    #[serde(rename = "itemCodeableConcept")]
+    pub item_codeable_concept: CodeableConcept,
 }
 
 /// The interactions of the medicinal product with other medicinal products, or other forms of interactions.

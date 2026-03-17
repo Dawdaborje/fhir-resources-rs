@@ -102,7 +102,11 @@ pub struct Person {
     pub birth_date: Option<String>,
 
     /// Indicates if the individual is deceased or not
-    pub deceased: Option<serde_json::Value>,
+    #[serde(rename = "deceasedBoolean")]
+    pub deceased_boolean: Option<bool>,
+
+    #[serde(rename = "deceasedDateTime")]
+    pub deceased_date_time: Option<String>,
 
     /// One or more addresses for the person
     pub address: Option<Vec<Address>>,

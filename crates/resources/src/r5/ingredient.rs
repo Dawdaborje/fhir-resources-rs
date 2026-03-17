@@ -63,14 +63,34 @@ pub struct IngredientSubstanceStrength {
     pub modifier_extension: Option<Vec<Extension>>,
 
     /// The quantity of substance in the unit of presentation
-    pub presentation: Option<serde_json::Value>,
+    #[serde(rename = "presentationRatio")]
+    pub presentation_ratio: Option<Ratio>,
+
+    #[serde(rename = "presentationRatioRange")]
+    pub presentation_ratio_range: Option<RatioRange>,
+
+    #[serde(rename = "presentationCodeableConcept")]
+    pub presentation_codeable_concept: Option<CodeableConcept>,
+
+    #[serde(rename = "presentationQuantity")]
+    pub presentation_quantity: Option<Quantity>,
 
     /// Text of either the whole presentation strength or a part of it (rest being in Strength.presentation as a ratio)
     #[serde(rename = "textPresentation")]
     pub text_presentation: Option<String>,
 
     /// The strength per unitary volume (or mass)
-    pub concentration: Option<serde_json::Value>,
+    #[serde(rename = "concentrationRatio")]
+    pub concentration_ratio: Option<Ratio>,
+
+    #[serde(rename = "concentrationRatioRange")]
+    pub concentration_ratio_range: Option<RatioRange>,
+
+    #[serde(rename = "concentrationCodeableConcept")]
+    pub concentration_codeable_concept: Option<CodeableConcept>,
+
+    #[serde(rename = "concentrationQuantity")]
+    pub concentration_quantity: Option<Quantity>,
 
     /// Text of either the whole concentration strength or a part of it (rest being in Strength.concentration as a ratio)
     #[serde(rename = "textConcentration")]
@@ -109,7 +129,14 @@ pub struct IngredientSubstanceStrengthReferenceStrength {
     pub substance: CodeableReference,
 
     /// Strength expressed in terms of a reference substance
-    pub strength: serde_json::Value,
+    #[serde(rename = "strengthRatio")]
+    pub strength_ratio: Ratio,
+
+    #[serde(rename = "strengthRatioRange")]
+    pub strength_ratio_range: RatioRange,
+
+    #[serde(rename = "strengthQuantity")]
+    pub strength_quantity: Quantity,
 
     /// When strength is measured at a particular point or distance
     #[serde(rename = "measurementPoint")]

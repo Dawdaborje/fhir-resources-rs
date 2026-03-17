@@ -24,7 +24,17 @@ pub struct DeviceRequestParameter {
     pub code: Option<CodeableConcept>,
 
     /// Value of detail
-    pub value: Option<serde_json::Value>,
+    #[serde(rename = "valueCodeableConcept")]
+    pub value_codeable_concept: Option<CodeableConcept>,
+
+    #[serde(rename = "valueQuantity")]
+    pub value_quantity: Option<Quantity>,
+
+    #[serde(rename = "valueRange")]
+    pub value_range: Option<Range>,
+
+    #[serde(rename = "valueBoolean")]
+    pub value_boolean: Option<bool>,
 }
 
 /// Represents a request for a patient to employ a medical device. The device may be an implantable device, or an external assistive device, such as a walker.
@@ -94,7 +104,11 @@ pub struct DeviceRequest {
     pub priority: Option<String>,
 
     /// Device requested
-    pub code: serde_json::Value,
+    #[serde(rename = "codeReference")]
+    pub code_reference: Box<Reference>,
+
+    #[serde(rename = "codeCodeableConcept")]
+    pub code_codeable_concept: CodeableConcept,
 
     /// Device details
     pub parameter: Option<Vec<DeviceRequestParameter>>,
@@ -106,7 +120,14 @@ pub struct DeviceRequest {
     pub encounter: Option<Box<Reference>>,
 
     /// Desired time or schedule for use
-    pub occurrence: Option<serde_json::Value>,
+    #[serde(rename = "occurrenceDateTime")]
+    pub occurrence_date_time: Option<String>,
+
+    #[serde(rename = "occurrencePeriod")]
+    pub occurrence_period: Option<Period>,
+
+    #[serde(rename = "occurrenceTiming")]
+    pub occurrence_timing: Option<Timing>,
 
     /// When recorded
     #[serde(rename = "authoredOn")]

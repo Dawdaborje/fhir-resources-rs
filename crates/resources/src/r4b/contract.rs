@@ -67,7 +67,11 @@ pub struct ContractTerm {
     pub applies: Option<Period>,
 
     /// Term Concern
-    pub topic: Option<serde_json::Value>,
+    #[serde(rename = "topicCodeableConcept")]
+    pub topic_codeable_concept: Option<CodeableConcept>,
+
+    #[serde(rename = "topicReference")]
+    pub topic_reference: Option<Box<Reference>>,
 
     /// Contract Term Type or Form
     #[serde(rename = "type")]
@@ -209,7 +213,41 @@ pub struct ContractTermOfferAnswer {
     pub modifier_extension: Option<Vec<Extension>>,
 
     /// The actual answer response
-    pub value: serde_json::Value,
+    #[serde(rename = "valueBoolean")]
+    pub value_boolean: bool,
+
+    #[serde(rename = "valueDecimal")]
+    pub value_decimal: f64,
+
+    #[serde(rename = "valueInteger")]
+    pub value_integer: i32,
+
+    #[serde(rename = "valueDate")]
+    pub value_date: String,
+
+    #[serde(rename = "valueDateTime")]
+    pub value_date_time: String,
+
+    #[serde(rename = "valueTime")]
+    pub value_time: String,
+
+    #[serde(rename = "valueString")]
+    pub value_string: String,
+
+    #[serde(rename = "valueUri")]
+    pub value_uri: String,
+
+    #[serde(rename = "valueAttachment")]
+    pub value_attachment: Attachment,
+
+    #[serde(rename = "valueCoding")]
+    pub value_coding: Coding,
+
+    #[serde(rename = "valueQuantity")]
+    pub value_quantity: Quantity,
+
+    #[serde(rename = "valueReference")]
+    pub value_reference: Box<Reference>,
 }
 
 /// Contract Term Asset List
@@ -318,7 +356,11 @@ pub struct ContractTermAssetValuedItem {
     pub modifier_extension: Option<Vec<Extension>>,
 
     /// Contract Valued Item Type
-    pub entity: Option<serde_json::Value>,
+    #[serde(rename = "entityCodeableConcept")]
+    pub entity_codeable_concept: Option<CodeableConcept>,
+
+    #[serde(rename = "entityReference")]
+    pub entity_reference: Option<Box<Reference>>,
 
     /// Contract Valued Item Number
     pub identifier: Option<Box<Identifier>>,
@@ -408,7 +450,14 @@ pub struct ContractTermAction {
     pub context_link_id: Option<Vec<String>>,
 
     /// When action happens
-    pub occurrence: Option<serde_json::Value>,
+    #[serde(rename = "occurrenceDateTime")]
+    pub occurrence_date_time: Option<String>,
+
+    #[serde(rename = "occurrencePeriod")]
+    pub occurrence_period: Option<Period>,
+
+    #[serde(rename = "occurrenceTiming")]
+    pub occurrence_timing: Option<Timing>,
 
     /// Who asked for action
     pub requester: Option<Vec<Box<Reference>>>,
@@ -516,7 +565,11 @@ pub struct ContractFriendly {
     pub modifier_extension: Option<Vec<Extension>>,
 
     /// Easily comprehended representation of this Contract
-    pub content: serde_json::Value,
+    #[serde(rename = "contentAttachment")]
+    pub content_attachment: Attachment,
+
+    #[serde(rename = "contentReference")]
+    pub content_reference: Box<Reference>,
 }
 
 /// Contract Legal Language
@@ -534,7 +587,11 @@ pub struct ContractLegal {
     pub modifier_extension: Option<Vec<Extension>>,
 
     /// Contract Legal Text
-    pub content: serde_json::Value,
+    #[serde(rename = "contentAttachment")]
+    pub content_attachment: Attachment,
+
+    #[serde(rename = "contentReference")]
+    pub content_reference: Box<Reference>,
 }
 
 /// Computable Contract Language
@@ -552,7 +609,11 @@ pub struct ContractRule {
     pub modifier_extension: Option<Vec<Extension>>,
 
     /// Computable Contract Rules
-    pub content: serde_json::Value,
+    #[serde(rename = "contentAttachment")]
+    pub content_attachment: Attachment,
+
+    #[serde(rename = "contentReference")]
+    pub content_reference: Box<Reference>,
 }
 
 /// Legally enforceable, formally recorded unilateral or bilateral directive i.e., a policy or agreement.
@@ -658,7 +719,11 @@ pub struct Contract {
     pub scope: Option<CodeableConcept>,
 
     /// Focus of contract interest
-    pub topic: Option<serde_json::Value>,
+    #[serde(rename = "topicCodeableConcept")]
+    pub topic_codeable_concept: Option<CodeableConcept>,
+
+    #[serde(rename = "topicReference")]
+    pub topic_reference: Option<Box<Reference>>,
 
     /// Legal instrument category
     #[serde(rename = "type")]
@@ -696,6 +761,9 @@ pub struct Contract {
     pub rule: Option<Vec<ContractRule>>,
 
     /// Binding Contract
-    #[serde(rename = "legallyBinding")]
-    pub legally_binding: Option<serde_json::Value>,
+    #[serde(rename = "legallyBindingAttachment")]
+    pub legally_binding_attachment: Option<Attachment>,
+
+    #[serde(rename = "legallyBindingReference")]
+    pub legally_binding_reference: Option<Box<Reference>>,
 }

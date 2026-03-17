@@ -65,7 +65,11 @@ pub struct EventDefinition {
     pub experimental: Option<bool>,
 
     /// Type of individual the event definition is focused on
-    pub subject: Option<serde_json::Value>,
+    #[serde(rename = "subjectCodeableConcept")]
+    pub subject_codeable_concept: Option<CodeableConcept>,
+
+    #[serde(rename = "subjectReference")]
+    pub subject_reference: Option<Box<Reference>>,
 
     /// Date last changed
     pub date: Option<String>,

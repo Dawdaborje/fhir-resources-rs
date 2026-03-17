@@ -60,7 +60,14 @@ pub struct PlanDefinitionGoalTarget {
     pub measure: Option<CodeableConcept>,
 
     /// The target value to be achieved
-    pub detail: Option<serde_json::Value>,
+    #[serde(rename = "detailQuantity")]
+    pub detail_quantity: Option<Quantity>,
+
+    #[serde(rename = "detailRange")]
+    pub detail_range: Option<Range>,
+
+    #[serde(rename = "detailCodeableConcept")]
+    pub detail_codeable_concept: Option<CodeableConcept>,
 
     /// Reach goal within
     pub due: Option<Duration>,
@@ -110,7 +117,14 @@ pub struct PlanDefinitionAction {
     pub goal_id: Option<Vec<String>>,
 
     /// Type of individual the action is focused on
-    pub subject: Option<serde_json::Value>,
+    #[serde(rename = "subjectCodeableConcept")]
+    pub subject_codeable_concept: Option<CodeableConcept>,
+
+    #[serde(rename = "subjectReference")]
+    pub subject_reference: Option<Box<Reference>>,
+
+    #[serde(rename = "subjectCanonical")]
+    pub subject_canonical: Option<String>,
 
     /// When the action should be triggered
     pub trigger: Option<Vec<TriggerDefinition>>,
@@ -129,7 +143,23 @@ pub struct PlanDefinitionAction {
     pub related_action: Option<Vec<PlanDefinitionActionRelatedAction>>,
 
     /// When the action should take place
-    pub timing: Option<serde_json::Value>,
+    #[serde(rename = "timingDateTime")]
+    pub timing_date_time: Option<String>,
+
+    #[serde(rename = "timingAge")]
+    pub timing_age: Option<Age>,
+
+    #[serde(rename = "timingPeriod")]
+    pub timing_period: Option<Period>,
+
+    #[serde(rename = "timingDuration")]
+    pub timing_duration: Option<Duration>,
+
+    #[serde(rename = "timingRange")]
+    pub timing_range: Option<Range>,
+
+    #[serde(rename = "timingTiming")]
+    pub timing_timing: Option<Timing>,
 
     /// Who should participate in the action
     pub participant: Option<Vec<PlanDefinitionActionParticipant>>,
@@ -159,7 +189,11 @@ pub struct PlanDefinitionAction {
     pub cardinality_behavior: Option<String>,
 
     /// Description of the activity to be performed
-    pub definition: Option<serde_json::Value>,
+    #[serde(rename = "definitionCanonical")]
+    pub definition_canonical: Option<String>,
+
+    #[serde(rename = "definitionUri")]
+    pub definition_uri: Option<String>,
 
     /// Transform to apply the template
     pub transform: Option<String>,
@@ -215,7 +249,11 @@ pub struct PlanDefinitionActionRelatedAction {
     pub relationship: String,
 
     /// Time offset for the relationship
-    pub offset: Option<serde_json::Value>,
+    #[serde(rename = "offsetDuration")]
+    pub offset_duration: Option<Duration>,
+
+    #[serde(rename = "offsetRange")]
+    pub offset_range: Option<Range>,
 }
 
 /// Who should participate in the action
@@ -324,7 +362,14 @@ pub struct PlanDefinition {
     pub experimental: Option<bool>,
 
     /// Type of individual the plan definition is focused on
-    pub subject: Option<serde_json::Value>,
+    #[serde(rename = "subjectCodeableConcept")]
+    pub subject_codeable_concept: Option<CodeableConcept>,
+
+    #[serde(rename = "subjectReference")]
+    pub subject_reference: Option<Box<Reference>>,
+
+    #[serde(rename = "subjectCanonical")]
+    pub subject_canonical: Option<String>,
 
     /// Date last changed
     pub date: Option<String>,

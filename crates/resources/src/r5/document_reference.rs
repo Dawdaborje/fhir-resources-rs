@@ -87,7 +87,14 @@ pub struct DocumentReferenceContentProfile {
     pub modifier_extension: Option<Vec<Extension>>,
 
     /// Code|uri|canonical
-    pub value: serde_json::Value,
+    #[serde(rename = "valueCoding")]
+    pub value_coding: Coding,
+
+    #[serde(rename = "valueUri")]
+    pub value_uri: String,
+
+    #[serde(rename = "valueCanonical")]
+    pub value_canonical: String,
 }
 
 /// A reference to a document of any kind for any purpose. While the term “document” implies a more narrow focus, for this resource this “document” encompasses *any* serialized object with a mi...

@@ -25,7 +25,11 @@ pub struct ClaimResponseEvent {
     pub r#type: CodeableConcept,
 
     /// Occurance date or period
-    pub when: serde_json::Value,
+    #[serde(rename = "whenDateTime")]
+    pub when_date_time: String,
+
+    #[serde(rename = "whenPeriod")]
+    pub when_period: Period,
 }
 
 /// Adjudication for claim line items
@@ -248,10 +252,21 @@ pub struct ClaimResponseAddItem {
     pub program_code: Option<Vec<CodeableConcept>>,
 
     /// Date or dates of service or product delivery
-    pub serviced: Option<serde_json::Value>,
+    #[serde(rename = "servicedDate")]
+    pub serviced_date: Option<String>,
+
+    #[serde(rename = "servicedPeriod")]
+    pub serviced_period: Option<Period>,
 
     /// Place of service or where product was supplied
-    pub location: Option<serde_json::Value>,
+    #[serde(rename = "locationCodeableConcept")]
+    pub location_codeable_concept: Option<CodeableConcept>,
+
+    #[serde(rename = "locationAddress")]
+    pub location_address: Option<Address>,
+
+    #[serde(rename = "locationReference")]
+    pub location_reference: Option<Box<Reference>>,
 
     /// Count of products or services
     pub quantity: Option<Quantity>,

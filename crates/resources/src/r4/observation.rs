@@ -59,7 +59,38 @@ pub struct ObservationComponent {
     pub code: CodeableConcept,
 
     /// Actual component result
-    pub value: Option<serde_json::Value>,
+    #[serde(rename = "valueQuantity")]
+    pub value_quantity: Option<Quantity>,
+
+    #[serde(rename = "valueCodeableConcept")]
+    pub value_codeable_concept: Option<CodeableConcept>,
+
+    #[serde(rename = "valueString")]
+    pub value_string: Option<String>,
+
+    #[serde(rename = "valueBoolean")]
+    pub value_boolean: Option<bool>,
+
+    #[serde(rename = "valueInteger")]
+    pub value_integer: Option<i32>,
+
+    #[serde(rename = "valueRange")]
+    pub value_range: Option<Range>,
+
+    #[serde(rename = "valueRatio")]
+    pub value_ratio: Option<Ratio>,
+
+    #[serde(rename = "valueSampledData")]
+    pub value_sampled_data: Option<SampledData>,
+
+    #[serde(rename = "valueTime")]
+    pub value_time: Option<String>,
+
+    #[serde(rename = "valueDateTime")]
+    pub value_date_time: Option<String>,
+
+    #[serde(rename = "valuePeriod")]
+    pub value_period: Option<Period>,
 
     /// Why the component result is missing
     #[serde(rename = "dataAbsentReason")]
@@ -137,7 +168,17 @@ pub struct Observation {
     pub encounter: Option<Box<Reference>>,
 
     /// Clinically relevant time/time-period for observation
-    pub effective: Option<serde_json::Value>,
+    #[serde(rename = "effectiveDateTime")]
+    pub effective_date_time: Option<String>,
+
+    #[serde(rename = "effectivePeriod")]
+    pub effective_period: Option<Period>,
+
+    #[serde(rename = "effectiveTiming")]
+    pub effective_timing: Option<Timing>,
+
+    #[serde(rename = "effectiveInstant")]
+    pub effective_instant: Option<String>,
 
     /// Date/Time this version was made available
     pub issued: Option<String>,
@@ -146,7 +187,38 @@ pub struct Observation {
     pub performer: Option<Vec<Box<Reference>>>,
 
     /// Actual result
-    pub value: Option<serde_json::Value>,
+    #[serde(rename = "valueQuantity")]
+    pub value_quantity: Option<Quantity>,
+
+    #[serde(rename = "valueCodeableConcept")]
+    pub value_codeable_concept: Option<CodeableConcept>,
+
+    #[serde(rename = "valueString")]
+    pub value_string: Option<String>,
+
+    #[serde(rename = "valueBoolean")]
+    pub value_boolean: Option<bool>,
+
+    #[serde(rename = "valueInteger")]
+    pub value_integer: Option<i32>,
+
+    #[serde(rename = "valueRange")]
+    pub value_range: Option<Range>,
+
+    #[serde(rename = "valueRatio")]
+    pub value_ratio: Option<Ratio>,
+
+    #[serde(rename = "valueSampledData")]
+    pub value_sampled_data: Option<SampledData>,
+
+    #[serde(rename = "valueTime")]
+    pub value_time: Option<String>,
+
+    #[serde(rename = "valueDateTime")]
+    pub value_date_time: Option<String>,
+
+    #[serde(rename = "valuePeriod")]
+    pub value_period: Option<Period>,
 
     /// Why the result is missing
     #[serde(rename = "dataAbsentReason")]

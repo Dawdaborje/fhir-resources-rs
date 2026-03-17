@@ -30,8 +30,14 @@ pub struct PaymentReconciliationAllocation {
     pub target: Option<Box<Reference>>,
 
     /// Sub-element of the subject
-    #[serde(rename = "targetItem")]
-    pub target_item: Option<serde_json::Value>,
+    #[serde(rename = "targetItemString")]
+    pub target_item_string: Option<String>,
+
+    #[serde(rename = "targetItemIdentifier")]
+    pub target_item_identifier: Option<Box<Identifier>>,
+
+    #[serde(rename = "targetItemPositiveInt")]
+    pub target_item_positive_int: Option<i32>,
 
     /// Applied-to encounter
     pub encounter: Option<Box<Reference>>,

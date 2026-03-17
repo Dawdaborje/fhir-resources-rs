@@ -122,7 +122,11 @@ pub struct MessageHeader {
     pub modifier_extension: Option<Vec<Extension>>,
 
     /// Code for the event this message represents or link to event definition
-    pub event: serde_json::Value,
+    #[serde(rename = "eventCoding")]
+    pub event_coding: Coding,
+
+    #[serde(rename = "eventUri")]
+    pub event_uri: String,
 
     /// Message destination application(s)
     pub destination: Option<Vec<MessageHeaderDestination>>,

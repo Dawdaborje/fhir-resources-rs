@@ -63,7 +63,23 @@ pub struct RequestOrchestrationAction {
     pub related_action: Option<Vec<RequestOrchestrationActionRelatedAction>>,
 
     /// When the action should take place
-    pub timing: Option<serde_json::Value>,
+    #[serde(rename = "timingDateTime")]
+    pub timing_date_time: Option<String>,
+
+    #[serde(rename = "timingAge")]
+    pub timing_age: Option<Age>,
+
+    #[serde(rename = "timingPeriod")]
+    pub timing_period: Option<Period>,
+
+    #[serde(rename = "timingDuration")]
+    pub timing_duration: Option<Duration>,
+
+    #[serde(rename = "timingRange")]
+    pub timing_range: Option<Range>,
+
+    #[serde(rename = "timingTiming")]
+    pub timing_timing: Option<Timing>,
 
     /// Where it should happen
     pub location: Option<CodeableReference>,
@@ -99,7 +115,11 @@ pub struct RequestOrchestrationAction {
     pub resource: Option<Box<Reference>>,
 
     /// Description of the activity to be performed
-    pub definition: Option<serde_json::Value>,
+    #[serde(rename = "definitionCanonical")]
+    pub definition_canonical: Option<String>,
+
+    #[serde(rename = "definitionUri")]
+    pub definition_uri: Option<String>,
 
     /// Transform to apply the template
     pub transform: Option<String>,
@@ -209,7 +229,11 @@ pub struct RequestOrchestrationActionRelatedAction {
     pub end_relationship: Option<String>,
 
     /// Time offset for the relationship
-    pub offset: Option<serde_json::Value>,
+    #[serde(rename = "offsetDuration")]
+    pub offset_duration: Option<Duration>,
+
+    #[serde(rename = "offsetRange")]
+    pub offset_range: Option<Range>,
 }
 
 /// Who should perform the action
@@ -245,7 +269,11 @@ pub struct RequestOrchestrationActionParticipant {
     pub function: Option<CodeableConcept>,
 
     /// Who/what is participating?
-    pub actor: Option<serde_json::Value>,
+    #[serde(rename = "actorCanonical")]
+    pub actor_canonical: Option<String>,
+
+    #[serde(rename = "actorReference")]
+    pub actor_reference: Option<Box<Reference>>,
 }
 
 /// Dynamic aspects of the definition

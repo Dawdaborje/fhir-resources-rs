@@ -58,7 +58,14 @@ pub struct DeviceUseStatement {
     pub derived_from: Option<Vec<Box<Reference>>>,
 
     /// How often the device was used
-    pub timing: Option<serde_json::Value>,
+    #[serde(rename = "timingTiming")]
+    pub timing_timing: Option<Timing>,
+
+    #[serde(rename = "timingPeriod")]
+    pub timing_period: Option<Period>,
+
+    #[serde(rename = "timingDateTime")]
+    pub timing_date_time: Option<String>,
 
     /// When statement was recorded
     #[serde(rename = "recordedOn")]

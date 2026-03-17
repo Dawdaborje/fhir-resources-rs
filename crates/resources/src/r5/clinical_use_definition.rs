@@ -94,7 +94,11 @@ pub struct ClinicalUseDefinitionIndication {
     pub intended_effect: Option<CodeableReference>,
 
     /// Timing or duration information
-    pub duration: Option<serde_json::Value>,
+    #[serde(rename = "durationRange")]
+    pub duration_range: Option<Range>,
+
+    #[serde(rename = "durationString")]
+    pub duration_string: Option<String>,
 
     /// An unwanted side effect or negative outcome of the subject of this resource when being used for this indication
     #[serde(rename = "undesirableEffect")]
@@ -154,7 +158,11 @@ pub struct ClinicalUseDefinitionInteractionInteractant {
     pub modifier_extension: Option<Vec<Extension>>,
 
     /// The specific medication, product, food etc. or laboratory test that interacts
-    pub item: serde_json::Value,
+    #[serde(rename = "itemReference")]
+    pub item_reference: Box<Reference>,
+
+    #[serde(rename = "itemCodeableConcept")]
+    pub item_codeable_concept: CodeableConcept,
 }
 
 /// A possible negative outcome from the use of this treatment

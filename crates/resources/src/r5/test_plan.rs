@@ -122,7 +122,11 @@ pub struct TestPlanTestCaseTestRunScript {
     pub language: Option<CodeableConcept>,
 
     /// The actual content of the cases - references to TestScripts or externally defined content
-    pub source: Option<serde_json::Value>,
+    #[serde(rename = "sourceString")]
+    pub source_string: Option<String>,
+
+    #[serde(rename = "sourceReference")]
+    pub source_reference: Option<Box<Reference>>,
 }
 
 /// The test data used in the test case
@@ -147,7 +151,11 @@ pub struct TestPlanTestCaseTestData {
     pub content: Option<Box<Reference>>,
 
     /// Pointer to a definition of test resources - narrative or structured e.g. synthetic data generation, etc
-    pub source: Option<serde_json::Value>,
+    #[serde(rename = "sourceString")]
+    pub source_string: Option<String>,
+
+    #[serde(rename = "sourceReference")]
+    pub source_reference: Option<Box<Reference>>,
 }
 
 /// Test assertions or expectations
@@ -219,8 +227,11 @@ pub struct TestPlan {
     pub version: Option<String>,
 
     /// How to compare versions
-    #[serde(rename = "versionAlgorithm")]
-    pub version_algorithm: Option<serde_json::Value>,
+    #[serde(rename = "versionAlgorithmString")]
+    pub version_algorithm_string: Option<String>,
+
+    #[serde(rename = "versionAlgorithmCoding")]
+    pub version_algorithm_coding: Option<Coding>,
 
     /// Name for this test plan (computer friendly)
     pub name: Option<String>,

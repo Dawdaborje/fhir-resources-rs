@@ -88,8 +88,11 @@ pub struct SpecimenDefinitionTypeTestedContainer {
     pub capacity: Option<Quantity>,
 
     /// Minimum volume
-    #[serde(rename = "minimumVolume")]
-    pub minimum_volume: Option<serde_json::Value>,
+    #[serde(rename = "minimumVolumeQuantity")]
+    pub minimum_volume_quantity: Option<Quantity>,
+
+    #[serde(rename = "minimumVolumeString")]
+    pub minimum_volume_string: Option<String>,
 
     /// Additive associated with container
     pub additive: Option<Vec<SpecimenDefinitionTypeTestedContainerAdditive>>,
@@ -113,7 +116,11 @@ pub struct SpecimenDefinitionTypeTestedContainerAdditive {
     pub modifier_extension: Option<Vec<Extension>>,
 
     /// Additive associated with container
-    pub additive: serde_json::Value,
+    #[serde(rename = "additiveCodeableConcept")]
+    pub additive_codeable_concept: CodeableConcept,
+
+    #[serde(rename = "additiveReference")]
+    pub additive_reference: Box<Reference>,
 }
 
 /// Specimen handling before testing
@@ -190,8 +197,11 @@ pub struct SpecimenDefinition {
     pub version: Option<String>,
 
     /// How to compare versions
-    #[serde(rename = "versionAlgorithm")]
-    pub version_algorithm: Option<serde_json::Value>,
+    #[serde(rename = "versionAlgorithmString")]
+    pub version_algorithm_string: Option<String>,
+
+    #[serde(rename = "versionAlgorithmCoding")]
+    pub version_algorithm_coding: Option<Coding>,
 
     /// Name for this {{title}} (computer friendly)
     pub name: Option<String>,
@@ -214,7 +224,11 @@ pub struct SpecimenDefinition {
     pub experimental: Option<bool>,
 
     /// Type of subject for specimen collection
-    pub subject: Option<serde_json::Value>,
+    #[serde(rename = "subjectCodeableConcept")]
+    pub subject_codeable_concept: Option<CodeableConcept>,
+
+    #[serde(rename = "subjectReference")]
+    pub subject_reference: Option<Box<Reference>>,
 
     /// Date status first applied
     pub date: Option<String>,

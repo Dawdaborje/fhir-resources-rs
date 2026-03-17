@@ -24,7 +24,11 @@ pub struct RiskAssessmentPrediction {
     pub outcome: Option<CodeableConcept>,
 
     /// Likelihood of specified outcome
-    pub probability: Option<serde_json::Value>,
+    #[serde(rename = "probabilityDecimal")]
+    pub probability_decimal: Option<f64>,
+
+    #[serde(rename = "probabilityRange")]
+    pub probability_range: Option<Range>,
 
     /// Likelihood of specified outcome as a qualitative value
     #[serde(rename = "qualitativeRisk")]
@@ -35,7 +39,11 @@ pub struct RiskAssessmentPrediction {
     pub relative_risk: Option<f64>,
 
     /// Timeframe or age range
-    pub when: Option<serde_json::Value>,
+    #[serde(rename = "whenPeriod")]
+    pub when_period: Option<Period>,
+
+    #[serde(rename = "whenRange")]
+    pub when_range: Option<Range>,
 
     /// Explanation of prediction
     pub rationale: Option<String>,
@@ -101,7 +109,11 @@ pub struct RiskAssessment {
     pub encounter: Option<Box<Reference>>,
 
     /// When was assessment made?
-    pub occurrence: Option<serde_json::Value>,
+    #[serde(rename = "occurrenceDateTime")]
+    pub occurrence_date_time: Option<String>,
+
+    #[serde(rename = "occurrencePeriod")]
+    pub occurrence_period: Option<Period>,
 
     /// Condition assessed
     pub condition: Option<Box<Reference>>,

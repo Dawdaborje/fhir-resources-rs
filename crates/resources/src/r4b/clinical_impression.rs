@@ -110,7 +110,11 @@ pub struct ClinicalImpression {
     pub encounter: Option<Box<Reference>>,
 
     /// Time of assessment
-    pub effective: Option<serde_json::Value>,
+    #[serde(rename = "effectiveDateTime")]
+    pub effective_date_time: Option<String>,
+
+    #[serde(rename = "effectivePeriod")]
+    pub effective_period: Option<Period>,
 
     /// When the assessment was documented
     pub date: Option<String>,

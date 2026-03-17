@@ -31,7 +31,11 @@ pub struct CareTeamParticipant {
     pub on_behalf_of: Option<Box<Reference>>,
 
     /// When the member is generally available within this care team
-    pub coverage: Option<serde_json::Value>,
+    #[serde(rename = "coveragePeriod")]
+    pub coverage_period: Option<Period>,
+
+    #[serde(rename = "coverageTiming")]
+    pub coverage_timing: Option<Timing>,
 }
 
 /// The Care Team includes all the people and organizations who plan to participate in the coordination and delivery of care.

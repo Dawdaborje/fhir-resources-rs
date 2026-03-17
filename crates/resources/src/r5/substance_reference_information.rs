@@ -88,7 +88,14 @@ pub struct SubstanceReferenceInformationTarget {
     pub organism_type: Option<CodeableConcept>,
 
     /// Todo
-    pub amount: Option<serde_json::Value>,
+    #[serde(rename = "amountQuantity")]
+    pub amount_quantity: Option<Quantity>,
+
+    #[serde(rename = "amountRange")]
+    pub amount_range: Option<Range>,
+
+    #[serde(rename = "amountString")]
+    pub amount_string: Option<String>,
 
     /// Todo
     #[serde(rename = "amountType")]

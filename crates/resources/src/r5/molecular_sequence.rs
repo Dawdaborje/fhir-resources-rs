@@ -62,7 +62,14 @@ pub struct MolecularSequenceRelativeStartingSequence {
     pub chromosome: Option<CodeableConcept>,
 
     /// The reference sequence that represents the starting sequence
-    pub sequence: Option<serde_json::Value>,
+    #[serde(rename = "sequenceCodeableConcept")]
+    pub sequence_codeable_concept: Option<CodeableConcept>,
+
+    #[serde(rename = "sequenceString")]
+    pub sequence_string: Option<String>,
+
+    #[serde(rename = "sequenceReference")]
+    pub sequence_reference: Option<Box<Reference>>,
 
     /// Start position of the window on the starting sequence
     #[serde(rename = "windowStart")]

@@ -125,7 +125,20 @@ pub struct Procedure {
     pub encounter: Option<Box<Reference>>,
 
     /// When the procedure was performed
-    pub performed: Option<serde_json::Value>,
+    #[serde(rename = "performedDateTime")]
+    pub performed_date_time: Option<String>,
+
+    #[serde(rename = "performedPeriod")]
+    pub performed_period: Option<Period>,
+
+    #[serde(rename = "performedString")]
+    pub performed_string: Option<String>,
+
+    #[serde(rename = "performedAge")]
+    pub performed_age: Option<Age>,
+
+    #[serde(rename = "performedRange")]
+    pub performed_range: Option<Range>,
 
     /// Who recorded the procedure
     pub recorder: Option<Box<Reference>>,

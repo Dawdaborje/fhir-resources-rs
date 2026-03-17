@@ -24,10 +24,33 @@ pub struct GoalTarget {
     pub measure: Option<CodeableConcept>,
 
     /// The target value to be achieved
-    pub detail: Option<serde_json::Value>,
+    #[serde(rename = "detailQuantity")]
+    pub detail_quantity: Option<Quantity>,
+
+    #[serde(rename = "detailRange")]
+    pub detail_range: Option<Range>,
+
+    #[serde(rename = "detailCodeableConcept")]
+    pub detail_codeable_concept: Option<CodeableConcept>,
+
+    #[serde(rename = "detailString")]
+    pub detail_string: Option<String>,
+
+    #[serde(rename = "detailBoolean")]
+    pub detail_boolean: Option<bool>,
+
+    #[serde(rename = "detailInteger")]
+    pub detail_integer: Option<i32>,
+
+    #[serde(rename = "detailRatio")]
+    pub detail_ratio: Option<Ratio>,
 
     /// Reach goal on or before
-    pub due: Option<serde_json::Value>,
+    #[serde(rename = "dueDate")]
+    pub due_date: Option<String>,
+
+    #[serde(rename = "dueDuration")]
+    pub due_duration: Option<Duration>,
 }
 
 /// Describes the intended objective(s) for a patient, group or organization care, for example, weight loss, restoring an activity of daily living, obtaining herd immunity via immunization, meeting a p...
@@ -88,7 +111,11 @@ pub struct Goal {
     pub subject: Box<Reference>,
 
     /// When goal pursuit begins
-    pub start: Option<serde_json::Value>,
+    #[serde(rename = "startDate")]
+    pub start_date: Option<String>,
+
+    #[serde(rename = "startCodeableConcept")]
+    pub start_codeable_concept: Option<CodeableConcept>,
 
     /// Target outcome for the goal
     pub target: Option<Vec<GoalTarget>>,

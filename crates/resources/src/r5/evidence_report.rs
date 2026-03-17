@@ -45,7 +45,20 @@ pub struct EvidenceReportSubjectCharacteristic {
     pub code: CodeableConcept,
 
     /// Characteristic value
-    pub value: serde_json::Value,
+    #[serde(rename = "valueReference")]
+    pub value_reference: Box<Reference>,
+
+    #[serde(rename = "valueCodeableConcept")]
+    pub value_codeable_concept: CodeableConcept,
+
+    #[serde(rename = "valueBoolean")]
+    pub value_boolean: bool,
+
+    #[serde(rename = "valueQuantity")]
+    pub value_quantity: Quantity,
+
+    #[serde(rename = "valueRange")]
+    pub value_range: Range,
 
     /// Is used to express not the characteristic
     pub exclude: Option<bool>,
@@ -211,8 +224,11 @@ pub struct EvidenceReport {
     pub related_identifier: Option<Vec<Box<Identifier>>>,
 
     /// Citation for this report
-    #[serde(rename = "citeAs")]
-    pub cite_as: Option<serde_json::Value>,
+    #[serde(rename = "citeAsReference")]
+    pub cite_as_reference: Option<Box<Reference>>,
+
+    #[serde(rename = "citeAsMarkdown")]
+    pub cite_as_markdown: Option<String>,
 
     /// Kind of report
     #[serde(rename = "type")]

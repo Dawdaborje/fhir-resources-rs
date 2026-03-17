@@ -48,7 +48,11 @@ pub struct CompositionRelatesTo {
     pub code: String,
 
     /// Target of the relationship
-    pub target: serde_json::Value,
+    #[serde(rename = "targetIdentifier")]
+    pub target_identifier: Box<Identifier>,
+
+    #[serde(rename = "targetReference")]
+    pub target_reference: Box<Reference>,
 }
 
 /// The clinical service(s) being documented

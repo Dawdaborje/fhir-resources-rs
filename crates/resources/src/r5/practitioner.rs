@@ -108,7 +108,11 @@ pub struct Practitioner {
     pub birth_date: Option<String>,
 
     /// Indicates if the practitioner is deceased or not
-    pub deceased: Option<serde_json::Value>,
+    #[serde(rename = "deceasedBoolean")]
+    pub deceased_boolean: Option<bool>,
+
+    #[serde(rename = "deceasedDateTime")]
+    pub deceased_date_time: Option<String>,
 
     /// Address(es) of the practitioner that are not role specific (typically home address)
     pub address: Option<Vec<Address>>,

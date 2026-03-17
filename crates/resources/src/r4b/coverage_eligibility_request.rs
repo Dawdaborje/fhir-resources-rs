@@ -119,7 +119,11 @@ pub struct CoverageEligibilityRequestItemDiagnosis {
     pub modifier_extension: Option<Vec<Extension>>,
 
     /// Nature of illness or problem
-    pub diagnosis: Option<serde_json::Value>,
+    #[serde(rename = "diagnosisCodeableConcept")]
+    pub diagnosis_codeable_concept: Option<CodeableConcept>,
+
+    #[serde(rename = "diagnosisReference")]
+    pub diagnosis_reference: Option<Box<Reference>>,
 }
 
 /// The CoverageEligibilityRequest provides patient and insurance coverage information to an insurer for them to respond, in the form of an CoverageEligibilityResponse, with information regarding wheth...
@@ -172,7 +176,11 @@ pub struct CoverageEligibilityRequest {
     pub patient: Box<Reference>,
 
     /// Estimated date or dates of service
-    pub serviced: Option<serde_json::Value>,
+    #[serde(rename = "servicedDate")]
+    pub serviced_date: Option<String>,
+
+    #[serde(rename = "servicedPeriod")]
+    pub serviced_period: Option<Period>,
 
     /// Creation date
     pub created: String,

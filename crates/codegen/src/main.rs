@@ -32,6 +32,11 @@ fn main() -> Result<()> {
         "r4b" => r4b_generator::generate()?,
         "r5" => r5_generator::generate()?,
         "r6" => bail!("FHIR R6 is not yet supported"),
+        "all" => {
+            r4_generator::generate()?;
+            r4b_generator::generate()?;
+            r5_generator::generate()?;
+        }
         _ => bail!(
             "Unknown FHIR version: {}. Supported versions: r4, r4b, r5, r6",
             version

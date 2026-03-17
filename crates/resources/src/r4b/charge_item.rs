@@ -89,7 +89,14 @@ pub struct ChargeItem {
     pub context: Option<Box<Reference>>,
 
     /// When the charged service was applied
-    pub occurrence: Option<serde_json::Value>,
+    #[serde(rename = "occurrenceDateTime")]
+    pub occurrence_date_time: Option<String>,
+
+    #[serde(rename = "occurrencePeriod")]
+    pub occurrence_period: Option<Period>,
+
+    #[serde(rename = "occurrenceTiming")]
+    pub occurrence_timing: Option<Timing>,
 
     /// Who performed charged service
     pub performer: Option<Vec<ChargeItemPerformer>>,
@@ -138,7 +145,11 @@ pub struct ChargeItem {
     pub service: Option<Vec<Box<Reference>>>,
 
     /// Product charged
-    pub product: Option<serde_json::Value>,
+    #[serde(rename = "productReference")]
+    pub product_reference: Option<Box<Reference>>,
+
+    #[serde(rename = "productCodeableConcept")]
+    pub product_codeable_concept: Option<CodeableConcept>,
 
     /// Account to place this charge
     pub account: Option<Vec<Box<Reference>>>,

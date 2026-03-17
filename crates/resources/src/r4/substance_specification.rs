@@ -41,7 +41,11 @@ pub struct SubstanceSpecificationMoiety {
     pub molecular_formula: Option<String>,
 
     /// Quantitative value for this moiety
-    pub amount: Option<serde_json::Value>,
+    #[serde(rename = "amountQuantity")]
+    pub amount_quantity: Option<Quantity>,
+
+    #[serde(rename = "amountString")]
+    pub amount_string: Option<String>,
 }
 
 /// General specifications for this substance, including how it is related to other substances
@@ -68,11 +72,18 @@ pub struct SubstanceSpecificationProperty {
     pub parameters: Option<String>,
 
     /// A substance upon which a defining property depends (e.g. for solubility: in water, in alcohol)
-    #[serde(rename = "definingSubstance")]
-    pub defining_substance: Option<serde_json::Value>,
+    #[serde(rename = "definingSubstanceReference")]
+    pub defining_substance_reference: Option<Box<Reference>>,
+
+    #[serde(rename = "definingSubstanceCodeableConcept")]
+    pub defining_substance_codeable_concept: Option<CodeableConcept>,
 
     /// Quantitative value for this property
-    pub amount: Option<serde_json::Value>,
+    #[serde(rename = "amountQuantity")]
+    pub amount_quantity: Option<Quantity>,
+
+    #[serde(rename = "amountString")]
+    pub amount_string: Option<String>,
 }
 
 /// Structural information
@@ -319,7 +330,11 @@ pub struct SubstanceSpecificationRelationship {
     pub modifier_extension: Option<Vec<Extension>>,
 
     /// A pointer to another substance, as a resource or just a representational code
-    pub substance: Option<serde_json::Value>,
+    #[serde(rename = "substanceReference")]
+    pub substance_reference: Option<Box<Reference>>,
+
+    #[serde(rename = "substanceCodeableConcept")]
+    pub substance_codeable_concept: Option<CodeableConcept>,
 
     /// For example "salt to parent", "active moiety", "starting material"
     pub relationship: Option<CodeableConcept>,
@@ -329,7 +344,17 @@ pub struct SubstanceSpecificationRelationship {
     pub is_defining: Option<bool>,
 
     /// A numeric factor for the relationship, for instance to express that the salt of a substance has some percentage of the active substance in relation to some other
-    pub amount: Option<serde_json::Value>,
+    #[serde(rename = "amountQuantity")]
+    pub amount_quantity: Option<Quantity>,
+
+    #[serde(rename = "amountRange")]
+    pub amount_range: Option<Range>,
+
+    #[serde(rename = "amountRatio")]
+    pub amount_ratio: Option<Ratio>,
+
+    #[serde(rename = "amountString")]
+    pub amount_string: Option<String>,
 
     /// For use when the numeric
     #[serde(rename = "amountRatioLowLimit")]

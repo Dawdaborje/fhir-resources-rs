@@ -45,11 +45,18 @@ pub struct InvoiceLineItem {
     pub sequence: Option<i32>,
 
     /// Service data or period
-    pub serviced: Option<serde_json::Value>,
+    #[serde(rename = "servicedDate")]
+    pub serviced_date: Option<String>,
+
+    #[serde(rename = "servicedPeriod")]
+    pub serviced_period: Option<Period>,
 
     /// Reference to ChargeItem containing details of this line item or an inline billing code
-    #[serde(rename = "chargeItem")]
-    pub charge_item: serde_json::Value,
+    #[serde(rename = "chargeItemReference")]
+    pub charge_item_reference: Box<Reference>,
+
+    #[serde(rename = "chargeItemCodeableConcept")]
+    pub charge_item_codeable_concept: CodeableConcept,
 
     /// Components of total line item price
     #[serde(rename = "priceComponent")]
@@ -117,7 +124,11 @@ pub struct Invoice {
     pub creation: Option<String>,
 
     /// Billing date or period
-    pub period: Option<serde_json::Value>,
+    #[serde(rename = "periodDate")]
+    pub period_date: Option<String>,
+
+    #[serde(rename = "periodPeriod")]
+    pub period_period: Option<Period>,
 
     /// Participant in creation of this Invoice
     pub participant: Option<Vec<InvoiceParticipant>>,

@@ -95,7 +95,11 @@ pub struct PackagedProductDefinitionPackageShelfLifeStorage {
     pub r#type: Option<CodeableConcept>,
 
     /// The shelf life time period can be specified using a numerical value for the period of time and its unit of time measurement The unit of measurement shall be specified in accordance with ISO 11240 a...
-    pub period: Option<serde_json::Value>,
+    #[serde(rename = "periodDuration")]
+    pub period_duration: Option<Duration>,
+
+    #[serde(rename = "periodString")]
+    pub period_string: Option<String>,
 
     /// Special precautions for storage, if any, can be specified using an appropriate controlled vocabulary. The controlled term and the controlled term identifier shall be specified
     #[serde(rename = "specialPrecautionsForStorage")]
@@ -121,7 +125,20 @@ pub struct PackagedProductDefinitionPackageProperty {
     pub r#type: CodeableConcept,
 
     /// A value for the characteristic
-    pub value: Option<serde_json::Value>,
+    #[serde(rename = "valueCodeableConcept")]
+    pub value_codeable_concept: Option<CodeableConcept>,
+
+    #[serde(rename = "valueQuantity")]
+    pub value_quantity: Option<Quantity>,
+
+    #[serde(rename = "valueDate")]
+    pub value_date: Option<String>,
+
+    #[serde(rename = "valueBoolean")]
+    pub value_boolean: Option<bool>,
+
+    #[serde(rename = "valueAttachment")]
+    pub value_attachment: Option<Attachment>,
 }
 
 /// The item(s) within the packaging

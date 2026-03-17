@@ -97,7 +97,11 @@ pub struct Provenance {
     pub target: Vec<Box<Reference>>,
 
     /// When the activity occurred
-    pub occurred: Option<serde_json::Value>,
+    #[serde(rename = "occurredPeriod")]
+    pub occurred_period: Option<Period>,
+
+    #[serde(rename = "occurredDateTime")]
+    pub occurred_date_time: Option<String>,
 
     /// When the activity was recorded / updated
     pub recorded: Option<String>,

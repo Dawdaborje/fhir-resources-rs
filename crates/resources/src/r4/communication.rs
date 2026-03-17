@@ -21,7 +21,14 @@ pub struct CommunicationPayload {
     pub modifier_extension: Option<Vec<Extension>>,
 
     /// Message part content
-    pub content: serde_json::Value,
+    #[serde(rename = "contentString")]
+    pub content_string: String,
+
+    #[serde(rename = "contentAttachment")]
+    pub content_attachment: Attachment,
+
+    #[serde(rename = "contentReference")]
+    pub content_reference: Box<Reference>,
 }
 
 /// An occurrence of information being transmitted; e.g. an alert that was sent to a responsible provider, a public health agency that was notified about a reportable condition.

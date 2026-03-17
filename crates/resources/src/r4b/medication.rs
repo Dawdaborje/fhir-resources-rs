@@ -21,7 +21,11 @@ pub struct MedicationIngredient {
     pub modifier_extension: Option<Vec<Extension>>,
 
     /// The actual ingredient or content
-    pub item: serde_json::Value,
+    #[serde(rename = "itemCodeableConcept")]
+    pub item_codeable_concept: CodeableConcept,
+
+    #[serde(rename = "itemReference")]
+    pub item_reference: Box<Reference>,
 
     /// Active ingredient indicator
     #[serde(rename = "isActive")]

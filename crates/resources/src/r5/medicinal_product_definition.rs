@@ -174,7 +174,26 @@ pub struct MedicinalProductDefinitionCharacteristic {
     pub r#type: CodeableConcept,
 
     /// A value for the characteristic
-    pub value: Option<serde_json::Value>,
+    #[serde(rename = "valueCodeableConcept")]
+    pub value_codeable_concept: Option<CodeableConcept>,
+
+    #[serde(rename = "valueMarkdown")]
+    pub value_markdown: Option<String>,
+
+    #[serde(rename = "valueQuantity")]
+    pub value_quantity: Option<Quantity>,
+
+    #[serde(rename = "valueInteger")]
+    pub value_integer: Option<i32>,
+
+    #[serde(rename = "valueDate")]
+    pub value_date: Option<String>,
+
+    #[serde(rename = "valueBoolean")]
+    pub value_boolean: Option<bool>,
+
+    #[serde(rename = "valueAttachment")]
+    pub value_attachment: Option<Attachment>,
 }
 
 /// Detailed definition of a medicinal product, typically for uses other than direct patient care (e.g. regulatory use, drug catalogs, to support prescribing, adverse events management etc.).

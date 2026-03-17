@@ -52,7 +52,41 @@ pub struct QuestionnaireResponseItemAnswer {
     pub modifier_extension: Option<Vec<Extension>>,
 
     /// Single-valued answer to the question
-    pub value: Option<serde_json::Value>,
+    #[serde(rename = "valueBoolean")]
+    pub value_boolean: Option<bool>,
+
+    #[serde(rename = "valueDecimal")]
+    pub value_decimal: Option<f64>,
+
+    #[serde(rename = "valueInteger")]
+    pub value_integer: Option<i32>,
+
+    #[serde(rename = "valueDate")]
+    pub value_date: Option<String>,
+
+    #[serde(rename = "valueDateTime")]
+    pub value_date_time: Option<String>,
+
+    #[serde(rename = "valueTime")]
+    pub value_time: Option<String>,
+
+    #[serde(rename = "valueString")]
+    pub value_string: Option<String>,
+
+    #[serde(rename = "valueUri")]
+    pub value_uri: Option<String>,
+
+    #[serde(rename = "valueAttachment")]
+    pub value_attachment: Option<Attachment>,
+
+    #[serde(rename = "valueCoding")]
+    pub value_coding: Option<Coding>,
+
+    #[serde(rename = "valueQuantity")]
+    pub value_quantity: Option<Quantity>,
+
+    #[serde(rename = "valueReference")]
+    pub value_reference: Option<Box<Reference>>,
 
     /// Nested groups and questions
     pub item: Option<Vec<QuestionnaireResponseItem>>,

@@ -46,7 +46,26 @@ pub struct ServiceRequestOrderDetailParameter {
     pub code: CodeableConcept,
 
     /// The value for the order detail
-    pub value: serde_json::Value,
+    #[serde(rename = "valueQuantity")]
+    pub value_quantity: Quantity,
+
+    #[serde(rename = "valueRatio")]
+    pub value_ratio: Ratio,
+
+    #[serde(rename = "valueRange")]
+    pub value_range: Range,
+
+    #[serde(rename = "valueBoolean")]
+    pub value_boolean: bool,
+
+    #[serde(rename = "valueCodeableConcept")]
+    pub value_codeable_concept: CodeableConcept,
+
+    #[serde(rename = "valueString")]
+    pub value_string: String,
+
+    #[serde(rename = "valuePeriod")]
+    pub value_period: Period,
 }
 
 /// Patient or consumer-oriented instructions
@@ -64,7 +83,11 @@ pub struct ServiceRequestPatientInstruction {
     pub modifier_extension: Option<Vec<Extension>>,
 
     /// Patient or consumer-oriented instructions
-    pub instruction: Option<serde_json::Value>,
+    #[serde(rename = "instructionMarkdown")]
+    pub instruction_markdown: Option<String>,
+
+    #[serde(rename = "instructionReference")]
+    pub instruction_reference: Option<Box<Reference>>,
 }
 
 /// A record of a request for service such as diagnostic investigations, treatments, or operations to be performed.
@@ -146,7 +169,14 @@ pub struct ServiceRequest {
     pub order_detail: Option<Vec<ServiceRequestOrderDetail>>,
 
     /// Service amount
-    pub quantity: Option<serde_json::Value>,
+    #[serde(rename = "quantityQuantity")]
+    pub quantity_quantity: Option<Quantity>,
+
+    #[serde(rename = "quantityRatio")]
+    pub quantity_ratio: Option<Ratio>,
+
+    #[serde(rename = "quantityRange")]
+    pub quantity_range: Option<Range>,
 
     /// Individual or Entity the service is ordered for
     pub subject: Box<Reference>,
@@ -158,11 +188,21 @@ pub struct ServiceRequest {
     pub encounter: Option<Box<Reference>>,
 
     /// When service should occur
-    pub occurrence: Option<serde_json::Value>,
+    #[serde(rename = "occurrenceDateTime")]
+    pub occurrence_date_time: Option<String>,
+
+    #[serde(rename = "occurrencePeriod")]
+    pub occurrence_period: Option<Period>,
+
+    #[serde(rename = "occurrenceTiming")]
+    pub occurrence_timing: Option<Timing>,
 
     /// Preconditions for service
-    #[serde(rename = "asNeeded")]
-    pub as_needed: Option<serde_json::Value>,
+    #[serde(rename = "asNeededBoolean")]
+    pub as_needed_boolean: Option<bool>,
+
+    #[serde(rename = "asNeededCodeableConcept")]
+    pub as_needed_codeable_concept: Option<CodeableConcept>,
 
     /// Date request signed
     #[serde(rename = "authoredOn")]

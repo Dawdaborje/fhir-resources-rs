@@ -191,7 +191,11 @@ pub struct DeviceDefinition {
     pub udi_device_identifier: Option<Vec<DeviceDefinitionUdiDeviceIdentifier>>,
 
     /// Name of device manufacturer
-    pub manufacturer: Option<serde_json::Value>,
+    #[serde(rename = "manufacturerString")]
+    pub manufacturer_string: Option<String>,
+
+    #[serde(rename = "manufacturerReference")]
+    pub manufacturer_reference: Option<Box<Reference>>,
 
     /// A name given to the device to identify it
     #[serde(rename = "deviceName")]

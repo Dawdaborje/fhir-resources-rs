@@ -108,7 +108,20 @@ pub struct AllergyIntolerance {
     pub encounter: Option<Box<Reference>>,
 
     /// When allergy or intolerance was identified
-    pub onset: Option<serde_json::Value>,
+    #[serde(rename = "onsetDateTime")]
+    pub onset_date_time: Option<String>,
+
+    #[serde(rename = "onsetAge")]
+    pub onset_age: Option<Age>,
+
+    #[serde(rename = "onsetPeriod")]
+    pub onset_period: Option<Period>,
+
+    #[serde(rename = "onsetRange")]
+    pub onset_range: Option<Range>,
+
+    #[serde(rename = "onsetString")]
+    pub onset_string: Option<String>,
 
     /// Date first version of the resource instance was recorded
     #[serde(rename = "recordedDate")]

@@ -60,8 +60,11 @@ pub struct ExampleScenarioInstance {
     pub structure_version: Option<String>,
 
     /// Rules instance adheres to
-    #[serde(rename = "structureProfile")]
-    pub structure_profile: Option<serde_json::Value>,
+    #[serde(rename = "structureProfileCanonical")]
+    pub structure_profile_canonical: Option<String>,
+
+    #[serde(rename = "structureProfileUri")]
+    pub structure_profile_uri: Option<String>,
 
     /// Label for instance
     pub title: String,
@@ -308,8 +311,11 @@ pub struct ExampleScenario {
     pub version: Option<String>,
 
     /// How to compare versions
-    #[serde(rename = "versionAlgorithm")]
-    pub version_algorithm: Option<serde_json::Value>,
+    #[serde(rename = "versionAlgorithmString")]
+    pub version_algorithm_string: Option<String>,
+
+    #[serde(rename = "versionAlgorithmCoding")]
+    pub version_algorithm_coding: Option<Coding>,
 
     /// To be removed?
     pub name: Option<String>,

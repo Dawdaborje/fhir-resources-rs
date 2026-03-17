@@ -167,7 +167,11 @@ pub struct AuditEventEntityDetail {
     pub r#type: String,
 
     /// Property value
-    pub value: serde_json::Value,
+    #[serde(rename = "valueString")]
+    pub value_string: String,
+
+    #[serde(rename = "valueBase64Binary")]
+    pub value_base64binary: String,
 }
 
 /// A record of an event made for purposes of maintaining a security log. Typical uses include detection of intrusion attempts and monitoring for inappropriate usage.

@@ -102,14 +102,21 @@ pub struct MedicationDispense {
     pub status: String,
 
     /// Why a dispense was not performed
-    #[serde(rename = "statusReason")]
-    pub status_reason: Option<serde_json::Value>,
+    #[serde(rename = "statusReasonCodeableConcept")]
+    pub status_reason_codeable_concept: Option<CodeableConcept>,
+
+    #[serde(rename = "statusReasonReference")]
+    pub status_reason_reference: Option<Box<Reference>>,
 
     /// Type of medication dispense
     pub category: Option<CodeableConcept>,
 
     /// What medication was supplied
-    pub medication: serde_json::Value,
+    #[serde(rename = "medicationCodeableConcept")]
+    pub medication_codeable_concept: CodeableConcept,
+
+    #[serde(rename = "medicationReference")]
+    pub medication_reference: Box<Reference>,
 
     /// Who the dispense is for
     pub subject: Option<Box<Reference>>,

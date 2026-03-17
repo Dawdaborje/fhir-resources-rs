@@ -3,6 +3,8 @@
 //! Auto-generated from FHIR schema definitions.
 //! Do not modify directly.
 
+#![allow(non_camel_case_types)]
+
 use serde::{Deserialize, Serialize};
 
 /// Element Type: Base definition for all elements in a resource.
@@ -406,7 +408,11 @@ pub struct Annotation {
     pub extension: Option<Vec<Extension>>,
 
     /// Individual responsible for the annotation
-    pub author: Option<serde_json::Value>,
+    #[serde(rename = "authorReference")]
+    pub author_reference: Option<Box<Reference>>,
+
+    #[serde(rename = "authorString")]
+    pub author_string: Option<String>,
 
     /// When the annotation was made
     pub time: Option<String>,
@@ -675,7 +681,11 @@ pub struct DataRequirement {
     pub profile: Option<Vec<String>>,
 
     /// E.g. Patient, Practitioner, RelatedPerson, Organization, Location, Device
-    pub subject: Option<serde_json::Value>,
+    #[serde(rename = "subjectCodeableConcept")]
+    pub subject_codeable_concept: Option<CodeableConcept>,
+
+    #[serde(rename = "subjectReference")]
+    pub subject_reference: Option<Box<Reference>>,
 
     /// Indicates specific structure elements that are referenced by the knowledge module
     #[serde(rename = "mustSupport")]
@@ -898,8 +908,167 @@ pub struct ElementDefinition {
     pub r#type: Option<Vec<Element>>,
 
     /// Specified value if missing from instance
-    #[serde(rename = "defaultValue")]
-    pub default_value: Option<serde_json::Value>,
+    #[serde(rename = "defaultValueBase64Binary")]
+    pub default_value_base64binary: Option<String>,
+
+    #[serde(rename = "defaultValueBoolean")]
+    pub default_value_boolean: Option<bool>,
+
+    #[serde(rename = "defaultValueCanonical")]
+    pub default_value_canonical: Option<String>,
+
+    #[serde(rename = "defaultValueCode")]
+    pub default_value_code: Option<String>,
+
+    #[serde(rename = "defaultValueDate")]
+    pub default_value_date: Option<String>,
+
+    #[serde(rename = "defaultValueDateTime")]
+    pub default_value_date_time: Option<String>,
+
+    #[serde(rename = "defaultValueDecimal")]
+    pub default_value_decimal: Option<f64>,
+
+    #[serde(rename = "defaultValueId")]
+    pub default_value_id: Option<String>,
+
+    #[serde(rename = "defaultValueInstant")]
+    pub default_value_instant: Option<String>,
+
+    #[serde(rename = "defaultValueInteger")]
+    pub default_value_integer: Option<i32>,
+
+    #[serde(rename = "defaultValueInteger64")]
+    pub default_value_integer64: Option<i64>,
+
+    #[serde(rename = "defaultValueMarkdown")]
+    pub default_value_markdown: Option<String>,
+
+    #[serde(rename = "defaultValueOid")]
+    pub default_value_oid: Option<String>,
+
+    #[serde(rename = "defaultValuePositiveInt")]
+    pub default_value_positive_int: Option<i32>,
+
+    #[serde(rename = "defaultValueString")]
+    pub default_value_string: Option<String>,
+
+    #[serde(rename = "defaultValueTime")]
+    pub default_value_time: Option<String>,
+
+    #[serde(rename = "defaultValueUnsignedInt")]
+    pub default_value_unsigned_int: Option<u32>,
+
+    #[serde(rename = "defaultValueUri")]
+    pub default_value_uri: Option<String>,
+
+    #[serde(rename = "defaultValueUrl")]
+    pub default_value_url: Option<String>,
+
+    #[serde(rename = "defaultValueUuid")]
+    pub default_value_uuid: Option<String>,
+
+    #[serde(rename = "defaultValueAddress")]
+    pub default_value_address: Option<Address>,
+
+    #[serde(rename = "defaultValueAge")]
+    pub default_value_age: Option<Age>,
+
+    #[serde(rename = "defaultValueAnnotation")]
+    pub default_value_annotation: Option<Annotation>,
+
+    #[serde(rename = "defaultValueAttachment")]
+    pub default_value_attachment: Option<Attachment>,
+
+    #[serde(rename = "defaultValueCodeableConcept")]
+    pub default_value_codeable_concept: Option<CodeableConcept>,
+
+    #[serde(rename = "defaultValueCodeableReference")]
+    pub default_value_codeable_reference: Option<CodeableReference>,
+
+    #[serde(rename = "defaultValueCoding")]
+    pub default_value_coding: Option<Coding>,
+
+    #[serde(rename = "defaultValueContactPoint")]
+    pub default_value_contact_point: Option<ContactPoint>,
+
+    #[serde(rename = "defaultValueCount")]
+    pub default_value_count: Option<Count>,
+
+    #[serde(rename = "defaultValueDistance")]
+    pub default_value_distance: Option<Distance>,
+
+    #[serde(rename = "defaultValueDuration")]
+    pub default_value_duration: Option<Duration>,
+
+    #[serde(rename = "defaultValueHumanName")]
+    pub default_value_human_name: Option<HumanName>,
+
+    #[serde(rename = "defaultValueIdentifier")]
+    pub default_value_identifier: Option<Box<Identifier>>,
+
+    #[serde(rename = "defaultValueMoney")]
+    pub default_value_money: Option<Money>,
+
+    #[serde(rename = "defaultValuePeriod")]
+    pub default_value_period: Option<Period>,
+
+    #[serde(rename = "defaultValueQuantity")]
+    pub default_value_quantity: Option<Quantity>,
+
+    #[serde(rename = "defaultValueRange")]
+    pub default_value_range: Option<Range>,
+
+    #[serde(rename = "defaultValueRatio")]
+    pub default_value_ratio: Option<Ratio>,
+
+    #[serde(rename = "defaultValueRatioRange")]
+    pub default_value_ratio_range: Option<RatioRange>,
+
+    #[serde(rename = "defaultValueReference")]
+    pub default_value_reference: Option<Box<Reference>>,
+
+    #[serde(rename = "defaultValueSampledData")]
+    pub default_value_sampled_data: Option<SampledData>,
+
+    #[serde(rename = "defaultValueSignature")]
+    pub default_value_signature: Option<Signature>,
+
+    #[serde(rename = "defaultValueTiming")]
+    pub default_value_timing: Option<Timing>,
+
+    #[serde(rename = "defaultValueContactDetail")]
+    pub default_value_contact_detail: Option<ContactDetail>,
+
+    #[serde(rename = "defaultValueDataRequirement")]
+    pub default_value_data_requirement: Option<DataRequirement>,
+
+    #[serde(rename = "defaultValueExpression")]
+    pub default_value_expression: Option<Expression>,
+
+    #[serde(rename = "defaultValueParameterDefinition")]
+    pub default_value_parameter_definition: Option<ParameterDefinition>,
+
+    #[serde(rename = "defaultValueRelatedArtifact")]
+    pub default_value_related_artifact: Option<RelatedArtifact>,
+
+    #[serde(rename = "defaultValueTriggerDefinition")]
+    pub default_value_trigger_definition: Option<TriggerDefinition>,
+
+    #[serde(rename = "defaultValueUsageContext")]
+    pub default_value_usage_context: Option<UsageContext>,
+
+    #[serde(rename = "defaultValueAvailability")]
+    pub default_value_availability: Option<Availability>,
+
+    #[serde(rename = "defaultValueExtendedContactDetail")]
+    pub default_value_extended_contact_detail: Option<ExtendedContactDetail>,
+
+    #[serde(rename = "defaultValueDosage")]
+    pub default_value_dosage: Option<Dosage>,
+
+    #[serde(rename = "defaultValueMeta")]
+    pub default_value_meta: Option<Meta>,
 
     /// Implicit meaning when this element is missing
     #[serde(rename = "meaningWhenMissing")]
@@ -910,21 +1079,395 @@ pub struct ElementDefinition {
     pub order_meaning: Option<String>,
 
     /// Value must be exactly this
-    pub fixed: Option<serde_json::Value>,
+    #[serde(rename = "fixedBase64Binary")]
+    pub fixed_base64binary: Option<String>,
+
+    #[serde(rename = "fixedBoolean")]
+    pub fixed_boolean: Option<bool>,
+
+    #[serde(rename = "fixedCanonical")]
+    pub fixed_canonical: Option<String>,
+
+    #[serde(rename = "fixedCode")]
+    pub fixed_code: Option<String>,
+
+    #[serde(rename = "fixedDate")]
+    pub fixed_date: Option<String>,
+
+    #[serde(rename = "fixedDateTime")]
+    pub fixed_date_time: Option<String>,
+
+    #[serde(rename = "fixedDecimal")]
+    pub fixed_decimal: Option<f64>,
+
+    #[serde(rename = "fixedId")]
+    pub fixed_id: Option<String>,
+
+    #[serde(rename = "fixedInstant")]
+    pub fixed_instant: Option<String>,
+
+    #[serde(rename = "fixedInteger")]
+    pub fixed_integer: Option<i32>,
+
+    #[serde(rename = "fixedInteger64")]
+    pub fixed_integer64: Option<i64>,
+
+    #[serde(rename = "fixedMarkdown")]
+    pub fixed_markdown: Option<String>,
+
+    #[serde(rename = "fixedOid")]
+    pub fixed_oid: Option<String>,
+
+    #[serde(rename = "fixedPositiveInt")]
+    pub fixed_positive_int: Option<i32>,
+
+    #[serde(rename = "fixedString")]
+    pub fixed_string: Option<String>,
+
+    #[serde(rename = "fixedTime")]
+    pub fixed_time: Option<String>,
+
+    #[serde(rename = "fixedUnsignedInt")]
+    pub fixed_unsigned_int: Option<u32>,
+
+    #[serde(rename = "fixedUri")]
+    pub fixed_uri: Option<String>,
+
+    #[serde(rename = "fixedUrl")]
+    pub fixed_url: Option<String>,
+
+    #[serde(rename = "fixedUuid")]
+    pub fixed_uuid: Option<String>,
+
+    #[serde(rename = "fixedAddress")]
+    pub fixed_address: Option<Address>,
+
+    #[serde(rename = "fixedAge")]
+    pub fixed_age: Option<Age>,
+
+    #[serde(rename = "fixedAnnotation")]
+    pub fixed_annotation: Option<Annotation>,
+
+    #[serde(rename = "fixedAttachment")]
+    pub fixed_attachment: Option<Attachment>,
+
+    #[serde(rename = "fixedCodeableConcept")]
+    pub fixed_codeable_concept: Option<CodeableConcept>,
+
+    #[serde(rename = "fixedCodeableReference")]
+    pub fixed_codeable_reference: Option<CodeableReference>,
+
+    #[serde(rename = "fixedCoding")]
+    pub fixed_coding: Option<Coding>,
+
+    #[serde(rename = "fixedContactPoint")]
+    pub fixed_contact_point: Option<ContactPoint>,
+
+    #[serde(rename = "fixedCount")]
+    pub fixed_count: Option<Count>,
+
+    #[serde(rename = "fixedDistance")]
+    pub fixed_distance: Option<Distance>,
+
+    #[serde(rename = "fixedDuration")]
+    pub fixed_duration: Option<Duration>,
+
+    #[serde(rename = "fixedHumanName")]
+    pub fixed_human_name: Option<HumanName>,
+
+    #[serde(rename = "fixedIdentifier")]
+    pub fixed_identifier: Option<Box<Identifier>>,
+
+    #[serde(rename = "fixedMoney")]
+    pub fixed_money: Option<Money>,
+
+    #[serde(rename = "fixedPeriod")]
+    pub fixed_period: Option<Period>,
+
+    #[serde(rename = "fixedQuantity")]
+    pub fixed_quantity: Option<Quantity>,
+
+    #[serde(rename = "fixedRange")]
+    pub fixed_range: Option<Range>,
+
+    #[serde(rename = "fixedRatio")]
+    pub fixed_ratio: Option<Ratio>,
+
+    #[serde(rename = "fixedRatioRange")]
+    pub fixed_ratio_range: Option<RatioRange>,
+
+    #[serde(rename = "fixedReference")]
+    pub fixed_reference: Option<Box<Reference>>,
+
+    #[serde(rename = "fixedSampledData")]
+    pub fixed_sampled_data: Option<SampledData>,
+
+    #[serde(rename = "fixedSignature")]
+    pub fixed_signature: Option<Signature>,
+
+    #[serde(rename = "fixedTiming")]
+    pub fixed_timing: Option<Timing>,
+
+    #[serde(rename = "fixedContactDetail")]
+    pub fixed_contact_detail: Option<ContactDetail>,
+
+    #[serde(rename = "fixedDataRequirement")]
+    pub fixed_data_requirement: Option<DataRequirement>,
+
+    #[serde(rename = "fixedExpression")]
+    pub fixed_expression: Option<Expression>,
+
+    #[serde(rename = "fixedParameterDefinition")]
+    pub fixed_parameter_definition: Option<ParameterDefinition>,
+
+    #[serde(rename = "fixedRelatedArtifact")]
+    pub fixed_related_artifact: Option<RelatedArtifact>,
+
+    #[serde(rename = "fixedTriggerDefinition")]
+    pub fixed_trigger_definition: Option<TriggerDefinition>,
+
+    #[serde(rename = "fixedUsageContext")]
+    pub fixed_usage_context: Option<UsageContext>,
+
+    #[serde(rename = "fixedAvailability")]
+    pub fixed_availability: Option<Availability>,
+
+    #[serde(rename = "fixedExtendedContactDetail")]
+    pub fixed_extended_contact_detail: Option<ExtendedContactDetail>,
+
+    #[serde(rename = "fixedDosage")]
+    pub fixed_dosage: Option<Dosage>,
+
+    #[serde(rename = "fixedMeta")]
+    pub fixed_meta: Option<Meta>,
 
     /// Value must have at least these property values
-    pub pattern: Option<serde_json::Value>,
+    #[serde(rename = "patternBase64Binary")]
+    pub pattern_base64binary: Option<String>,
+
+    #[serde(rename = "patternBoolean")]
+    pub pattern_boolean: Option<bool>,
+
+    #[serde(rename = "patternCanonical")]
+    pub pattern_canonical: Option<String>,
+
+    #[serde(rename = "patternCode")]
+    pub pattern_code: Option<String>,
+
+    #[serde(rename = "patternDate")]
+    pub pattern_date: Option<String>,
+
+    #[serde(rename = "patternDateTime")]
+    pub pattern_date_time: Option<String>,
+
+    #[serde(rename = "patternDecimal")]
+    pub pattern_decimal: Option<f64>,
+
+    #[serde(rename = "patternId")]
+    pub pattern_id: Option<String>,
+
+    #[serde(rename = "patternInstant")]
+    pub pattern_instant: Option<String>,
+
+    #[serde(rename = "patternInteger")]
+    pub pattern_integer: Option<i32>,
+
+    #[serde(rename = "patternInteger64")]
+    pub pattern_integer64: Option<i64>,
+
+    #[serde(rename = "patternMarkdown")]
+    pub pattern_markdown: Option<String>,
+
+    #[serde(rename = "patternOid")]
+    pub pattern_oid: Option<String>,
+
+    #[serde(rename = "patternPositiveInt")]
+    pub pattern_positive_int: Option<i32>,
+
+    #[serde(rename = "patternString")]
+    pub pattern_string: Option<String>,
+
+    #[serde(rename = "patternTime")]
+    pub pattern_time: Option<String>,
+
+    #[serde(rename = "patternUnsignedInt")]
+    pub pattern_unsigned_int: Option<u32>,
+
+    #[serde(rename = "patternUri")]
+    pub pattern_uri: Option<String>,
+
+    #[serde(rename = "patternUrl")]
+    pub pattern_url: Option<String>,
+
+    #[serde(rename = "patternUuid")]
+    pub pattern_uuid: Option<String>,
+
+    #[serde(rename = "patternAddress")]
+    pub pattern_address: Option<Address>,
+
+    #[serde(rename = "patternAge")]
+    pub pattern_age: Option<Age>,
+
+    #[serde(rename = "patternAnnotation")]
+    pub pattern_annotation: Option<Annotation>,
+
+    #[serde(rename = "patternAttachment")]
+    pub pattern_attachment: Option<Attachment>,
+
+    #[serde(rename = "patternCodeableConcept")]
+    pub pattern_codeable_concept: Option<CodeableConcept>,
+
+    #[serde(rename = "patternCodeableReference")]
+    pub pattern_codeable_reference: Option<CodeableReference>,
+
+    #[serde(rename = "patternCoding")]
+    pub pattern_coding: Option<Coding>,
+
+    #[serde(rename = "patternContactPoint")]
+    pub pattern_contact_point: Option<ContactPoint>,
+
+    #[serde(rename = "patternCount")]
+    pub pattern_count: Option<Count>,
+
+    #[serde(rename = "patternDistance")]
+    pub pattern_distance: Option<Distance>,
+
+    #[serde(rename = "patternDuration")]
+    pub pattern_duration: Option<Duration>,
+
+    #[serde(rename = "patternHumanName")]
+    pub pattern_human_name: Option<HumanName>,
+
+    #[serde(rename = "patternIdentifier")]
+    pub pattern_identifier: Option<Box<Identifier>>,
+
+    #[serde(rename = "patternMoney")]
+    pub pattern_money: Option<Money>,
+
+    #[serde(rename = "patternPeriod")]
+    pub pattern_period: Option<Period>,
+
+    #[serde(rename = "patternQuantity")]
+    pub pattern_quantity: Option<Quantity>,
+
+    #[serde(rename = "patternRange")]
+    pub pattern_range: Option<Range>,
+
+    #[serde(rename = "patternRatio")]
+    pub pattern_ratio: Option<Ratio>,
+
+    #[serde(rename = "patternRatioRange")]
+    pub pattern_ratio_range: Option<RatioRange>,
+
+    #[serde(rename = "patternReference")]
+    pub pattern_reference: Option<Box<Reference>>,
+
+    #[serde(rename = "patternSampledData")]
+    pub pattern_sampled_data: Option<SampledData>,
+
+    #[serde(rename = "patternSignature")]
+    pub pattern_signature: Option<Signature>,
+
+    #[serde(rename = "patternTiming")]
+    pub pattern_timing: Option<Timing>,
+
+    #[serde(rename = "patternContactDetail")]
+    pub pattern_contact_detail: Option<ContactDetail>,
+
+    #[serde(rename = "patternDataRequirement")]
+    pub pattern_data_requirement: Option<DataRequirement>,
+
+    #[serde(rename = "patternExpression")]
+    pub pattern_expression: Option<Expression>,
+
+    #[serde(rename = "patternParameterDefinition")]
+    pub pattern_parameter_definition: Option<ParameterDefinition>,
+
+    #[serde(rename = "patternRelatedArtifact")]
+    pub pattern_related_artifact: Option<RelatedArtifact>,
+
+    #[serde(rename = "patternTriggerDefinition")]
+    pub pattern_trigger_definition: Option<TriggerDefinition>,
+
+    #[serde(rename = "patternUsageContext")]
+    pub pattern_usage_context: Option<UsageContext>,
+
+    #[serde(rename = "patternAvailability")]
+    pub pattern_availability: Option<Availability>,
+
+    #[serde(rename = "patternExtendedContactDetail")]
+    pub pattern_extended_contact_detail: Option<ExtendedContactDetail>,
+
+    #[serde(rename = "patternDosage")]
+    pub pattern_dosage: Option<Dosage>,
+
+    #[serde(rename = "patternMeta")]
+    pub pattern_meta: Option<Meta>,
 
     /// Example value (as defined for type)
     pub example: Option<Vec<Element>>,
 
     /// Minimum Allowed Value (for some types)
-    #[serde(rename = "minValue")]
-    pub min_value: Option<serde_json::Value>,
+    #[serde(rename = "minValueDate")]
+    pub min_value_date: Option<String>,
+
+    #[serde(rename = "minValueDateTime")]
+    pub min_value_date_time: Option<String>,
+
+    #[serde(rename = "minValueInstant")]
+    pub min_value_instant: Option<String>,
+
+    #[serde(rename = "minValueTime")]
+    pub min_value_time: Option<String>,
+
+    #[serde(rename = "minValueDecimal")]
+    pub min_value_decimal: Option<f64>,
+
+    #[serde(rename = "minValueInteger")]
+    pub min_value_integer: Option<i32>,
+
+    #[serde(rename = "minValueInteger64")]
+    pub min_value_integer64: Option<i64>,
+
+    #[serde(rename = "minValuePositiveInt")]
+    pub min_value_positive_int: Option<i32>,
+
+    #[serde(rename = "minValueUnsignedInt")]
+    pub min_value_unsigned_int: Option<u32>,
+
+    #[serde(rename = "minValueQuantity")]
+    pub min_value_quantity: Option<Quantity>,
 
     /// Maximum Allowed Value (for some types)
-    #[serde(rename = "maxValue")]
-    pub max_value: Option<serde_json::Value>,
+    #[serde(rename = "maxValueDate")]
+    pub max_value_date: Option<String>,
+
+    #[serde(rename = "maxValueDateTime")]
+    pub max_value_date_time: Option<String>,
+
+    #[serde(rename = "maxValueInstant")]
+    pub max_value_instant: Option<String>,
+
+    #[serde(rename = "maxValueTime")]
+    pub max_value_time: Option<String>,
+
+    #[serde(rename = "maxValueDecimal")]
+    pub max_value_decimal: Option<f64>,
+
+    #[serde(rename = "maxValueInteger")]
+    pub max_value_integer: Option<i32>,
+
+    #[serde(rename = "maxValueInteger64")]
+    pub max_value_integer64: Option<i64>,
+
+    #[serde(rename = "maxValuePositiveInt")]
+    pub max_value_positive_int: Option<i32>,
+
+    #[serde(rename = "maxValueUnsignedInt")]
+    pub max_value_unsigned_int: Option<u32>,
+
+    #[serde(rename = "maxValueQuantity")]
+    pub max_value_quantity: Option<Quantity>,
 
     /// Max length for string type data
     #[serde(rename = "maxLength")]
@@ -1036,7 +1579,167 @@ pub struct Extension {
     pub url: String,
 
     /// Value of extension
-    pub value: Option<serde_json::Value>,
+    #[serde(rename = "valueBase64Binary")]
+    pub value_base64binary: Option<String>,
+
+    #[serde(rename = "valueBoolean")]
+    pub value_boolean: Option<bool>,
+
+    #[serde(rename = "valueCanonical")]
+    pub value_canonical: Option<String>,
+
+    #[serde(rename = "valueCode")]
+    pub value_code: Option<String>,
+
+    #[serde(rename = "valueDate")]
+    pub value_date: Option<String>,
+
+    #[serde(rename = "valueDateTime")]
+    pub value_date_time: Option<String>,
+
+    #[serde(rename = "valueDecimal")]
+    pub value_decimal: Option<f64>,
+
+    #[serde(rename = "valueId")]
+    pub value_id: Option<String>,
+
+    #[serde(rename = "valueInstant")]
+    pub value_instant: Option<String>,
+
+    #[serde(rename = "valueInteger")]
+    pub value_integer: Option<i32>,
+
+    #[serde(rename = "valueInteger64")]
+    pub value_integer64: Option<i64>,
+
+    #[serde(rename = "valueMarkdown")]
+    pub value_markdown: Option<String>,
+
+    #[serde(rename = "valueOid")]
+    pub value_oid: Option<String>,
+
+    #[serde(rename = "valuePositiveInt")]
+    pub value_positive_int: Option<i32>,
+
+    #[serde(rename = "valueString")]
+    pub value_string: Option<String>,
+
+    #[serde(rename = "valueTime")]
+    pub value_time: Option<String>,
+
+    #[serde(rename = "valueUnsignedInt")]
+    pub value_unsigned_int: Option<u32>,
+
+    #[serde(rename = "valueUri")]
+    pub value_uri: Option<String>,
+
+    #[serde(rename = "valueUrl")]
+    pub value_url: Option<String>,
+
+    #[serde(rename = "valueUuid")]
+    pub value_uuid: Option<String>,
+
+    #[serde(rename = "valueAddress")]
+    pub value_address: Option<Address>,
+
+    #[serde(rename = "valueAge")]
+    pub value_age: Option<Age>,
+
+    #[serde(rename = "valueAnnotation")]
+    pub value_annotation: Option<Annotation>,
+
+    #[serde(rename = "valueAttachment")]
+    pub value_attachment: Option<Attachment>,
+
+    #[serde(rename = "valueCodeableConcept")]
+    pub value_codeable_concept: Option<CodeableConcept>,
+
+    #[serde(rename = "valueCodeableReference")]
+    pub value_codeable_reference: Option<CodeableReference>,
+
+    #[serde(rename = "valueCoding")]
+    pub value_coding: Option<Coding>,
+
+    #[serde(rename = "valueContactPoint")]
+    pub value_contact_point: Option<ContactPoint>,
+
+    #[serde(rename = "valueCount")]
+    pub value_count: Option<Count>,
+
+    #[serde(rename = "valueDistance")]
+    pub value_distance: Option<Distance>,
+
+    #[serde(rename = "valueDuration")]
+    pub value_duration: Option<Duration>,
+
+    #[serde(rename = "valueHumanName")]
+    pub value_human_name: Option<HumanName>,
+
+    #[serde(rename = "valueIdentifier")]
+    pub value_identifier: Option<Box<Identifier>>,
+
+    #[serde(rename = "valueMoney")]
+    pub value_money: Option<Money>,
+
+    #[serde(rename = "valuePeriod")]
+    pub value_period: Option<Period>,
+
+    #[serde(rename = "valueQuantity")]
+    pub value_quantity: Option<Quantity>,
+
+    #[serde(rename = "valueRange")]
+    pub value_range: Option<Range>,
+
+    #[serde(rename = "valueRatio")]
+    pub value_ratio: Option<Ratio>,
+
+    #[serde(rename = "valueRatioRange")]
+    pub value_ratio_range: Option<RatioRange>,
+
+    #[serde(rename = "valueReference")]
+    pub value_reference: Option<Box<Reference>>,
+
+    #[serde(rename = "valueSampledData")]
+    pub value_sampled_data: Option<SampledData>,
+
+    #[serde(rename = "valueSignature")]
+    pub value_signature: Option<Signature>,
+
+    #[serde(rename = "valueTiming")]
+    pub value_timing: Option<Timing>,
+
+    #[serde(rename = "valueContactDetail")]
+    pub value_contact_detail: Option<ContactDetail>,
+
+    #[serde(rename = "valueDataRequirement")]
+    pub value_data_requirement: Option<DataRequirement>,
+
+    #[serde(rename = "valueExpression")]
+    pub value_expression: Option<Expression>,
+
+    #[serde(rename = "valueParameterDefinition")]
+    pub value_parameter_definition: Option<ParameterDefinition>,
+
+    #[serde(rename = "valueRelatedArtifact")]
+    pub value_related_artifact: Option<RelatedArtifact>,
+
+    #[serde(rename = "valueTriggerDefinition")]
+    pub value_trigger_definition: Option<TriggerDefinition>,
+
+    #[serde(rename = "valueUsageContext")]
+    pub value_usage_context: Option<UsageContext>,
+
+    #[serde(rename = "valueAvailability")]
+    pub value_availability: Option<Availability>,
+
+    #[serde(rename = "valueExtendedContactDetail")]
+    pub value_extended_contact_detail: Option<ExtendedContactDetail>,
+
+    #[serde(rename = "valueDosage")]
+    pub value_dosage: Option<Dosage>,
+
+    #[serde(rename = "valueMeta")]
+    pub value_meta: Option<Meta>,
 }
 
 /// HumanName Type: A name, normally of a human, that can be used for other living entities (e.g. animals but not organizations) that have been assigned names by a human and may need the use of name pa...
@@ -1305,7 +2008,11 @@ pub struct ProductShelfLife {
     pub r#type: Option<CodeableConcept>,
 
     /// The shelf life time period can be specified using a numerical value for the period of time and its unit of time measurement The unit of measurement shall be specified in accordance with ISO 11240 a...
-    pub period: Option<serde_json::Value>,
+    #[serde(rename = "periodDuration")]
+    pub period_duration: Option<Duration>,
+
+    #[serde(rename = "periodString")]
+    pub period_string: Option<String>,
 
     /// Special precautions for storage, if any, can be specified using an appropriate controlled vocabulary The controlled term and the controlled term identifier shall be specified
     #[serde(rename = "specialPrecautionsForStorage")]
@@ -1593,7 +2300,17 @@ pub struct TriggerDefinition {
     pub subscription_topic: Option<String>,
 
     /// Timing of the event
-    pub timing: Option<serde_json::Value>,
+    #[serde(rename = "timingTiming")]
+    pub timing_timing: Option<Timing>,
+
+    #[serde(rename = "timingReference")]
+    pub timing_reference: Option<Box<Reference>>,
+
+    #[serde(rename = "timingDate")]
+    pub timing_date: Option<String>,
+
+    #[serde(rename = "timingDateTime")]
+    pub timing_date_time: Option<String>,
 
     /// Triggering data of the event (multiple = 'and')
     pub data: Option<Vec<DataRequirement>>,
@@ -1616,7 +2333,17 @@ pub struct UsageContext {
     pub code: Coding,
 
     /// Value that defines the context
-    pub value: serde_json::Value,
+    #[serde(rename = "valueCodeableConcept")]
+    pub value_codeable_concept: CodeableConcept,
+
+    #[serde(rename = "valueQuantity")]
+    pub value_quantity: Quantity,
+
+    #[serde(rename = "valueRange")]
+    pub value_range: Range,
+
+    #[serde(rename = "valueReference")]
+    pub value_reference: Box<Reference>,
 }
 
 /// VirtualServiceDetail Type: Virtual Service Contact Details.
@@ -1634,7 +2361,17 @@ pub struct VirtualServiceDetail {
     pub channel_type: Option<Coding>,
 
     /// Contact address/number
-    pub address: Option<serde_json::Value>,
+    #[serde(rename = "addressUrl")]
+    pub address_url: Option<String>,
+
+    #[serde(rename = "addressString")]
+    pub address_string: Option<String>,
+
+    #[serde(rename = "addressContactPoint")]
+    pub address_contact_point: Option<ContactPoint>,
+
+    #[serde(rename = "addressExtendedContactDetail")]
+    pub address_extended_contact_detail: Option<ExtendedContactDetail>,
 
     /// Address to see alternative connection details
     #[serde(rename = "additionalInfo")]

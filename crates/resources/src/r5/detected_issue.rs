@@ -110,7 +110,11 @@ pub struct DetectedIssue {
     pub encounter: Option<Box<Reference>>,
 
     /// When identified
-    pub identified: Option<serde_json::Value>,
+    #[serde(rename = "identifiedDateTime")]
+    pub identified_date_time: Option<String>,
+
+    #[serde(rename = "identifiedPeriod")]
+    pub identified_period: Option<Period>,
 
     /// The provider or device that identified the issue
     pub author: Option<Box<Reference>>,

@@ -206,7 +206,11 @@ pub struct Consent {
     pub organization: Option<Vec<Box<Reference>>>,
 
     /// Source from which this consent is taken
-    pub source: Option<serde_json::Value>,
+    #[serde(rename = "sourceAttachment")]
+    pub source_attachment: Option<Attachment>,
+
+    #[serde(rename = "sourceReference")]
+    pub source_reference: Option<Box<Reference>>,
 
     /// Policies covered by this consent
     pub policy: Option<Vec<ConsentPolicy>>,

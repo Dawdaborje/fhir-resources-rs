@@ -161,7 +161,14 @@ pub struct ImplementationGuideDefinitionPage {
     pub modifier_extension: Option<Vec<Extension>>,
 
     /// Source for page
-    pub source: Option<serde_json::Value>,
+    #[serde(rename = "sourceUrl")]
+    pub source_url: Option<String>,
+
+    #[serde(rename = "sourceString")]
+    pub source_string: Option<String>,
+
+    #[serde(rename = "sourceMarkdown")]
+    pub source_markdown: Option<String>,
 
     /// Name of the page when published
     pub name: String,
@@ -348,8 +355,11 @@ pub struct ImplementationGuide {
     pub version: Option<String>,
 
     /// How to compare versions
-    #[serde(rename = "versionAlgorithm")]
-    pub version_algorithm: Option<serde_json::Value>,
+    #[serde(rename = "versionAlgorithmString")]
+    pub version_algorithm_string: Option<String>,
+
+    #[serde(rename = "versionAlgorithmCoding")]
+    pub version_algorithm_coding: Option<Coding>,
 
     /// Name for this implementation guide (computer friendly)
     pub name: String,

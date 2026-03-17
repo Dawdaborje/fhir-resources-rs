@@ -69,7 +69,11 @@ pub struct ResearchDefinition {
     pub experimental: Option<bool>,
 
     /// E.g. Patient, Practitioner, RelatedPerson, Organization, Location, Device
-    pub subject: Option<serde_json::Value>,
+    #[serde(rename = "subjectCodeableConcept")]
+    pub subject_codeable_concept: Option<CodeableConcept>,
+
+    #[serde(rename = "subjectReference")]
+    pub subject_reference: Option<Box<Reference>>,
 
     /// Date last changed
     pub date: Option<String>,

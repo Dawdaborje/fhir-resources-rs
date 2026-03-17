@@ -85,7 +85,14 @@ pub struct ServiceRequest {
     pub order_detail: Option<Vec<CodeableConcept>>,
 
     /// Service amount
-    pub quantity: Option<serde_json::Value>,
+    #[serde(rename = "quantityQuantity")]
+    pub quantity_quantity: Option<Quantity>,
+
+    #[serde(rename = "quantityRatio")]
+    pub quantity_ratio: Option<Ratio>,
+
+    #[serde(rename = "quantityRange")]
+    pub quantity_range: Option<Range>,
 
     /// Individual or Entity the service is ordered for
     pub subject: Box<Reference>,
@@ -94,11 +101,21 @@ pub struct ServiceRequest {
     pub encounter: Option<Box<Reference>>,
 
     /// When service should occur
-    pub occurrence: Option<serde_json::Value>,
+    #[serde(rename = "occurrenceDateTime")]
+    pub occurrence_date_time: Option<String>,
+
+    #[serde(rename = "occurrencePeriod")]
+    pub occurrence_period: Option<Period>,
+
+    #[serde(rename = "occurrenceTiming")]
+    pub occurrence_timing: Option<Timing>,
 
     /// Preconditions for service
-    #[serde(rename = "asNeeded")]
-    pub as_needed: Option<serde_json::Value>,
+    #[serde(rename = "asNeededBoolean")]
+    pub as_needed_boolean: Option<bool>,
+
+    #[serde(rename = "asNeededCodeableConcept")]
+    pub as_needed_codeable_concept: Option<CodeableConcept>,
 
     /// Date request signed
     #[serde(rename = "authoredOn")]

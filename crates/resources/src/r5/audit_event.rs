@@ -61,7 +61,14 @@ pub struct AuditEventAgent {
     pub policy: Option<Vec<String>>,
 
     /// This agent network location for the activity
-    pub network: Option<serde_json::Value>,
+    #[serde(rename = "networkReference")]
+    pub network_reference: Option<Box<Reference>>,
+
+    #[serde(rename = "networkUri")]
+    pub network_uri: Option<String>,
+
+    #[serde(rename = "networkString")]
+    pub network_string: Option<String>,
 
     /// Allowable authorization for this agent
     pub authorization: Option<Vec<CodeableConcept>>,
@@ -145,7 +152,38 @@ pub struct AuditEventEntityDetail {
     pub r#type: CodeableConcept,
 
     /// Property value
-    pub value: serde_json::Value,
+    #[serde(rename = "valueQuantity")]
+    pub value_quantity: Quantity,
+
+    #[serde(rename = "valueCodeableConcept")]
+    pub value_codeable_concept: CodeableConcept,
+
+    #[serde(rename = "valueString")]
+    pub value_string: String,
+
+    #[serde(rename = "valueBoolean")]
+    pub value_boolean: bool,
+
+    #[serde(rename = "valueInteger")]
+    pub value_integer: i32,
+
+    #[serde(rename = "valueRange")]
+    pub value_range: Range,
+
+    #[serde(rename = "valueRatio")]
+    pub value_ratio: Ratio,
+
+    #[serde(rename = "valueTime")]
+    pub value_time: String,
+
+    #[serde(rename = "valueDateTime")]
+    pub value_date_time: String,
+
+    #[serde(rename = "valuePeriod")]
+    pub value_period: Period,
+
+    #[serde(rename = "valueBase64Binary")]
+    pub value_base64binary: String,
 }
 
 /// A record of an event relevant for purposes such as operations, privacy, security, maintenance, and performance analysis.
@@ -195,7 +233,11 @@ pub struct AuditEvent {
     pub severity: Option<String>,
 
     /// When the activity occurred
-    pub occurred: Option<serde_json::Value>,
+    #[serde(rename = "occurredPeriod")]
+    pub occurred_period: Option<Period>,
+
+    #[serde(rename = "occurredDateTime")]
+    pub occurred_date_time: Option<String>,
 
     /// Time when the event was recorded
     pub recorded: String,

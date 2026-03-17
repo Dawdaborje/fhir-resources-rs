@@ -105,8 +105,11 @@ pub struct GenomicStudyAnalysisInput {
     pub r#type: Option<CodeableConcept>,
 
     /// The analysis event or other GenomicStudy that generated this input file
-    #[serde(rename = "generatedBy")]
-    pub generated_by: Option<serde_json::Value>,
+    #[serde(rename = "generatedByIdentifier")]
+    pub generated_by_identifier: Option<Box<Identifier>>,
+
+    #[serde(rename = "generatedByReference")]
+    pub generated_by_reference: Option<Box<Reference>>,
 }
 
 /// Outputs for the analysis event

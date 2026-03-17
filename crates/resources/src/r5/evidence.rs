@@ -303,8 +303,11 @@ pub struct Evidence {
     pub version: Option<String>,
 
     /// How to compare versions
-    #[serde(rename = "versionAlgorithm")]
-    pub version_algorithm: Option<serde_json::Value>,
+    #[serde(rename = "versionAlgorithmString")]
+    pub version_algorithm_string: Option<String>,
+
+    #[serde(rename = "versionAlgorithmCoding")]
+    pub version_algorithm_coding: Option<Coding>,
 
     /// Name for this summary (machine friendly)
     pub name: Option<String>,
@@ -313,8 +316,11 @@ pub struct Evidence {
     pub title: Option<String>,
 
     /// Citation for this evidence
-    #[serde(rename = "citeAs")]
-    pub cite_as: Option<serde_json::Value>,
+    #[serde(rename = "citeAsReference")]
+    pub cite_as_reference: Option<Box<Reference>>,
+
+    #[serde(rename = "citeAsMarkdown")]
+    pub cite_as_markdown: Option<String>,
 
     /// draft | active | retired | unknown
     pub status: String,

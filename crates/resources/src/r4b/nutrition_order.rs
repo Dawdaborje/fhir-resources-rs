@@ -187,7 +187,11 @@ pub struct NutritionOrderEnteralFormulaAdministration {
     pub quantity: Option<Quantity>,
 
     /// Speed with which the formula is provided per period of time
-    pub rate: Option<serde_json::Value>,
+    #[serde(rename = "rateQuantity")]
+    pub rate_quantity: Option<Quantity>,
+
+    #[serde(rename = "rateRatio")]
+    pub rate_ratio: Option<Ratio>,
 }
 
 /// A request to supply a diet, formula feeding (enteral) or oral nutritional supplement to a patient/resident.

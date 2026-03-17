@@ -24,7 +24,23 @@ pub struct EvidenceVariableCharacteristic {
     pub description: Option<String>,
 
     /// What code or expression defines members?
-    pub definition: serde_json::Value,
+    #[serde(rename = "definitionReference")]
+    pub definition_reference: Box<Reference>,
+
+    #[serde(rename = "definitionCanonical")]
+    pub definition_canonical: String,
+
+    #[serde(rename = "definitionCodeableConcept")]
+    pub definition_codeable_concept: CodeableConcept,
+
+    #[serde(rename = "definitionExpression")]
+    pub definition_expression: Expression,
+
+    #[serde(rename = "definitionDataRequirement")]
+    pub definition_data_requirement: DataRequirement,
+
+    #[serde(rename = "definitionTriggerDefinition")]
+    pub definition_trigger_definition: TriggerDefinition,
 
     /// What code/value pairs define members?
     #[serde(rename = "usageContext")]
@@ -34,8 +50,17 @@ pub struct EvidenceVariableCharacteristic {
     pub exclude: Option<bool>,
 
     /// What time period do participants cover
-    #[serde(rename = "participantEffective")]
-    pub participant_effective: Option<serde_json::Value>,
+    #[serde(rename = "participantEffectiveDateTime")]
+    pub participant_effective_date_time: Option<String>,
+
+    #[serde(rename = "participantEffectivePeriod")]
+    pub participant_effective_period: Option<Period>,
+
+    #[serde(rename = "participantEffectiveDuration")]
+    pub participant_effective_duration: Option<Duration>,
+
+    #[serde(rename = "participantEffectiveTiming")]
+    pub participant_effective_timing: Option<Timing>,
 
     /// Observation time from study start
     #[serde(rename = "timeFromStart")]

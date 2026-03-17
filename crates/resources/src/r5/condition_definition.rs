@@ -70,7 +70,11 @@ pub struct ConditionDefinitionPrecondition {
     pub code: CodeableConcept,
 
     /// Value of Observation
-    pub value: Option<serde_json::Value>,
+    #[serde(rename = "valueCodeableConcept")]
+    pub value_codeable_concept: Option<CodeableConcept>,
+
+    #[serde(rename = "valueQuantity")]
+    pub value_quantity: Option<Quantity>,
 }
 
 /// Questionnaire for this condition
@@ -159,8 +163,11 @@ pub struct ConditionDefinition {
     pub version: Option<String>,
 
     /// How to compare versions
-    #[serde(rename = "versionAlgorithm")]
-    pub version_algorithm: Option<serde_json::Value>,
+    #[serde(rename = "versionAlgorithmString")]
+    pub version_algorithm_string: Option<String>,
+
+    #[serde(rename = "versionAlgorithmCoding")]
+    pub version_algorithm_coding: Option<Coding>,
 
     /// Name for this condition definition (computer friendly)
     pub name: Option<String>,
