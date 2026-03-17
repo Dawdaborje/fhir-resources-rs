@@ -1,0 +1,176 @@
+//! FHIR R5 ChargeItemDefinition Resource
+//!
+//! Auto-generated from FHIR schema definitions.
+//! Do not modify directly.
+
+use crate::r5::types::*;
+use serde::{Deserialize, Serialize};
+
+/// Whether or not the billing code is applicable
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct ChargeItemDefinitionApplicability {
+    /// Unique id for inter-element referencing
+    pub id: Option<String>,
+
+    /// Additional content defined by implementations
+    pub extension: Option<Vec<Extension>>,
+
+    /// Extensions that cannot be ignored even if unrecognized
+    #[serde(rename = "modifierExtension")]
+    pub modifier_extension: Option<Vec<Extension>>,
+
+    /// Boolean-valued expression
+    pub condition: Option<Expression>,
+
+    /// When the charge item definition is expected to be used
+    #[serde(rename = "effectivePeriod")]
+    pub effective_period: Option<Period>,
+
+    /// Reference to / quotation of the external source of the group of properties
+    #[serde(rename = "relatedArtifact")]
+    pub related_artifact: Option<RelatedArtifact>,
+}
+
+/// Group of properties which are applicable under the same conditions
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct ChargeItemDefinitionPropertyGroup {
+    /// Unique id for inter-element referencing
+    pub id: Option<String>,
+
+    /// Additional content defined by implementations
+    pub extension: Option<Vec<Extension>>,
+
+    /// Extensions that cannot be ignored even if unrecognized
+    #[serde(rename = "modifierExtension")]
+    pub modifier_extension: Option<Vec<Extension>>,
+
+    /// Conditions under which the priceComponent is applicable
+    pub applicability: Option<Vec<ChargeItemDefinitionApplicability>>,
+
+    /// Components of total line item price
+    #[serde(rename = "priceComponent")]
+    pub price_component: Option<Vec<MonetaryComponent>>,
+}
+
+/// The ChargeItemDefinition resource provides the properties that apply to the (billing) codes necessary to calculate costs and prices. The properties may differ largely depending on type and realm, t...
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct ChargeItemDefinition {
+    /// The type of resource
+    #[serde(rename = "resourceType")]
+    pub resource_type: String,
+
+    /// Logical id of this artifact
+    pub id: Option<String>,
+
+    /// Metadata about the resource
+    pub meta: Option<Meta>,
+
+    /// A set of rules under which this content was created
+    #[serde(rename = "implicitRules")]
+    pub implicit_rules: Option<String>,
+
+    /// Language of the resource content
+    pub language: Option<String>,
+
+    /// Text summary of the resource, for human interpretation
+    pub text: Option<Narrative>,
+
+    /// Contained, inline Resources
+    pub contained: Option<Vec<serde_json::Value>>,
+
+    /// Additional content defined by implementations
+    pub extension: Option<Vec<Extension>>,
+
+    /// Extensions that cannot be ignored
+    #[serde(rename = "modifierExtension")]
+    pub modifier_extension: Option<Vec<Extension>>,
+
+    /// Canonical identifier for this charge item definition, represented as a URI (globally unique)
+    pub url: Option<String>,
+
+    /// Additional identifier for the charge item definition
+    pub identifier: Option<Vec<Box<Identifier>>>,
+
+    /// Business version of the charge item definition
+    pub version: Option<String>,
+
+    /// How to compare versions
+    #[serde(rename = "versionAlgorithm")]
+    pub version_algorithm: Option<serde_json::Value>,
+
+    /// Name for this charge item definition (computer friendly)
+    pub name: Option<String>,
+
+    /// Name for this charge item definition (human friendly)
+    pub title: Option<String>,
+
+    /// Underlying externally-defined charge item definition
+    #[serde(rename = "derivedFromUri")]
+    pub derived_from_uri: Option<Vec<String>>,
+
+    /// A larger definition of which this particular definition is a component or step
+    #[serde(rename = "partOf")]
+    pub part_of: Option<Vec<String>>,
+
+    /// Completed or terminated request(s) whose function is taken by this new request
+    pub replaces: Option<Vec<String>>,
+
+    /// draft | active | retired | unknown
+    pub status: String,
+
+    /// For testing purposes, not real usage
+    pub experimental: Option<bool>,
+
+    /// Date last changed
+    pub date: Option<String>,
+
+    /// Name of the publisher/steward (organization or individual)
+    pub publisher: Option<String>,
+
+    /// Contact details for the publisher
+    pub contact: Option<Vec<ContactDetail>>,
+
+    /// Natural language description of the charge item definition
+    pub description: Option<String>,
+
+    /// The context that the content is intended to support
+    #[serde(rename = "useContext")]
+    pub use_context: Option<Vec<UsageContext>>,
+
+    /// Intended jurisdiction for charge item definition (if applicable)
+    pub jurisdiction: Option<Vec<CodeableConcept>>,
+
+    /// Why this charge item definition is defined
+    pub purpose: Option<String>,
+
+    /// Use and/or publishing restrictions
+    pub copyright: Option<String>,
+
+    /// Copyright holder and year(s)
+    #[serde(rename = "copyrightLabel")]
+    pub copyright_label: Option<String>,
+
+    /// When the charge item definition was approved by publisher
+    #[serde(rename = "approvalDate")]
+    pub approval_date: Option<String>,
+
+    /// When the charge item definition was last reviewed by the publisher
+    #[serde(rename = "lastReviewDate")]
+    pub last_review_date: Option<String>,
+
+    /// Billing code or product type this definition applies to
+    pub code: Option<CodeableConcept>,
+
+    /// Instances this definition applies to
+    pub instance: Option<Vec<Box<Reference>>>,
+
+    /// Whether or not the billing code is applicable
+    pub applicability: Option<Vec<ChargeItemDefinitionApplicability>>,
+
+    /// Group of properties which are applicable under the same conditions
+    #[serde(rename = "propertyGroup")]
+    pub property_group: Option<Vec<ChargeItemDefinitionPropertyGroup>>,
+}

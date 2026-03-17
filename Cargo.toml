@@ -1,12 +1,26 @@
 [workspace]
 members = ["crates/resources", "crates/codegen", "crates/types"]
-resolver = "3"
+resolver = "2"
 
 [package]
-name = "fhir-resources" # the name of the package
-version = "0.1.0"    # the current version, obeying semver
-edition = "2024"     # the edition, will have no effect on a resolver used in the workspace
+name = "fhir-resources-rs"
+version = "0.1.0"
+edition = "2021"
 
 [[bin]]
 name = "codegen"
 path = "crates/codegen/src/main.rs"
+
+[dependencies]
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+anyhow = "1.0"
+fhir-resources = { path = "crates/resources" }
+
+[[example]]
+name = "r5_patient"
+path = "examples/r5_patient.rs"
+
+[[example]]
+name = "r5_bundle_typed"
+path = "examples/r5_bundle_typed.rs"
